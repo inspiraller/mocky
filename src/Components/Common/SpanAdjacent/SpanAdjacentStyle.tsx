@@ -2,9 +2,7 @@ import { withElem } from 'src/Main/Styles/withStyle';
 import { TStyles } from 'src/Main/Styles/Theme';
 
 const styles: TStyles = ({ theme: { pad20 } }) => `
-  clear: both; /* fix legend */
-  display: block;
-  margin: ${pad20} 0 0;
+  margin: 0 0 0 ${pad20};
 `;
 
-export default () => withElem('div', styles);
+export default () => withElem('span', styles);

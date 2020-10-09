@@ -12,7 +12,7 @@ module.exports = {
   },
   testEnvironment: 'jsdom',
   testRegex: '(\\.(test|spec))\\.[tj]sx?$',
-  setupFilesAfterEnv: ['<rootDir>/jest/setupEnzyme.ts', '<rootDir>/jest/removeStyledWarn.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest/setupEnzyme.ts'],
   preset: 'ts-jest',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   globals: {

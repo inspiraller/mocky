@@ -1,4 +1,4 @@
-import { withInput } from 'src/Main/Styles/withStyle';
+import { withOption } from 'src/Main/Styles/withStyle';
 import { TStyles } from 'src/Main/Styles/Theme';
 
 const styles: TStyles = ({ theme: { pad10, warn, success } }) => `
@@ -14,10 +14,6 @@ const styles: TStyles = ({ theme: { pad10, warn, success } }) => `
   &[aria-invalid="true"] {
     border-color: ${warn};
   }
-  &[data-adjacent] {
-    width: 100px;
-    min-width: 100px;
-  }
 `;
 
-export default () => withInput(styles);
+export default () => withOption(styles);
