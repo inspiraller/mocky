@@ -12,6 +12,8 @@ const configForm: IConfigForm = {
   }
 };
 
-const RowTextareaBasic = () => <RowTextarea {...{ configForm, label: 'fruit' }} />;
+const RowTextareaBasic = () => (
+  <RowTextarea {...{ configForm, inputKey: 'fruit', label: 'fruit pyramid ' }} />
+);
 
 export default RowTextareaBasic;

@@ -9,6 +9,7 @@ import OptionStyle from 'src/Components/Common/Select/OptionStyle';
 import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
 import { IConfigForm } from 'src/store/eventCreate/configForm';
 import { TacEdit } from 'src/store/eventCreate/actions';
+import { TLitVal } from 'src/store/eventCreate/_initialState';
 
 import hacEdit from './util/hacEdit';
 
@@ -16,9 +17,10 @@ type TInputChange = React.ChangeEvent<HTMLSelectElement>;
 
 interface IField {
   configForm: IConfigForm;
+  inputKey: string;
   label: string;
   acEdit?: TacEdit;
-  defaultValue?: string;
+  defaultValue?: TLitVal;
 }
 
 const Row = RowStyle();
@@ -26,14 +28,14 @@ const Select = SelectStyle();
 const Option = OptionStyle();
 const Label = LabelStyle();
 
-const RowSelect: FC<IField> = ({ configForm, label, acEdit, defaultValue }) => {
-  const { validate, required, options } = configForm.inputs[label];
+const RowSelect: FC<IField> = ({ configForm, inputKey, label, acEdit, defaultValue }) => {
+  const { validate, required, options, valueType } = configForm.inputs[inputKey];
 
   const [input, setInput] = useState(defaultValue);
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState('');
 
-  const value = acEdit && defaultValue ? defaultValue : input;
+  const value = acEdit ? defaultValue : input;
 
   const updateErrors = (val: string) => {
     setTouched(true);
@@ -41,7 +43,7 @@ const RowSelect: FC<IField> = ({ configForm, label, acEdit, defaultValue }) => {
   };
 
   const onChange = (evt: TInputChange) => {
-    hacEdit({ setInput, acEdit, label, value: evt.target.value });
+    hacEdit({ setInput, acEdit, inputKey, value: evt.target.value, valueType });
     updateErrors(evt.target.value);
   };
 
@@ -51,19 +53,19 @@ const RowSelect: FC<IField> = ({ configForm, label, acEdit, defaultValue }) => {
         <span>{label}</span>
         <Select
           onChange={onChange}
-          name={label}
+          name={inputKey}
           placeholder={text(label)}
           aria-required={required ? 'true' : 'false'}
           aria-invalid={error ? 'true' : 'false'}
           data-touched={touched && value !== '' ? 'true' : 'false'}
-          aria-label={text(label)}
-          value={value}
+          aria-label={text(inputKey)}
+          value={String(value)}
         >
-          <Option value="">{text('Please select...')}</Option>
+          <Option value="-1">{text('Please select...')}</Option>
 
           {options &&
             options.map(item => (
-              <Option key={`Option-${label}-${item.name}`} value={item.value}>
+              <Option key={`Option-${label}-${item.name}`} value={String(item.value)}>
                 {text(item.name)}
               </Option>
             ))}

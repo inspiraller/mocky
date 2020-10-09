@@ -9,13 +9,16 @@ const configForm: IConfigForm = {
       required: true,
       type: 'select',
       options: [
-        { name: 'apple', value: '1' },
-        { name: 'banana', value: '2' }
-      ]
+        { name: 'apple', value: 1 },
+        { name: 'banana', value: 2 }
+      ],
+      valueType: 'number'
     }
   }
 };
 
-const RowSelectBasic = () => <RowSelect {...{ configForm, label: 'fruit' }} />;
+const RowSelectBasic = () => (
+  <RowSelect {...{ configForm, inputKey: 'fruit', label: 'fruit platter' }} />
+);
 
 export default RowSelectBasic;

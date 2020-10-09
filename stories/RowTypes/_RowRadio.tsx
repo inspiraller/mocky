@@ -8,11 +8,17 @@ const configForm: IConfigForm = {
     fruit: {
       required: true,
       type: 'radio',
-      radios: ['apple', 'banana']
+      radios: [
+        { name: 'apple', value: 0 },
+        { name: 'banana', value: 1 }
+      ],
+      valueType: 'number'
     }
   }
 };
 
-const RowRadioBasic = () => <RowRadio {...{ configForm, label: 'fruit' }} />;
+const RowRadioBasic = () => (
+  <RowRadio {...{ configForm, inputKey: 'fruit', label: 'fruit pallete' }} />
+);
 
 export default RowRadioBasic;

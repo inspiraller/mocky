@@ -80,6 +80,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-use-before-define": ["error", { "functions": false }],
     "@typescript-eslint/interface-name-prefix": 0,
+    "@typescript-eslint/camelcase": 0,
     "no-invalid-this": "off",
     "react/prop-types": 0,
     "react/forbid-prop-types": 0,

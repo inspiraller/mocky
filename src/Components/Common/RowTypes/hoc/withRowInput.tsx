@@ -12,6 +12,7 @@ import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/
 
 import { IConfigForm } from 'src/store/eventCreate/configForm';
 import { TacEdit } from 'src/store/eventCreate/actions';
+import { TLitVal } from 'src/store/eventCreate/_initialState';
 
 import hacEdit from '../util/hacEdit';
 
@@ -20,9 +21,10 @@ type TInputChange = React.ChangeEvent<TElementType>;
 
 interface IField {
   configForm: IConfigForm;
+  inputKey: string;
   label: string;
   acEdit?: TacEdit;
-  defaultValue?: string;
+  defaultValue?: TLitVal;
 }
 
 const Row = RowStyle();
@@ -31,17 +33,18 @@ const SpanAdjacent = SpanAdjacentStyle();
 const WrapBlock = WrapBlockStyle();
 
 const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> => props => {
-  const { configForm, label, acEdit, defaultValue } = props;
-  const { validate, required, adjacent, maxLength } = configForm.inputs[label];
+  const { configForm, inputKey, label, acEdit, defaultValue } = props;
+
+  const { validate, required, adjacent, maxLength, valueType } = configForm.inputs[inputKey];
 
   const [input, setInput] = useState(defaultValue);
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState('');
 
-  const value = acEdit && defaultValue ? defaultValue : input;
+  const value = acEdit ? defaultValue : input;
 
   const onChange = (evt: TInputChange) => {
-    hacEdit({ setInput, acEdit, label, value: evt.target.value });
+    hacEdit({ setInput, acEdit, inputKey, value: evt.target.value, valueType });
   };
 
   const updateErrors = (val: string) => {
@@ -53,6 +56,8 @@ const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> =
     updateErrors(evt.target.value);
   };
 
+  const type = valueType === 'number' ? 'number' : 'text';
+
   const HocRowInput = (
     <Row>
       <Label data-aria-required={required}>
@@ -61,15 +66,15 @@ const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> =
           <Comp
             onChange={onChange}
             onBlur={onBlur}
-            name={label}
+            name={inputKey}
             placeholder={text(label)}
             aria-required={required ? 'true' : 'false'}
             aria-invalid={error ? 'true' : 'false'}
             data-touched={touched ? 'true' : 'false'}
-            aria-label={text(label)}
+            aria-label={text(inputKey)}
             maxLength={maxLength}
-            type="text"
-            value={value}
+            type={type}
+            value={typeof value !== 'undefined' ? String(value) : ''}
             data-adjacent={adjacent}
           />
           <CharCount {...{ maxLength, chars: String(value).length }} />

@@ -20,35 +20,48 @@ const FieldAbout: FC<IFormSetup> = ({ configForm, acEdit, eventCreate }) => {
   return (
     <Fieldset>
       <Legend>{text('About')}</Legend>
-      {Object.keys(configForm.inputs).map(item => {
-        const defaultValue: string = eventCreate[item];
-        switch (configForm.inputs[item].type) {
+      {Object.keys(configForm.inputs).map(inputKey => {
+        const defaultValue: string | number | boolean = eventCreate[inputKey];
+        const item = configForm.inputs[inputKey];
+        const label = item.label || inputKey;
+        const { type } = item;
+
+        // const { type, valueType } = item;
+        // if (valueType === 'number' && (!type || type === 'textarea')) {
+        //   return (
+        //     <RowNumber
+        //       {...{ configForm, inputKey, label, acEdit, defaultValue }}
+        //       key={`RowNumber-${inputKey}`}
+        //     />
+        //   );
+        // }
+        switch (type) {
           case 'select':
             return (
               <RowSelect
-                {...{ configForm, label: item, acEdit, defaultValue }}
-                key={`RowSelect=${item}`}
+                {...{ configForm, inputKey, label, acEdit, defaultValue }}
+                key={`RowSelect-${inputKey}`}
               />
             );
           case 'textarea':
             return (
               <RowTextArea
-                {...{ configForm, label: item, acEdit, defaultValue }}
-                key={`RowTextarea=${item}`}
+                {...{ configForm, inputKey, label, acEdit, defaultValue }}
+                key={`RowTextarea-${inputKey}`}
               />
             );
           case 'radio':
             return (
               <RowRadio
-                {...{ configForm, label: item, acEdit, defaultValue }}
-                key={`RowRadio=${item}`}
+                {...{ configForm, inputKey, label, acEdit, defaultValue }}
+                key={`RowRadio-${inputKey}`}
               />
             );
           default:
             return (
               <RowInput
-                {...{ configForm, label: item, acEdit, defaultValue }}
-                key={`RowInput=${item}`}
+                {...{ configForm, inputKey, label, acEdit, defaultValue }}
+                key={`RowInput-${inputKey}`}
               />
             );
         }

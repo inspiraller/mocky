@@ -11,6 +11,8 @@ const configForm: IConfigForm = {
   }
 };
 
-const RowInputBasic = () => <RowInput {...{ configForm, label: 'fruit'}} />;
+const RowInputBasic = () => (
+  <RowInput {...{ configForm, inputKey: 'fruit', label: 'fruit extravaganza' }} />
+);
 
 export default RowInputBasic;

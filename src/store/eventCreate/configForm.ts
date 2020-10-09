@@ -5,13 +5,15 @@ export interface IConfigForm {
   isSubmitting: boolean;
   inputs: {
     [key: string]: {
+      label?: string;
       type?: string;
       validate?: TValidate;
       required?: boolean;
-      options?: Array<{ name: string; value: string }>;
-      radios?: string[];
+      options?: Array<{ name: string; value: string | number | boolean }>;
+      radios?: Array<{ name: string; value: string | number | boolean }>;
       adjacent?: string;
       maxLength?: number;
+      valueType?: string;
     };
   };
 }
@@ -27,20 +29,28 @@ const configForm: IConfigForm = {
       required: true,
       maxLength: 140
     },
-    category: {
+    category_id: {
+      label: 'category',
       type: 'select',
       options: [
-        { name: text('rock'), value: '0' },
-        { name: text('indie'), value: '1' },
-        { name: text('accoustic'), value: '2' }
-      ]
+        { name: text('rock'), value: 0 },
+        { name: text('indie'), value: 1 },
+        { name: text('accoustic'), value: 2 }
+      ],
+      valueType: 'number'
     },
-    payment: {
+    paid_event: {
+      label: 'payment',
       type: 'radio',
-      radios: [text('Free event'), text('Paid event')]
+      radios: [
+        { name: text('Free event'), value: false },
+        { name: text('Paid event'), value: true }
+      ],
+      valueType: 'boolean'
     },
     reward: {
-      adjacent: text('reward points for attendance')
+      adjacent: text('reward points for attendance'),
+      valueType: 'number'
     }
   }
 };

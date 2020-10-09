@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import { IConfigForm } from 'src/store/eventCreate/configForm';
 
 import { validateNotEmpty } from 'src/Components/Common/Validate/Validate';
@@ -26,8 +27,8 @@ const FieldAbout: FC = () => {
   return (
     <Fieldset>
       <Legend>About</Legend>
-      <RowInput {...{ configForm, label: 'title1' }} key={`RowInput-title`} />
-      <RowInput {...{ configForm, label: 'title2' }} key={`RowInput-title-2`} />
+      <RowInput {...{ configForm, inputKey: 'title1', label: 'title1' }} key={`RowInput-title`} />
+      <RowInput {...{ configForm, inputKey: 'title2', label: 'title2' }} key={`RowInput-title-2`} />
     </Fieldset>
   );
 };

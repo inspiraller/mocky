@@ -1,15 +1,10 @@
-import { createAction } from 'redux-actions'; //  ActionFunctionAny
+import { createAction } from 'redux-actions';
 import { Action } from 'redux';
-// import { ThunkAction } from 'redux-thunk';
-// import { RootState } from 'src/store/storeTypes';
+import { TLitVal } from './_initialState';
 
 import at from './actionTypes';
 
-// export type TacEdit = (payload: {
-//   [key: string]: string;
-// }) => ThunkAction<void, RootState, undefined, Action>;
-
-export type TacEdit = (props: { [key: string]: string }) => Action;
+export type TacEdit = (props: { [key: string]: TLitVal }) => Action;
 
 const acEdit: TacEdit = createAction(at.EDIT);
 
