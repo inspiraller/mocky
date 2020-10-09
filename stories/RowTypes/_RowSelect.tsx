@@ -9,8 +9,8 @@ const formState: IFormState = {
       required: true,
       type: 'select',
       options: [
-        { name: 'apple', value: 1 },
-        { name: 'banana', value: 2 }
+        { name: 'apple', value: '1' },
+        { name: 'banana', value: '2' }
       ]
     }
   }

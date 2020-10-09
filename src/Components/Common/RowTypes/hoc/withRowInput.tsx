@@ -24,9 +24,9 @@ const WrapBlock = WrapBlockStyle();
 
 const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> => props => {
   const { formState, label } = props;
-  const { validate, required, adjacent, maxLength } = formState.inputs[label];
+  const { validate, required, adjacent, maxLength, defaultValue } = formState.inputs[label];
 
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState(defaultValue || '');
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState('');
 
@@ -62,7 +62,7 @@ const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> =
             value={input}
             data-adjacent={adjacent}
           />
-          <CharCount {...{ maxLength, chars: input.length }} />
+          <CharCount {...{ maxLength, chars: String(input).length }} />
         </WrapBlock>
         {adjacent ? <SpanAdjacent>{adjacent}</SpanAdjacent> : null}
       </Label>

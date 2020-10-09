@@ -9,7 +9,7 @@ type TProps = {
 
 class App extends Component<TProps> {
   componentDidMount() {
-    document.title = 'Example';
+    document.title = 'React-Mocky';
   }
 
   render() {

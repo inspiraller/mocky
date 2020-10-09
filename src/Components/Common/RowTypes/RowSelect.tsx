@@ -22,11 +22,11 @@ const Option = OptionStyle();
 const Label = LabelStyle();
 
 const RowSelect: FC<IField> = ({ formState, label }) => {
-  const [input, setInput] = useState('');
+  const { validate, required, options, defaultValue } = formState.inputs[label];
+
+  const [input, setInput] = useState(defaultValue);
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState('');
-
-  const { validate, required, options } = formState.inputs[label];
 
   const updateErrors = (value: string) => {
     setTouched(true);

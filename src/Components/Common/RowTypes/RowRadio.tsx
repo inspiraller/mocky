@@ -19,9 +19,7 @@ const SpanLabel = SpanLabelStyle();
 const Radio = RadioStyle();
 
 const RowRadio: FC<IField> = ({ formState, label }) => {
-  const { radios } = formState.inputs[label];
-
-  const defaultValue = (radios && radios[0]) || '';
+  const { radios, defaultValue } = formState.inputs[label];
   const [input, setInput] = useState(defaultValue);
 
   const onChange = (evt: TInputChange) => {
@@ -39,6 +37,7 @@ const RowRadio: FC<IField> = ({ formState, label }) => {
               onChange={onChange}
               name={label}
               aria-label={text(label)}
+              checked={name === input}
               value={name}
             />
             <span>{name}</span>

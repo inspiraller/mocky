@@ -2,7 +2,7 @@
 import text from 'src/Main/text';
 import React, { FC } from 'react';
 import FormWrapper, { TSubmit } from 'src/Components/Common/Form/FormWrapper';
-import { TValidate, validateNotEmpty, validateLength } from 'src/Components/Common/Validate/Validate';
+import { TValidate } from 'src/Components/Common/Validate/Validate';
 
 // import RowStyle from 'src/Components/Common/Row/RowStyle';
 // import ButtonStyle from 'src/Components/Common/Button/ButtonStyle';
@@ -19,10 +19,11 @@ export interface IFormState {
       type?: string;
       validate?: TValidate;
       required?: boolean;
-      options?: Array<{ name: string; value: number }>;
+      options?: Array<{ name: string; value: string }>;
       radios?: string[];
       adjacent?: string;
       maxLength?: number;
+      defaultValue?: string;
     };
   };
 }
@@ -31,27 +32,30 @@ const configFormState: IFormState = {
   isSubmitting: false,
   inputs: {
     title: {
-      required: true
+      required: true,
+      defaultValue: 'steve'
     },
     description: {
       type: 'textarea',
       required: true,
-      maxLength: 140
+      maxLength: 140,
+      defaultValue: 'john'
     },
     category: {
       type: 'select',
       options: [
-        { name: text('rock'), value: 0 },
-        { name: text('indie'), value: 1 },
-        { name: text('accoustic'), value: 2 }
-      ]
+        { name: text('rock'), value: '0' },
+        { name: text('indie'), value: '1' },
+        { name: text('accoustic'), value: '2' }
+      ],
+      defaultValue: '0'
     },
     payment: {
       type: 'radio',
-      radios: [text('Free event'), text('Paid event')]
+      radios: [text('Free event'), text('Paid event')],
+      defaultValue: 'Paid event'
     },
     reward: {
-      validate: validateNotEmpty,
       adjacent: text('reward points for attendance')
     }
   }
