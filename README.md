@@ -1,0 +1,12 @@
+# Baseline React Repo 
+- Typescript
+- sonar
+- storybook
+- react router
+- redux
+- jest
+- nodeServer build example
+- coverage
+- linting
+- module resolving
+- prettier

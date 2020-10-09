@@ -1,0 +1,4 @@
+*.vcproj    eol=lf
+*.sh        eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
