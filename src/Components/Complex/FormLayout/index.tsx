@@ -26,7 +26,7 @@ export interface IFormState {
   };
 }
 
-const formState: IFormState = {
+const configFormState: IFormState = {
   isSubmitting: false,
   inputs: {
     title: {
@@ -64,7 +64,7 @@ const FormSetup: FC = () => {
 
   return (
     <FormWrapper title={text('New Event')} onSubmit={onSubmit}>
-      <FieldAbout {...{ formState }} />
+      <FieldAbout {...{ formState: configFormState }} />
       {/* <Row>
         <Button type="submit" disabled={formState.isSubmitting}>
           {text('Publish')}

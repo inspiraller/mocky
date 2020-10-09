@@ -1,7 +1,7 @@
-import { routes } from 'src/Main/Routes/index';
+import { configRoutes } from 'src/Main/Routes/index';
 
-describe('routes', () => {
+describe('configRoutes', () => {
   it('should have first route ', () => {
-    expect(routes.routeForm.path).toBe('/');
+    expect(configRoutes.routeForm.path).toBe('/');
   });
 });

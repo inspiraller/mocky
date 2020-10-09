@@ -17,7 +17,7 @@ const Row = RowStyle();
 const TextArea = TextAreaStyle();
 const Label = LabelStyle();
 
-const RowInput: FC<IField> = ({ formState, label }) => {
+const RowTextarea: FC<IField> = ({ formState, label }) => {
   const [input, setInput] = useState('');
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState('');
@@ -62,4 +62,4 @@ const RowInput: FC<IField> = ({ formState, label }) => {
   );
 };
 
-export default RowInput;
+export default RowTextarea;

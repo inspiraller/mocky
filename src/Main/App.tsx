@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 import { History } from 'history';
-import { AllRoutes, routes } from 'src/Main/Routes';
+import { AllRoutes, configRoutes } from 'src/Main/Routes';
 
 type TProps = {
   history: History;
@@ -16,7 +16,7 @@ class App extends Component<TProps> {
     const { history } = this.props;
     return (
       <ConnectedRouter history={history}>
-        <AllRoutes {...{ routes }} />
+        <AllRoutes {...{ routes: configRoutes }} />
       </ConnectedRouter>
     );
   }

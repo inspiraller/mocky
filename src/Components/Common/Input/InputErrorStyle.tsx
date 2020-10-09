@@ -1,4 +1,4 @@
-import styled, { StyledComponent } from 'styled-components';
+import styled from 'styled-components';
 import { TStyles } from 'src/Main/Styles/Theme';
 
 const StyleMe: TStyles = ({ theme: { pad2, pad10, warn, textLight } }) => `

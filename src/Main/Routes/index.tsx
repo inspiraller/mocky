@@ -23,7 +23,7 @@ export const AllRoutes: FC<TAllRoutes> = ({ routes }) => (
 
 export default AllRoutes;
 
-export const routes: TRoutes = {
+export const configRoutes: TRoutes = {
   routeForm: {
     title: 'New Event',
     path: `/`,

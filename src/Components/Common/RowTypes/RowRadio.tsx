@@ -18,7 +18,7 @@ const Label = LabelStyle();
 const SpanLabel = SpanLabelStyle();
 const Radio = RadioStyle();
 
-const RowSelect: FC<IField> = ({ formState, label }) => {
+const RowRadio: FC<IField> = ({ formState, label }) => {
   const { radios } = formState.inputs[label];
 
   const defaultValue = (radios && radios[0]) || '';
@@ -30,7 +30,7 @@ const RowSelect: FC<IField> = ({ formState, label }) => {
 
   return (
     <Row>
-      <SpanLabel>{label}</SpanLabel>
+      <SpanLabel data-value={input}>{label}</SpanLabel>
       {radios &&
         radios.map(name => (
           <Label key={`radio-${label}-${name}`}>
@@ -48,4 +48,4 @@ const RowSelect: FC<IField> = ({ formState, label }) => {
   );
 };
 
-export default RowSelect;
+export default RowRadio;

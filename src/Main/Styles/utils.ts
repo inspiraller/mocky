@@ -1,5 +1,3 @@
-import { TTheme } from 'src/Main/Styles/Theme';
-
 type TUtil = (prop: string) => string;
 
 export const Center: TUtil = maxTextWidth => `

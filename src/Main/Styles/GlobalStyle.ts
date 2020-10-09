@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import { TStyles } from 'src/Main/Styles/Theme';
 import { FontSize } from 'src/Main/Styles/utils';
 
-const StyleMe: TStyles = ({ theme: { pad20, fontSize1, fontFamily } }) => `
+const StyleMe: TStyles = ({ theme: { fontSize1, fontFamily } }) => `
   * {
     box-sizing: border-box;
   }
@@ -29,8 +29,8 @@ const StyleMe: TStyles = ({ theme: { pad20, fontSize1, fontFamily } }) => `
   }
 `;
 
-const Global = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
 ${StyleMe}
 `;
 
-export default Global;
+export default GlobalStyle;

@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import { TStyles } from 'src/Main/Styles/Theme';
 import { withElem } from 'src/Main/Styles/withStyle';
 
