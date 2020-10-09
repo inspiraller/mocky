@@ -13,10 +13,10 @@ const Legend = LegendStyle();
 const formState: IFormState = {
   isSubmitting: false,
   inputs: {
-    title: {
+    title1: {
       required: true
     },
-    description: {
+    title2: {
       validate: validateNotEmpty
     }
   }
@@ -26,8 +26,8 @@ const FieldAbout: FC = () => {
   return (
     <Fieldset>
       <Legend>About</Legend>
-      <RowInput {...{ formState, label: 'title' }} key={`RowInput-title`} />
-      <RowInput {...{ formState, label: 'description' }} key={`RowInput-title-2`} />
+      <RowInput {...{ formState, label: 'title1' }} key={`RowInput-title`} />
+      <RowInput {...{ formState, label: 'title2' }} key={`RowInput-title-2`} />
     </Fieldset>
   );
 };
