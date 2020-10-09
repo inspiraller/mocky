@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { TStyles } from 'src/Main/Styles/Theme';
 
-const StyleMe: TStyles = ({ theme: { pad2, pad10, warn, textLight } }) => `
+const StyleMe: TStyles = ({ theme: { pad2, pad4, pad10, warn, textLight } }) => `
   display: inline-block;
-  margin: 0 0 0 ${pad10};
+  margin: ${pad4} 0 0 ${pad10};
   padding: ${pad2} ${pad10};
   background: ${warn};
   color: ${textLight};

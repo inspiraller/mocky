@@ -1,22 +1,22 @@
 import { TStyles } from 'src/Main/Styles/Theme';
 import { withElem } from 'src/Main/Styles/withStyle';
 
-type TSpan = (pad10: string) => string;
+type TSpan = (pad10: string, pad4: string) => string;
 
-const getSpan: TSpan = pad10 => `
+const getSpan: TSpan = (pad4, pad10) => `
   display: inline-block;
-  margin: 0 ${pad10} 0 0;
+  margin: ${pad4} ${pad10} 0 0;
   width: 106px;
   vertical-align: top;
   text-transform: uppercase;
 `;
 
-const stylesSpan: TStyles = ({ theme: { pad10 } }) => `
-  ${getSpan(pad10)}
+const stylesSpan: TStyles = ({ theme: { pad4, pad10 } }) => `
+  ${getSpan(pad4, pad10)}
 `;
 
-const styles: TStyles = ({ theme: { pad10 } }) => `
-  &[data-aria-required="true"] span {
+const styles: TStyles = ({ theme: { pad4, pad10 } }) => `
+  &[data-aria-required="true"] > span {
     position: relative;
     &:after {
       content: " *";
@@ -24,7 +24,7 @@ const styles: TStyles = ({ theme: { pad10 } }) => `
   }
   display: inline-block;
   > span:first-child {
-    ${getSpan(pad10)}
+    ${getSpan(pad4, pad10)}
   }
 `;
 

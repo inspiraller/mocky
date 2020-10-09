@@ -2,7 +2,7 @@
 import text from 'src/Main/text';
 import React, { FC } from 'react';
 import FormWrapper, { TSubmit } from 'src/Components/Common/Form/FormWrapper';
-import { TValidate, validateNotEmpty } from 'src/Components/Common/Validate/Validate';
+import { TValidate, validateNotEmpty, validateLength } from 'src/Components/Common/Validate/Validate';
 
 // import RowStyle from 'src/Components/Common/Row/RowStyle';
 // import ButtonStyle from 'src/Components/Common/Button/ButtonStyle';
@@ -22,6 +22,7 @@ export interface IFormState {
       options?: Array<{ name: string; value: number }>;
       radios?: string[];
       adjacent?: string;
+      maxLength?: number;
     };
   };
 }
@@ -30,13 +31,12 @@ const configFormState: IFormState = {
   isSubmitting: false,
   inputs: {
     title: {
-      required: true,
-      validate: validateNotEmpty
+      required: true
     },
     description: {
       type: 'textarea',
       required: true,
-      validate: validateNotEmpty
+      maxLength: 140
     },
     category: {
       type: 'select',

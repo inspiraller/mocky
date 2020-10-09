@@ -6,8 +6,8 @@ import LabelStyle from 'src/Components/Common/Label/LabelStyle';
 import SelectStyle from 'src/Components/Common/Select/SelectStyle';
 import OptionStyle from 'src/Components/Common/Select/OptionStyle';
 
-import { SpanError, Success } from '../Validate/Validate';
-import { IFormState } from '../../Complex/FormLayout/index';
+import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
+import { IFormState } from 'src/Components/Complex/FormLayout/index';
 
 type TInputChange = React.ChangeEvent<HTMLSelectElement>;
 
@@ -30,9 +30,7 @@ const RowSelect: FC<IField> = ({ formState, label }) => {
 
   const updateErrors = (value: string) => {
     setTouched(true);
-    if (validate) {
-      setError(validate(label, value));
-    }
+    setError(validateAll({ validate, required, label, value }));
   };
 
   const onChange = (evt: TInputChange) => {
