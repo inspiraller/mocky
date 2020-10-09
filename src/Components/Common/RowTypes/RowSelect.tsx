@@ -10,12 +10,15 @@ import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/
 import { IConfigForm } from 'src/store/eventCreate/configForm';
 import { TacEdit } from 'src/store/eventCreate/actions';
 
+import hacEdit from './util/hacEdit';
+
 type TInputChange = React.ChangeEvent<HTMLSelectElement>;
 
 interface IField {
   configForm: IConfigForm;
   label: string;
   acEdit?: TacEdit;
+  defaultValue?: string;
 }
 
 const Row = RowStyle();
@@ -23,39 +26,22 @@ const Select = SelectStyle();
 const Option = OptionStyle();
 const Label = LabelStyle();
 
-type THacEdit = (props: {
-  setInput: React.Dispatch<React.SetStateAction<string | undefined>>;
-  acEdit: TacEdit;
-  label: string;
-  value: string;
-}) => void;
-
-const hacEdit: THacEdit = ({ setInput, acEdit, label, value }) => {
-  if (acEdit) {
-    acEdit({
-      payload: {
-        [label]: value
-      }
-    });
-  } else {
-    setInput(value);
-  }
-};
-
-const RowSelect: FC<IField> = ({ configForm, label }) => {
-  const { validate, required, options, defaultValue } = configForm.inputs[label];
+const RowSelect: FC<IField> = ({ configForm, label, acEdit, defaultValue }) => {
+  const { validate, required, options } = configForm.inputs[label];
 
   const [input, setInput] = useState(defaultValue);
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState('');
 
-  const updateErrors = (value: string) => {
+  const value = acEdit && defaultValue ? defaultValue : input;
+
+  const updateErrors = (val: string) => {
     setTouched(true);
-    setError(validateAll({ validate, required, label, value }));
+    setError(validateAll({ validate, required, label, value: val }));
   };
 
   const onChange = (evt: TInputChange) => {
-    setInput(evt.target.value);
+    hacEdit({ setInput, acEdit, label, value: evt.target.value });
     updateErrors(evt.target.value);
   };
 
@@ -69,9 +55,9 @@ const RowSelect: FC<IField> = ({ configForm, label }) => {
           placeholder={text(label)}
           aria-required={required ? 'true' : 'false'}
           aria-invalid={error ? 'true' : 'false'}
-          data-touched={touched && input !== '' ? 'true' : 'false'}
+          data-touched={touched && value !== '' ? 'true' : 'false'}
           aria-label={text(label)}
-          value={input}
+          value={value}
         >
           <Option value="">{text('Please select...')}</Option>
 
@@ -85,7 +71,7 @@ const RowSelect: FC<IField> = ({ configForm, label }) => {
       </Label>
 
       <SpanError {...{ error }} />
-      <Success is={!!input && !error && touched} />
+      <Success is={!!value && !error && touched} />
     </Row>
   );
 };

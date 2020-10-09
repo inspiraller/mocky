@@ -17,22 +17,40 @@ const Fieldset = FieldsetStyle();
 const Legend = LegendStyle();
 
 const FieldAbout: FC<IFormSetup> = ({ configForm, acEdit, eventCreate }) => {
-  console.log('<FieldAbout> eventCreate= ', eventCreate);
   return (
     <Fieldset>
       <Legend>{text('About')}</Legend>
       {Object.keys(configForm.inputs).map(item => {
+        const defaultValue: string = eventCreate[item];
         switch (configForm.inputs[item].type) {
           case 'select':
-            return <RowSelect {...{ configForm, label: item, acEdit }} key={`RowSelect=${item}`} />;
+            return (
+              <RowSelect
+                {...{ configForm, label: item, acEdit, defaultValue }}
+                key={`RowSelect=${item}`}
+              />
+            );
           case 'textarea':
             return (
-              <RowTextArea {...{ configForm, label: item, acEdit }} key={`RowTextarea=${item}`} />
+              <RowTextArea
+                {...{ configForm, label: item, acEdit, defaultValue }}
+                key={`RowTextarea=${item}`}
+              />
             );
           case 'radio':
-            return <RowRadio {...{ configForm, label: item, acEdit }} key={`RowRadio=${item}`} />;
+            return (
+              <RowRadio
+                {...{ configForm, label: item, acEdit, defaultValue }}
+                key={`RowRadio=${item}`}
+              />
+            );
           default:
-            return <RowInput {...{ configForm, label: item, acEdit }} key={`RowInput=${item}`} />;
+            return (
+              <RowInput
+                {...{ configForm, label: item, acEdit, defaultValue }}
+                key={`RowInput=${item}`}
+              />
+            );
         }
       })}
     </Fieldset>

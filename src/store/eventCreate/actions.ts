@@ -9,9 +9,20 @@ import at from './actionTypes';
 //   [key: string]: string;
 // }) => ThunkAction<void, RootState, undefined, Action>;
 
-export type TacEdit = (props: { payload: { [key: string]: string } }) => Action;
+export type TacEdit = (props: { [key: string]: string }) => Action;
 
 const acEdit: TacEdit = createAction(at.EDIT);
+
+/* example
+store.dispatch(acEdit({
+  title: 'steve'
+})) === {
+  type: '@createEvent/Edit',
+  payload: {
+    title: 'steve'
+  }
+}
+*/
 
 const actions = {
   acEdit

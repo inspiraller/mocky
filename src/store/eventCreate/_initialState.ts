@@ -1,11 +1,13 @@
 export interface IInitial {
-  title: string;
-  description: string;
+  [key: string]: string;
 }
 
 const initialState: IInitial = {
   title: '',
-  description: ''
+  description: '',
+  category: '',
+  payment: 'paid event',
+  reward: ''
 };
 
 export default initialState;

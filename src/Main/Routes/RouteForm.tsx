@@ -10,13 +10,12 @@ import { actions, TacEdit } from 'src/store/eventCreate/actions';
 
 import FormLayout from 'src/Components/Complex/FormLayout';
 
-const { acEdit } = actions;
-
-const RouteForm: FC<{ eventCreate: IInitial; acEdit: TacEdit }> = ({ eventCreate }) => (
-  <FormLayout {...{ title: 'New Event .............', configForm, eventCreate, acEdit }} />
+const RouteForm: FC<{ eventCreate: IInitial; acEdit: TacEdit }> = ({ eventCreate, acEdit }) => (
+  <FormLayout {...{ title: 'New Event', configForm, eventCreate, acEdit }} />
 );
 
-const mapDispatchToProps = (dispatch: TThunkDispatch) => bindActionCreators({ acEdit }, dispatch);
+const mapDispatchToProps = (dispatch: TThunkDispatch) =>
+  bindActionCreators({ ...actions }, dispatch);
 
 export default connect(
   (state: RootState) => ({

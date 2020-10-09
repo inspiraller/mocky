@@ -13,6 +13,8 @@ import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/
 import { IConfigForm } from 'src/store/eventCreate/configForm';
 import { TacEdit } from 'src/store/eventCreate/actions';
 
+import hacEdit from '../util/hacEdit';
+
 type TElementType = HTMLInputElement | HTMLTextAreaElement;
 type TInputChange = React.ChangeEvent<TElementType>;
 
@@ -20,6 +22,7 @@ interface IField {
   configForm: IConfigForm;
   label: string;
   acEdit?: TacEdit;
+  defaultValue?: string;
 }
 
 const Row = RowStyle();
@@ -28,22 +31,22 @@ const SpanAdjacent = SpanAdjacentStyle();
 const WrapBlock = WrapBlockStyle();
 
 const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> => props => {
-  const { configForm, label, acEdit } = props;
-  const { validate, required, adjacent, maxLength, defaultValue } = configForm.inputs[label];
+  const { configForm, label, acEdit, defaultValue } = props;
+  const { validate, required, adjacent, maxLength } = configForm.inputs[label];
 
-  const [input, setInput] = useState(defaultValue || '');
+  const [input, setInput] = useState(defaultValue);
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState('');
 
-  console.log('acEdit = ', acEdit);
+  const value = acEdit && defaultValue ? defaultValue : input;
 
   const onChange = (evt: TInputChange) => {
-    setInput(evt.target.value);
+    hacEdit({ setInput, acEdit, label, value: evt.target.value });
   };
 
-  const updateErrors = (value: string) => {
+  const updateErrors = (val: string) => {
     setTouched(true);
-    setError(validateAll({ validate, required, label, value }));
+    setError(validateAll({ validate, required, label, value: val }));
   };
 
   const onBlur = (evt: TInputChange) => {
@@ -66,10 +69,10 @@ const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> =
             aria-label={text(label)}
             maxLength={maxLength}
             type="text"
-            value={input}
+            value={value}
             data-adjacent={adjacent}
           />
-          <CharCount {...{ maxLength, chars: String(input).length }} />
+          <CharCount {...{ maxLength, chars: String(value).length }} />
         </WrapBlock>
         {adjacent ? <SpanAdjacent>{adjacent}</SpanAdjacent> : null}
       </Label>

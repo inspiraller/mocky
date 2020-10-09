@@ -22,13 +22,17 @@ export interface IFormSetup {
   configForm: IConfigForm;
 }
 
-const FormSetup: FC<IFormSetup> = ({ configForm, acEdit, eventCreate }) => {
+interface IFormSetupTitle extends IFormSetup {
+  title: string;
+}
+
+const FormSetup: FC<IFormSetupTitle> = ({ title, configForm, acEdit, eventCreate }) => {
   const onSubmit: TSubmit = evt => {
     console.log('onSubmit - evt = ', evt);
   };
 
   return (
-    <FormWrapper title={text('New Event')} onSubmit={onSubmit}>
+    <FormWrapper title={text(title)} onSubmit={onSubmit}>
       <FieldAbout {...{ configForm, acEdit, eventCreate }} />
       {/* <Row>
         <Button type="submit" disabled={configForm.isSubmitting}>
