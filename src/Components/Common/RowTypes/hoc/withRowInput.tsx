@@ -1,20 +1,25 @@
 import React, { FC, useState, InputHTMLAttributes } from 'react';
 import text from 'src/Main/text';
+
 import RowStyle from 'src/Components/Common/Row/RowStyle';
 import LabelStyle from 'src/Components/Common/Label/LabelStyle';
+
 import SpanAdjacentStyle from 'src/Components/Common/SpanAdjacent/SpanAdjacentStyle';
 import WrapBlockStyle from 'src/Components/Common/WrapBlock/WrapBlockStyle';
 import CharCount from 'src/Components/Common/CharCount/CharCount';
 
 import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
-import { IFormState } from 'src/Components/Complex/FormLayout/index';
+
+import { IConfigForm } from 'src/store/eventCreate/configForm';
+import { TacEdit } from 'src/store/eventCreate/actions';
 
 type TElementType = HTMLInputElement | HTMLTextAreaElement;
 type TInputChange = React.ChangeEvent<TElementType>;
 
 interface IField {
-  formState: IFormState;
+  configForm: IConfigForm;
   label: string;
+  acEdit?: TacEdit;
 }
 
 const Row = RowStyle();
@@ -23,12 +28,14 @@ const SpanAdjacent = SpanAdjacentStyle();
 const WrapBlock = WrapBlockStyle();
 
 const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> => props => {
-  const { formState, label } = props;
-  const { validate, required, adjacent, maxLength, defaultValue } = formState.inputs[label];
+  const { configForm, label, acEdit } = props;
+  const { validate, required, adjacent, maxLength, defaultValue } = configForm.inputs[label];
 
   const [input, setInput] = useState(defaultValue || '');
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState('');
+
+  console.log('acEdit = ', acEdit);
 
   const onChange = (evt: TInputChange) => {
     setInput(evt.target.value);

@@ -4,13 +4,16 @@ import text from 'src/Main/text';
 import RowStyle from 'src/Components/Common/Row/RowStyle';
 import LabelStyle, { SpanLabelStyle } from 'src/Components/Common/Label/LabelStyle';
 import RadioStyle from 'src/Components/Common/Radio/RadioStyle';
-import { IFormState } from '../../Complex/FormLayout/index';
+
+import { IConfigForm } from 'src/store/eventCreate/configForm';
+import { TacEdit } from 'src/store/eventCreate/actions';
 
 type TInputChange = React.ChangeEvent<HTMLInputElement>;
 
 interface IField {
-  formState: IFormState;
+  configForm: IConfigForm;
   label: string;
+  acEdit?: TacEdit;
 }
 
 const Row = RowStyle();
@@ -18,8 +21,8 @@ const Label = LabelStyle();
 const SpanLabel = SpanLabelStyle();
 const Radio = RadioStyle();
 
-const RowRadio: FC<IField> = ({ formState, label }) => {
-  const { radios, defaultValue } = formState.inputs[label];
+const RowRadio: FC<IField> = ({ configForm, label }) => {
+  const { radios, defaultValue } = configForm.inputs[label];
   const [input, setInput] = useState(defaultValue);
 
   const onChange = (evt: TInputChange) => {

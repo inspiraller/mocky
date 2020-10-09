@@ -1,8 +1,8 @@
 import React from 'react';
 import RowRadio from 'src/Components/Common/RowTypes/RowRadio';
-import { IFormState } from 'src/Components/Complex/FormLayout';
+import { IConfigForm } from 'src/store/eventCreate/configForm';
 
-const formState: IFormState = {
+const configForm: IConfigForm = {
   isSubmitting: false,
   inputs: {
     fruit: {
@@ -13,6 +13,6 @@ const formState: IFormState = {
   }
 };
 
-const RowRadioBasic = () => <RowRadio {...{ formState, label: 'fruit' }} />;
+const RowRadioBasic = () => <RowRadio {...{ configForm, label: 'fruit' }} />;
 
 export default RowRadioBasic;

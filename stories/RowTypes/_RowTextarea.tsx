@@ -1,8 +1,8 @@
 import React from 'react';
 import RowTextarea from 'src/Components/Common/RowTypes/RowTextarea';
-import { IFormState } from 'src/Components/Complex/FormLayout';
+import { IConfigForm } from 'src/store/eventCreate/configForm';
 
-const formState: IFormState = {
+const configForm: IConfigForm = {
   isSubmitting: false,
   inputs: {
     fruit: {
@@ -12,6 +12,6 @@ const formState: IFormState = {
   }
 };
 
-const RowTextareaBasic = () => <RowTextarea {...{ formState, label: 'fruit' }} />;
+const RowTextareaBasic = () => <RowTextarea {...{ configForm, label: 'fruit' }} />;
 
 export default RowTextareaBasic;

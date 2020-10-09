@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IFormState } from 'src/Components/Complex/FormLayout/index';
+import { IConfigForm } from 'src/store/eventCreate/configForm';
 
 import { validateNotEmpty } from 'src/Components/Common/Validate/Validate';
 
@@ -10,7 +10,7 @@ import RowInput from 'src/Components/Common/RowTypes/RowInput';
 const Fieldset = FieldsetStyle();
 const Legend = LegendStyle();
 
-const formState: IFormState = {
+const configForm: IConfigForm = {
   isSubmitting: false,
   inputs: {
     title1: {
@@ -26,8 +26,8 @@ const FieldAbout: FC = () => {
   return (
     <Fieldset>
       <Legend>About</Legend>
-      <RowInput {...{ formState, label: 'title1' }} key={`RowInput-title`} />
-      <RowInput {...{ formState, label: 'title2' }} key={`RowInput-title-2`} />
+      <RowInput {...{ configForm, label: 'title1' }} key={`RowInput-title`} />
+      <RowInput {...{ configForm, label: 'title2' }} key={`RowInput-title-2`} />
     </Fieldset>
   );
 };

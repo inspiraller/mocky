@@ -7,13 +7,15 @@ import SelectStyle from 'src/Components/Common/Select/SelectStyle';
 import OptionStyle from 'src/Components/Common/Select/OptionStyle';
 
 import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
-import { IFormState } from 'src/Components/Complex/FormLayout/index';
+import { IConfigForm } from 'src/store/eventCreate/configForm';
+import { TacEdit } from 'src/store/eventCreate/actions';
 
 type TInputChange = React.ChangeEvent<HTMLSelectElement>;
 
 interface IField {
-  formState: IFormState;
+  configForm: IConfigForm;
   label: string;
+  acEdit?: TacEdit;
 }
 
 const Row = RowStyle();
@@ -21,8 +23,27 @@ const Select = SelectStyle();
 const Option = OptionStyle();
 const Label = LabelStyle();
 
-const RowSelect: FC<IField> = ({ formState, label }) => {
-  const { validate, required, options, defaultValue } = formState.inputs[label];
+type THacEdit = (props: {
+  setInput: React.Dispatch<React.SetStateAction<string | undefined>>;
+  acEdit: TacEdit;
+  label: string;
+  value: string;
+}) => void;
+
+const hacEdit: THacEdit = ({ setInput, acEdit, label, value }) => {
+  if (acEdit) {
+    acEdit({
+      payload: {
+        [label]: value
+      }
+    });
+  } else {
+    setInput(value);
+  }
+};
+
+const RowSelect: FC<IField> = ({ configForm, label }) => {
+  const { validate, required, options, defaultValue } = configForm.inputs[label];
 
   const [input, setInput] = useState(defaultValue);
   const [touched, setTouched] = useState(false);

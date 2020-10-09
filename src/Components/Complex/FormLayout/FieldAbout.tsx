@@ -11,25 +11,28 @@ import RowTextArea from 'src/Components/Common/RowTypes/RowTextarea';
 import RowSelect from 'src/Components/Common/RowTypes/RowSelect';
 import RowRadio from 'src/Components/Common/RowTypes/RowRadio';
 
-import { IFormState } from './index';
+import { IFormSetup } from './index';
 
 const Fieldset = FieldsetStyle();
 const Legend = LegendStyle();
 
-const FieldAbout: FC<{ formState: IFormState }> = ({ formState }) => {
+const FieldAbout: FC<IFormSetup> = ({ configForm, acEdit, eventCreate }) => {
+  console.log('<FieldAbout> eventCreate= ', eventCreate);
   return (
     <Fieldset>
       <Legend>{text('About')}</Legend>
-      {Object.keys(formState.inputs).map(item => {
-        switch (formState.inputs[item].type) {
+      {Object.keys(configForm.inputs).map(item => {
+        switch (configForm.inputs[item].type) {
           case 'select':
-            return <RowSelect {...{ formState, label: item }} key={`RowSelect=${item}`} />;
+            return <RowSelect {...{ configForm, label: item, acEdit }} key={`RowSelect=${item}`} />;
           case 'textarea':
-            return <RowTextArea {...{ formState, label: item }} key={`RowTextarea=${item}`} />;
+            return (
+              <RowTextArea {...{ configForm, label: item, acEdit }} key={`RowTextarea=${item}`} />
+            );
           case 'radio':
-            return <RowRadio {...{ formState, label: item }} key={`RowRadio=${item}`} />;
+            return <RowRadio {...{ configForm, label: item, acEdit }} key={`RowRadio=${item}`} />;
           default:
-            return <RowInput {...{ formState, label: item }} key={`RowInput=${item}`} />;
+            return <RowInput {...{ configForm, label: item, acEdit }} key={`RowInput=${item}`} />;
         }
       })}
     </Fieldset>

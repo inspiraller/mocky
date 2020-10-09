@@ -1,8 +1,8 @@
 import React from 'react';
 import RowSelect from 'src/Components/Common/RowTypes/RowSelect';
-import { IFormState } from 'src/Components/Complex/FormLayout';
+import { IConfigForm } from 'src/store/eventCreate/configForm';
 
-const formState: IFormState = {
+const configForm: IConfigForm = {
   isSubmitting: false,
   inputs: {
     fruit: {
@@ -16,6 +16,6 @@ const formState: IFormState = {
   }
 };
 
-const RowSelectBasic = () => <RowSelect {...{ formState, label: 'fruit' }} />;
+const RowSelectBasic = () => <RowSelect {...{ configForm, label: 'fruit' }} />;
 
 export default RowSelectBasic;
