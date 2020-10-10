@@ -1,6 +1,9 @@
 import React, { FC, useState } from 'react';
 import text from 'src/Main/text';
 
+import { TLitVal } from 'src/store/eventCreate/_initialState';
+import { IConfigFieldsetItemProps } from 'src/store/eventCreate/configFieldset';
+
 import WrapInlineStyle from 'src/Components/Common/Wrap/WrapInlineStyle';
 
 import RowStyle from 'src/Components/Common/Row/RowStyle';
@@ -20,6 +23,45 @@ const SpanLabel = SpanLabelStyle();
 const Radio = RadioStyle();
 const WrapInline = WrapInlineStyle();
 
+interface ILabelRadios {
+  isLabel: boolean;
+  id: string;
+  onChange: (evt: TInputChange) => void;
+  inputKey: string;
+  label: string;
+  value: TLitVal | undefined;
+  radios: IConfigFieldsetItemProps['radios'];
+}
+
+const LabelRadios: FC<ILabelRadios> = ({
+  isLabel,
+  id,
+  onChange,
+  inputKey,
+  label,
+  value,
+  radios
+}) => (
+  <>
+    {isLabel ? <SpanLabel data-value={value}>{label}</SpanLabel> : null}
+    {radios &&
+      radios.map((item: { name: string; value: TLitVal }) => (
+        <WrapInline key={`radio-${label}-${item.name}`}>
+          <Radio
+            id={id}
+            type="radio"
+            onChange={onChange}
+            name={inputKey}
+            aria-label={text(inputKey)}
+            checked={item.value === value}
+            value={String(item.value)}
+          />
+          <Label htmlFor={id}>{item.name}</Label>
+        </WrapInline>
+      ))}
+  </>
+);
+
 const RowRadio: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
   const { valueType, radios } = inputProps;
   const { isLabel, label } = getLabel(inputKey, inputProps.label);
@@ -33,22 +75,17 @@ const RowRadio: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, defaultV
   const id = `${formid}-${inputKey}`;
   return (
     <Row>
-      {isLabel ? <SpanLabel data-value={value}>{label}</SpanLabel> : null}
-      {radios &&
-        radios.map(item => (
-          <WrapInline key={`radio-${label}-${item.name}`}>
-            <Radio
-              id={id}
-              type="radio"
-              onChange={onChange}
-              name={inputKey}
-              aria-label={text(inputKey)}
-              checked={item.value === value}
-              value={String(item.value)}
-            />
-            <Label htmlFor={id}>{item.name}</Label>
-          </WrapInline>
-        ))}
+      <LabelRadios
+        {...{
+          isLabel,
+          id,
+          onChange,
+          inputKey,
+          label,
+          value,
+          radios
+        }}
+      />
     </Row>
   );
 };
