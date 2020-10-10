@@ -1,19 +1,17 @@
 import React from 'react';
 import RowTextarea from 'src/Components/Common/RowTypes/RowTextarea';
-import { IConfigForm } from 'src/store/eventCreate/configForm';
+import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
 
-const configForm: IConfigForm = {
-  isSubmitting: false,
-  inputs: {
-    fruit: {
-      type: 'textarea',
-      required: true
-    }
+const configFieldset: IConfigFieldset = {
+  fruit: {
+    type: 'textarea',
+    required: true
   }
 };
+
 const formid = 'x';
 const RowTextareaBasic = () => (
-  <RowTextarea {...{ formid, inputKey: 'fruit', inputProps: configForm.inputs.fruit }} />
+  <RowTextarea {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit }} />
 );
 
 export default RowTextareaBasic;

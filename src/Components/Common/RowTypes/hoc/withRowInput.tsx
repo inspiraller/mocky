@@ -2,7 +2,9 @@ import React, { FC, useState, InputHTMLAttributes } from 'react';
 
 import text from 'src/Main/text';
 
-import RowStyle from 'src/Components/Common/Row/RowStyle';
+import RowBlockStyle from 'src/Components/Common/Row/RowBlockStyle';
+import RowInlineStyle from 'src/Components/Common/Row/RowInlineStyle';
+
 import LabelStyle from 'src/Components/Common/Label/LabelStyle';
 
 import SpanAdjacentStyle from 'src/Components/Common/SpanAdjacent/SpanAdjacentStyle';
@@ -11,7 +13,7 @@ import CharCount from 'src/Components/Common/CharCount/CharCount';
 
 import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
 
-import { IConfigFormItemProps } from 'src/store/eventCreate/configForm';
+import { IConfigFieldsetProps } from 'src/store/eventCreate/configFieldset';
 import { TacEdit } from 'src/store/eventCreate/actions';
 import { TLitVal } from 'src/store/eventCreate/_initialState';
 
@@ -24,19 +26,21 @@ type TInputChange = React.ChangeEvent<TElementType>;
 interface IField {
   formid: string;
   inputKey: string;
-  inputProps: IConfigFormItemProps;
+  inputProps: IConfigFieldsetProps;
   acEdit?: TacEdit;
   defaultValue?: TLitVal;
 }
 
-const Row = RowStyle();
+const RowInline = RowInlineStyle();
+const RowBlock = RowBlockStyle();
+
 const Label = LabelStyle();
 const SpanAdjacent = SpanAdjacentStyle();
 const WrapBlock = WrapBlockStyle();
 
 const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> => props => {
   const { formid, inputKey, inputProps, acEdit, defaultValue } = props;
-  const { validate, required, adjacent, maxLength, valueType } = inputProps;
+  const { validate, required, adjacent, maxLength, valueType, inline } = inputProps;
   const { isLabel, label } = getLabel(inputKey, inputProps.label);
 
   const [input, setInput] = useState(defaultValue);
@@ -60,6 +64,9 @@ const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> =
 
   const type = valueType === 'number' ? 'number' : 'text';
   const id = `${formid}-${inputKey}`;
+
+  const Row = inline ? RowInline : RowBlock;
+
   const HocRowInput = (
     <Row>
       {isLabel ? (

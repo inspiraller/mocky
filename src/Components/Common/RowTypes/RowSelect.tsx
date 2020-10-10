@@ -1,14 +1,16 @@
 import React, { FC, useState } from 'react';
 import text from 'src/Main/text';
 
-import RowStyle from 'src/Components/Common/Row/RowStyle';
+import RowBlockStyle from 'src/Components/Common/Row/RowBlockStyle';
+import RowInlineStyle from 'src/Components/Common/Row/RowInlineStyle';
+
 import LabelStyle from 'src/Components/Common/Label/LabelStyle';
 import SelectStyle from 'src/Components/Common/Select/SelectStyle';
 import OptionStyle from 'src/Components/Common/Select/OptionStyle';
 
 import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
 
-import { IConfigFormItemProps } from 'src/store/eventCreate/configForm';
+import { IConfigFieldsetProps } from 'src/store/eventCreate/configFieldset';
 import { TacEdit } from 'src/store/eventCreate/actions';
 import { TLitVal } from 'src/store/eventCreate/_initialState';
 
@@ -20,18 +22,20 @@ type TInputChange = React.ChangeEvent<HTMLSelectElement>;
 interface IField {
   formid: string;
   inputKey: string;
-  inputProps: IConfigFormItemProps;
+  inputProps: IConfigFieldsetProps;
   acEdit?: TacEdit;
   defaultValue?: TLitVal;
 }
 
-const Row = RowStyle();
+const RowInline = RowInlineStyle();
+const RowBlock = RowBlockStyle();
+
 const Select = SelectStyle();
 const Option = OptionStyle();
 const Label = LabelStyle();
 
 const RowSelect: FC<IField> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
-  const { validate, required, options, valueType } = inputProps;
+  const { validate, required, options, valueType, inline } = inputProps;
   const { isLabel, label } = getLabel(inputKey, inputProps.label);
   const [input, setInput] = useState(defaultValue);
   const [touched, setTouched] = useState(false);
@@ -49,6 +53,9 @@ const RowSelect: FC<IField> = ({ formid, inputKey, inputProps, acEdit, defaultVa
     updateErrors(evt.target.value);
   };
   const id = `${formid}-${inputKey}`;
+
+  const Row = inline ? RowInline : RowBlock;
+
   return (
     <Row>
       {isLabel ? (

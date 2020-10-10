@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import FormWrapper, { TSubmit } from 'src/Components/Common/Form/FormWrapper';
 
-import { IConfigForm } from 'src/store/eventCreate/configForm';
+import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
 import { IInitial } from 'src/store/eventCreate/_initialState';
 import { TacEdit } from 'src/store/eventCreate/actions';
 
@@ -20,18 +20,18 @@ import FieldAbout from './FieldAbout';
 export interface IFormSetup {
   acEdit: TacEdit;
   eventCreate: IInitial;
-  configForm: IConfigForm;
+  configFieldset: IConfigFieldset;
   title: string;
 }
 
-const FormSetup: FC<IFormSetup> = ({ title, configForm, acEdit, eventCreate }) => {
+const FormSetup: FC<IFormSetup> = ({ title, configFieldset, acEdit, eventCreate }) => {
   const onSubmit: TSubmit = evt => {
     console.log('onSubmit - evt = ', evt);
   };
   const formid = uuidv4();
   return (
     <FormWrapper title={text(title)} onSubmit={onSubmit}>
-      <FieldAbout {...{ formid, configForm, acEdit, eventCreate }} />
+      <FieldAbout {...{ formid, configFieldset, acEdit, eventCreate }} />
       {/* <Row>
         <Button type="submit" disabled={configForm.isSubmitting}>
           {text('Publish')}

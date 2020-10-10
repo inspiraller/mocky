@@ -1,4 +1,4 @@
-import Row from './_Row';
+export { RowBlock } from './RowBlock';
+export { RowInline } from './RowInline';
 
-export { Row };
 export default { title: 'Row' };

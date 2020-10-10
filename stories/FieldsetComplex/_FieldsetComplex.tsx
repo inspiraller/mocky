@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { IConfigForm } from 'src/store/eventCreate/configForm';
+import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
 
 import { validateNotEmpty } from 'src/Components/Common/Validate/Validate';
 
@@ -11,20 +11,17 @@ import RowInput from 'src/Components/Common/RowTypes/RowInput';
 const Fieldset = FieldsetStyle();
 const Legend = LegendStyle();
 
-const configForm: IConfigForm = {
-  isSubmitting: false,
-  inputs: {
-    title1: {
-      required: true
-    },
-    title2: {
-      validate: validateNotEmpty
-    }
+const configFieldset: IConfigFieldset = {
+  title1: {
+    required: true
+  },
+  title2: {
+    validate: validateNotEmpty
   }
 };
 
-const inputProps1 = configForm.inputs.title1;
-const inputProps2 = configForm.inputs.title2;
+const inputProps1 = configFieldset.title1;
+const inputProps2 = configFieldset.title2;
 const formid = 'x';
 
 const FieldAbout: FC = () => {

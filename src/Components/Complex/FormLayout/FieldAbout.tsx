@@ -3,7 +3,7 @@ import 'cross-fetch/polyfill'; // patch for tests: Error: fetch is not found glo
 import React, { FC } from 'react';
 import text from 'src/Main/text';
 
-import { IConfigForm, IConfigFormItemProps } from 'src/store/eventCreate/configForm';
+import { IConfigFieldset, IConfigFieldsetProps } from 'src/store/eventCreate/configFieldset';
 import { IInitial } from 'src/store/eventCreate/_initialState';
 import { TacEdit } from 'src/store/eventCreate/actions';
 
@@ -20,25 +20,25 @@ const Legend = LegendStyle();
 
 export interface IField {
   formid: string;
-  configForm: IConfigForm;
+  configFieldset: IConfigFieldset;
   acEdit: TacEdit;
   eventCreate: IInitial;
 }
 
-const FieldAbout: FC<IField> = ({ formid, configForm, acEdit, eventCreate }) => {
+const FieldAbout: FC<IField> = ({ formid, configFieldset, acEdit, eventCreate }) => {
   return (
     <Fieldset>
       <Legend>{text('About')}</Legend>
-      {Object.keys(configForm.inputs).map((inputKey: string) => {
+      {Object.keys(configFieldset).map((inputKey: string) => {
         const defaultValue: string | number | boolean = eventCreate[inputKey];
-        const inputProps: IConfigFormItemProps = configForm.inputs[inputKey];
+        const inputProps: IConfigFieldsetProps = configFieldset[inputKey];
         const { type } = inputProps;
 
         // const { type, valueType } = item;
         // if (valueType === 'number' && (!type || type === 'textarea')) {
         //   return (
         //     <RowNumber
-        //       {...{ configForm, inputKey, label, acEdit, defaultValue }}
+        //       {...{ configFieldset, inputKey, label, acEdit, defaultValue }}
         //       key={`RowNumber-${inputKey}`}
         //     />
         //   );
