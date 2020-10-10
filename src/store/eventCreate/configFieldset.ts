@@ -12,6 +12,7 @@ export interface IConfigFieldsetItemProps {
   maxLength?: number;
   valueType?: string;
   expands?: string; // aria-expands
+  inline?: boolean;
 }
 
 export interface IConfigFieldset {
@@ -50,7 +51,8 @@ const configFieldset: IConfigFieldset = {
       event_fee: {
         label: false,
         required: true,
-        valueType: 'number'
+        valueType: 'number',
+        inline: true
       }
     }
   },

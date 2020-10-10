@@ -1,12 +1,13 @@
 import React, { FC, useState, InputHTMLAttributes } from 'react';
 
-import { IConfigFieldsetItemProps, IConfigFieldset } from 'src/store/eventCreate/configFieldset';
+import { IConfigFieldsetItemProps } from 'src/store/eventCreate/configFieldset';
 import { TacEdit } from 'src/store/eventCreate/actions';
 import { IInitial, TLitVal } from 'src/store/eventCreate/_initialState';
 
 import text from 'src/Main/text';
 
-import RowStyle from 'src/Components/Common/Row/RowStyle';
+import RowBlockStyle from 'src/Components/Common/Row/RowBlockStyle';
+import RowInlineStyle from 'src/Components/Common/Row/RowInlineStyle';
 import LabelStyle from 'src/Components/Common/Label/LabelStyle';
 
 import SpanAdjacentStyle from 'src/Components/Common/SpanAdjacent/SpanAdjacentStyle';
@@ -24,7 +25,8 @@ import getLabel from '../RowType/util/getLabel';
 type TElementType = HTMLInputElement | HTMLTextAreaElement;
 type TInputChange = React.ChangeEvent<TElementType>;
 
-const Row = RowStyle();
+const RowBlock = RowBlockStyle();
+const RowInline = RowInlineStyle();
 const Label = LabelStyle();
 const SpanAdjacent = SpanAdjacentStyle();
 const WrapInline = WrapInlineStyle();
@@ -107,7 +109,7 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
 
 const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IRowType> => props => {
   const { formid, inputKey, inputProps, acEdit, defaultValue, eventCreate } = props;
-  const { type, validate, required, adjacent, maxLength, valueType } = inputProps;
+  const { type, validate, required, adjacent, maxLength, valueType, inline } = inputProps;
   const { isLabel, label } = getLabel(inputKey, inputProps.label);
 
   const [input, setInput] = useState(defaultValue);
@@ -132,6 +134,7 @@ const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IRowType>
   const id = `${formid}-${inputKey}`;
 
   const HocLabelInput = withLabelInput(Comp);
+  const Row = inline ? RowInline : RowBlock;
   const HocRowInput = (
     <Row>
       {

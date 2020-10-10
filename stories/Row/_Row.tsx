@@ -1,5 +1,5 @@
 import React from 'react';
-import RowStyle from 'src/Components/Common/Row/RowStyle';
+import RowStyle from 'src/Components/Common/Row/RowBlockStyle';
 
 const Row = RowStyle();
 

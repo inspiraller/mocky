@@ -6,7 +6,9 @@ export const configFieldset: IConfigFieldset = {
   fruit: {
     type: 'number',
     adjacent: {
-      anotherfruit: {}
+      anotherfruit: {
+        inline: true
+      }
     }
   }
 };

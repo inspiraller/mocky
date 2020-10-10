@@ -4,7 +4,8 @@ import text from 'src/Main/text';
 import { TLitVal } from 'src/store/eventCreate/_initialState';
 import { IConfigFieldsetItemProps } from 'src/store/eventCreate/configFieldset';
 
-import RowStyle from 'src/Components/Common/Row/RowStyle';
+import RowBlockStyle from 'src/Components/Common/Row/RowBlockStyle';
+import RowInlineStyle from 'src/Components/Common/Row/RowInlineStyle';
 import LabelStyle from 'src/Components/Common/Label/LabelStyle';
 import SelectStyle from 'src/Components/Common/Select/SelectStyle';
 import OptionStyle from 'src/Components/Common/Select/OptionStyle';
@@ -18,7 +19,9 @@ import getLabel from '../RowType/util/getLabel';
 
 type TInputChange = React.ChangeEvent<HTMLSelectElement>;
 
-const Row = RowStyle();
+const RowBlock = RowBlockStyle();
+const RowInline = RowInlineStyle();
+
 const Select = SelectStyle();
 const Option = OptionStyle();
 const Label = LabelStyle();
@@ -81,7 +84,7 @@ const LabelSelect: FC<ILabelSelect> = ({
 );
 
 const RowSelect: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
-  const { validate, required, options, valueType } = inputProps;
+  const { validate, required, options, valueType, inline } = inputProps;
   const { isLabel, label } = getLabel(inputKey, inputProps.label);
   const [input, setInput] = useState(defaultValue);
   const [touched, setTouched] = useState(false);
@@ -99,6 +102,8 @@ const RowSelect: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, default
     updateErrors(evt.target.value);
   };
   const id = `${formid}-${inputKey}`;
+
+  const Row = inline ? RowInline : RowBlock;
 
   return (
     <Row>

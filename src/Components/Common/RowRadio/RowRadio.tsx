@@ -6,7 +6,9 @@ import { IConfigFieldsetItemProps } from 'src/store/eventCreate/configFieldset';
 
 import WrapInlineStyle from 'src/Components/Common/Wrap/WrapInlineStyle';
 
-import RowStyle from 'src/Components/Common/Row/RowStyle';
+import RowBlockStyle from 'src/Components/Common/Row/RowBlockStyle';
+import RowInlineStyle from 'src/Components/Common/Row/RowInlineStyle';
+
 import LabelStyle, { SpanLabelStyle } from 'src/Components/Common/Label/LabelStyle';
 import RadioStyle from 'src/Components/Common/Radio/RadioStyle';
 
@@ -17,7 +19,9 @@ import getLabel from '../RowType/util/getLabel';
 
 type TInputChange = React.ChangeEvent<HTMLInputElement>;
 
-const Row = RowStyle();
+const RowBlock = RowBlockStyle();
+const RowInline = RowInlineStyle();
+
 const Label = LabelStyle();
 const SpanLabel = SpanLabelStyle();
 const Radio = RadioStyle();
@@ -63,7 +67,7 @@ const LabelRadios: FC<ILabelRadios> = ({
 );
 
 const RowRadio: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
-  const { valueType, radios } = inputProps;
+  const { valueType, radios, inline } = inputProps;
   const { isLabel, label } = getLabel(inputKey, inputProps.label);
   const [input, setInput] = useState(defaultValue);
 
@@ -73,6 +77,8 @@ const RowRadio: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, defaultV
     hacEdit({ setInput, acEdit, inputKey, value: evt.target.value, valueType });
   };
   const id = `${formid}-${inputKey}`;
+  const Row = inline ? RowInline : RowBlock;
+
   return (
     <Row>
       <LabelRadios
