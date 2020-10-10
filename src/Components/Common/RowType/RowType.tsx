@@ -1,24 +1,33 @@
 import React, { FC } from 'react';
-import { IConfigFieldsetItemProps } from 'src/store/eventCreate/configFieldset';
+import { IConfigFieldsetProps } from 'src/store/eventCreate/configFieldset';
 import { TacEdit } from 'src/store/eventCreate/actions';
 import { IInitial, TLitVal } from 'src/store/eventCreate/_initialState';
 
 import RowInput from 'src/Components/Common/RowInputHoc/RowInput';
 import RowTextArea from 'src/Components/Common/RowInputHoc/RowTextarea';
+
 import RowSelect from 'src/Components/Common/RowSelect/RowSelect';
 import RowRadio from 'src/Components/Common/RowRadio/RowRadio';
+
+import getDefaultValueAnyType from 'src/Components/Common/RowType/util/getDefaultValueAnyType';
 
 export interface IRowType {
   formid: string;
   inputKey: string;
-  inputProps: IConfigFieldsetItemProps;
+  inputProps: IConfigFieldsetProps;
   acEdit?: TacEdit;
-  defaultValue?: TLitVal;
-  eventCreate?: IInitial;
+  eventCreate: IInitial;
 }
 
-const RowType: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
+const RowType: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, eventCreate }) => {
   const { type } = inputProps;
+
+  const defaultValue: TLitVal = eventCreate[inputKey];
+
+  // const defaultValue: TLitVal = eventCreate
+  //   ? eventCreate[inputKey]
+  //   : getDefaultValueAnyType(inputProps.valueType || 'string');
+
   switch (type) {
     case 'select':
       return (
