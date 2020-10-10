@@ -8,29 +8,19 @@ import OptionStyle from 'src/Components/Common/Select/OptionStyle';
 
 import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
 
-import { IConfigFormItemProps } from 'src/store/eventCreate/configForm';
-import { TacEdit } from 'src/store/eventCreate/actions';
-import { TLitVal } from 'src/store/eventCreate/_initialState';
+import { IRowType } from 'src/Components/Common/RowType/RowType';
 
-import hacEdit from './util/hacEdit';
-import getLabel from './util/getLabel';
+import hacEdit from '../RowType/util/hacEdit';
+import getLabel from '../RowType/util/getLabel';
 
 type TInputChange = React.ChangeEvent<HTMLSelectElement>;
-
-interface IField {
-  formid: string;
-  inputKey: string;
-  inputProps: IConfigFormItemProps;
-  acEdit?: TacEdit;
-  defaultValue?: TLitVal;
-}
 
 const Row = RowStyle();
 const Select = SelectStyle();
 const Option = OptionStyle();
 const Label = LabelStyle();
 
-const RowSelect: FC<IField> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
+const RowSelect: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
   const { validate, required, options, valueType } = inputProps;
   const { isLabel, label } = getLabel(inputKey, inputProps.label);
   const [input, setInput] = useState(defaultValue);

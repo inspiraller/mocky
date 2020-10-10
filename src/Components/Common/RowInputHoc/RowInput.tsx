@@ -1,5 +1,5 @@
 import InputStyle from 'src/Components/Common/Input/InputStyle';
-import withRowInput from './hoc/withRowInput';
+import withRowInput from './withRowInput';
 
 const Input = InputStyle();
 

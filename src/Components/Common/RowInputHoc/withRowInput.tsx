@@ -6,37 +6,28 @@ import RowStyle from 'src/Components/Common/Row/RowStyle';
 import LabelStyle from 'src/Components/Common/Label/LabelStyle';
 
 import SpanAdjacentStyle from 'src/Components/Common/SpanAdjacent/SpanAdjacentStyle';
-import WrapBlockStyle from 'src/Components/Common/Wrap/WrapBlockStyle';
+import WrapInlineStyle from 'src/Components/Common/Wrap/WrapInlineStyle';
 import CharCount from 'src/Components/Common/CharCount/CharCount';
+import RowTypes from 'src/Components/Common/RowTypes/RowTypes';
 
 import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
 
-import { IConfigFormItemProps } from 'src/store/eventCreate/configForm';
-import { TacEdit } from 'src/store/eventCreate/actions';
-import { TLitVal } from 'src/store/eventCreate/_initialState';
+import { IRowType } from 'src/Components/Common/RowType/RowType';
 
-import hacEdit from '../util/hacEdit';
-import getLabel from '../util/getLabel';
+import hacEdit from '../RowType/util/hacEdit';
+import getLabel from '../RowType/util/getLabel';
 
 type TElementType = HTMLInputElement | HTMLTextAreaElement;
 type TInputChange = React.ChangeEvent<TElementType>;
 
-interface IField {
-  formid: string;
-  inputKey: string;
-  inputProps: IConfigFormItemProps;
-  acEdit?: TacEdit;
-  defaultValue?: TLitVal;
-}
-
 const Row = RowStyle();
 const Label = LabelStyle();
 const SpanAdjacent = SpanAdjacentStyle();
-const WrapBlock = WrapBlockStyle();
+const WrapInline = WrapInlineStyle();
 
-const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> => props => {
-  const { formid, inputKey, inputProps, acEdit, defaultValue } = props;
-  const { validate, required, adjacent, maxLength, valueType } = inputProps;
+const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IRowType> => props => {
+  const { formid, inputKey, inputProps, acEdit, defaultValue, eventCreate } = props;
+  const { type, validate, required, adjacent, maxLength, valueType } = inputProps;
   const { isLabel, label } = getLabel(inputKey, inputProps.label);
 
   const [input, setInput] = useState(defaultValue);
@@ -58,7 +49,6 @@ const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> =
     updateErrors(evt.target.value);
   };
 
-  const type = valueType === 'number' ? 'number' : 'text';
   const id = `${formid}-${inputKey}`;
   const HocRowInput = (
     <Row>
@@ -67,7 +57,7 @@ const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> =
           {text(label)}
         </Label>
       ) : null}
-      <WrapBlock>
+      <WrapInline>
         <Comp
           id={id}
           onChange={onChange}
@@ -83,9 +73,14 @@ const withRowInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<IField> =
           value={typeof value !== 'undefined' ? String(value) : ''}
           data-adjacent={adjacent}
         />
-        <CharCount {...{ maxLength, chars: String(value).length }} />
-      </WrapBlock>
-      {adjacent ? <SpanAdjacent>{adjacent}</SpanAdjacent> : null}
+        {maxLength && type === 'textarea' ? (
+          <CharCount {...{ maxLength, chars: String(value).length }} />
+        ) : null}
+      </WrapInline>
+      {typeof adjacent === 'string' ? <SpanAdjacent>{adjacent}</SpanAdjacent> : null}
+      {typeof adjacent === 'object' ? (
+        <RowTypes {...{ formid, configFieldset: adjacent, acEdit, eventCreate }} />
+      ) : null}
       <SpanError {...{ error }} />
       <Success is={!error && touched} />
     </Row>

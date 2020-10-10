@@ -1,5 +1,5 @@
 import TextareaStyle from 'src/Components/Common/Textarea/TextareaStyle';
-import withRowInput from './hoc/withRowInput';
+import withRowInput from './withRowInput';
 
 const Textarea = TextareaStyle();
 

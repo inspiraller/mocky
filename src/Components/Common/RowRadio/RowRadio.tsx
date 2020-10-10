@@ -7,22 +7,12 @@ import RowStyle from 'src/Components/Common/Row/RowStyle';
 import LabelStyle, { SpanLabelStyle } from 'src/Components/Common/Label/LabelStyle';
 import RadioStyle from 'src/Components/Common/Radio/RadioStyle';
 
-import { IConfigFormItemProps } from 'src/store/eventCreate/configForm';
-import { TacEdit } from 'src/store/eventCreate/actions';
-import { TLitVal } from 'src/store/eventCreate/_initialState';
+import { IRowType } from 'src/Components/Common/RowType/RowType';
 
-import hacEdit from './util/hacEdit';
-import getLabel from './util/getLabel';
+import hacEdit from '../RowType/util/hacEdit';
+import getLabel from '../RowType/util/getLabel';
 
 type TInputChange = React.ChangeEvent<HTMLInputElement>;
-
-interface IField {
-  formid: string;
-  inputKey: string;
-  inputProps: IConfigFormItemProps;
-  acEdit?: TacEdit;
-  defaultValue?: TLitVal;
-}
 
 const Row = RowStyle();
 const Label = LabelStyle();
@@ -30,7 +20,7 @@ const SpanLabel = SpanLabelStyle();
 const Radio = RadioStyle();
 const WrapInline = WrapInlineStyle();
 
-const RowRadio: FC<IField> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
+const RowRadio: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
   const { valueType, radios } = inputProps;
   const { isLabel, label } = getLabel(inputKey, inputProps.label);
   const [input, setInput] = useState(defaultValue);
