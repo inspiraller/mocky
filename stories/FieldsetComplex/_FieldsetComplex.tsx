@@ -6,7 +6,7 @@ import { validateNotEmpty } from 'src/Components/Common/Validate/Validate';
 
 import FieldsetStyle from 'src/Components/Common/Fieldset/FieldsetStyle';
 import LegendStyle from 'src/Components/Common/Legend/LegendStyle';
-import RowInput from 'src/Components/Common/RowTypes/RowInput';
+import RowInput from 'src/Components/Common/RowInputHoc/RowInput';
 
 const Fieldset = FieldsetStyle();
 const Legend = LegendStyle();

@@ -13,8 +13,8 @@ import { IConfigFieldsetProps } from 'src/store/eventCreate/configFieldset';
 import { TacEdit } from 'src/store/eventCreate/actions';
 import { TLitVal } from 'src/store/eventCreate/_initialState';
 
-import hacEdit from './util/hacEdit';
-import getLabel from './util/getLabel';
+import hacEdit from '../RowType/util/hacEdit';
+import getLabel from '../RowType/util/getLabel';
 
 type TInputChange = React.ChangeEvent<HTMLInputElement>;
 

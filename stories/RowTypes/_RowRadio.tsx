@@ -1,5 +1,5 @@
 import React from 'react';
-import RowRadio from 'src/Components/Common/RowTypes/RowRadio';
+import RowRadio from 'src/Components/Common/RowRadio/RowRadio';
 import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
 
 const configFieldset: IConfigFieldset = {

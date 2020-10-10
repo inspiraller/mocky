@@ -1,5 +1,5 @@
 import React from 'react';
-import RowTextarea from 'src/Components/Common/RowTypes/RowTextarea';
+import RowTextarea from 'src/Components/Common/RowInputHoc/RowTextarea';
 import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
 
 const configFieldset: IConfigFieldset = {
