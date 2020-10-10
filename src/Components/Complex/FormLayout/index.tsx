@@ -1,6 +1,7 @@
 // import 'cross-fetch/polyfill'; // patch for tests: Error: fetch is not found globally and no fetcher passed, to fix pass a fetch for your environment
 import text from 'src/Main/text';
 import React, { FC } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import FormWrapper, { TSubmit } from 'src/Components/Common/Form/FormWrapper';
 
@@ -20,20 +21,17 @@ export interface IFormSetup {
   acEdit: TacEdit;
   eventCreate: IInitial;
   configForm: IConfigForm;
-}
-
-interface IFormSetupTitle extends IFormSetup {
   title: string;
 }
 
-const FormSetup: FC<IFormSetupTitle> = ({ title, configForm, acEdit, eventCreate }) => {
+const FormSetup: FC<IFormSetup> = ({ title, configForm, acEdit, eventCreate }) => {
   const onSubmit: TSubmit = evt => {
     console.log('onSubmit - evt = ', evt);
   };
-
+  const formid = uuidv4();
   return (
     <FormWrapper title={text(title)} onSubmit={onSubmit}>
-      <FieldAbout {...{ configForm, acEdit, eventCreate }} />
+      <FieldAbout {...{ formid, configForm, acEdit, eventCreate }} />
       {/* <Row>
         <Button type="submit" disabled={configForm.isSubmitting}>
           {text('Publish')}

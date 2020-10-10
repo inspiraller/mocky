@@ -11,8 +11,9 @@ const configForm: IConfigForm = {
   }
 };
 
+const formid = 'x';
 const RowInputBasic = () => (
-  <RowInput {...{ configForm, inputKey: 'fruit', label: 'fruit extravaganza' }} />
+  <RowInput {...{ formid, inputKey: 'fruit', inputProps: configForm.inputs.fruit }} />
 );
 
 export default RowInputBasic;

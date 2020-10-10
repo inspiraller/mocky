@@ -16,9 +16,9 @@ const configForm: IConfigForm = {
     }
   }
 };
-
+const formid = 'x';
 const RowSelectBasic = () => (
-  <RowSelect {...{ configForm, inputKey: 'fruit', label: 'fruit platter' }} />
+  <RowSelect {...{ formid, inputKey: 'fruit', inputProps: configForm.inputs.fruit }} />
 );
 
 export default RowSelectBasic;

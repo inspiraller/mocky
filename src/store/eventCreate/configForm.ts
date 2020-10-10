@@ -1,21 +1,26 @@
 import { TValidate } from 'src/Components/Common/Validate/Validate';
 import text from 'src/Main/text';
 
+export interface IConfigFormItemProps {
+  label?: string | boolean;
+  type?: string;
+  validate?: TValidate;
+  required?: boolean;
+  options?: Array<{ name: string; value: string | number | boolean }>;
+  radios?: Array<{ name: string; value: string | number | boolean }>;
+  adjacent?: Array<IConfigFormItem> | string;
+  maxLength?: number;
+  valueType?: string;
+  controls?: string; // same as id
+}
+
+export interface IConfigFormItem {
+  [key: string]: IConfigFormItemProps;
+}
+
 export interface IConfigForm {
   isSubmitting: boolean;
-  inputs: {
-    [key: string]: {
-      label?: string;
-      type?: string;
-      validate?: TValidate;
-      required?: boolean;
-      options?: Array<{ name: string; value: string | number | boolean }>;
-      radios?: Array<{ name: string; value: string | number | boolean }>;
-      adjacent?: string;
-      maxLength?: number;
-      valueType?: string;
-    };
-  };
+  inputs: IConfigFormItem;
 }
 
 const configForm: IConfigForm = {
@@ -46,7 +51,17 @@ const configForm: IConfigForm = {
         { name: text('Free event'), value: false },
         { name: text('Paid event'), value: true }
       ],
-      valueType: 'boolean'
+      valueType: 'boolean',
+      controls: 'event_fee',
+      adjacent: [
+        {
+          event_fee: {
+            label: false,
+            required: true,
+            valueType: 'number'
+          }
+        }
+      ]
     },
     reward: {
       adjacent: text('reward points for attendance'),

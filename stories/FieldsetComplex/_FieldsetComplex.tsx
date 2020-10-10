@@ -23,12 +23,22 @@ const configForm: IConfigForm = {
   }
 };
 
+const inputProps1 = configForm.inputs.title1;
+const inputProps2 = configForm.inputs.title2;
+const formid = 'x';
+
 const FieldAbout: FC = () => {
   return (
     <Fieldset>
       <Legend>About</Legend>
-      <RowInput {...{ configForm, inputKey: 'title1', label: 'title1' }} key={`RowInput-title`} />
-      <RowInput {...{ configForm, inputKey: 'title2', label: 'title2' }} key={`RowInput-title-2`} />
+      <RowInput
+        {...{ formid, inputKey: 'title1', inputProps: inputProps1 }}
+        key={`RowInput-title`}
+      />
+      <RowInput
+        {...{ formid, inputKey: 'title2', inputProps: inputProps2 }}
+        key={`RowInput-title-2`}
+      />
     </Fieldset>
   );
 };

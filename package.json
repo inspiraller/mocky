@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@types/redux-actions": "^2.6.1",
+    "@types/uuid": "^8.3.0",
     "connected-react-router": "^6.8.0",
     "history": "^4.10.1",
     "immutable": "^4.0.0-rc.12",
@@ -44,7 +45,8 @@
     "redux-xhr-middleware": "^0.7.3",
     "seamless-immutable": "^7.1.4",
     "styled-components": "^5.1.1",
-    "transition-group": "0.0.2"
+    "transition-group": "0.0.2",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",

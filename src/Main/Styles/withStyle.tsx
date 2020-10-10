@@ -37,3 +37,7 @@ export const withSelect = (styles: TStyles): StyledComponent<'select', {}> => st
 export const withOption = (styles: TStyles): StyledComponent<'option', {}> => styled.option`
   ${styles}
 `;
+
+export const withLabel = (styles: TStyles): StyledComponent<'label', {}> => styled.label`
+  ${styles}
+`;

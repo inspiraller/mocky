@@ -16,9 +16,9 @@ const configForm: IConfigForm = {
     }
   }
 };
-
+const formid = 'x';
 const RowRadioBasic = () => (
-  <RowRadio {...{ configForm, inputKey: 'fruit', label: 'fruit pallete' }} />
+  <RowRadio {...{ formid, inputKey: 'fruit', inputProps: configForm.inputs.fruit }} />
 );
 
 export default RowRadioBasic;

@@ -11,9 +11,9 @@ const configForm: IConfigForm = {
     }
   }
 };
-
+const formid = 'x';
 const RowTextareaBasic = () => (
-  <RowTextarea {...{ configForm, inputKey: 'fruit', label: 'fruit pyramid ' }} />
+  <RowTextarea {...{ formid, inputKey: 'fruit', inputProps: configForm.inputs.fruit }} />
 );
 
 export default RowTextareaBasic;
