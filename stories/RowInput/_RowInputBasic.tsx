@@ -2,15 +2,11 @@ import React from 'react';
 import RowInput from 'src/Components/Common/RowInputHoc/RowInput';
 import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
 
-const configFieldset: IConfigFieldset = {
-  fruit: {
-    required: true
-  }
+export const configFieldset: IConfigFieldset = {
+  fruit: {}
 };
 
 const formid = 'x';
-const RowInputBasic = () => (
+export const RowInputBasic = () => (
   <RowInput {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit }} />
 );
-
-export default RowInputBasic;
