@@ -66,7 +66,7 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
 
   const LabelInput = (
     <>
-      {isLabel ? (
+      {isLabel === undefined || !isLabel ? (
         <Label data-aria-required={required} htmlFor={id}>
           {text(label)}
         </Label>

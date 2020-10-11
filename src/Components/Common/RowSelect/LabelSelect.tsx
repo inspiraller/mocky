@@ -42,7 +42,7 @@ const LabelSelect: FC<ILabelSelect> = ({
   options
 }) => (
   <>
-    {isLabel ? (
+    {isLabel === undefined || !isLabel ? (
       <Label data-aria-required={required} htmlFor={id}>
         {text(label)}
       </Label>

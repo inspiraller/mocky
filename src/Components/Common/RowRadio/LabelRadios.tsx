@@ -42,7 +42,7 @@ const LabelRadios: FC<IRowType> = ({
 
   return (
     <>
-      {isLabel ? <SpanLabel data-value={value}>{label}</SpanLabel> : null}
+      {isLabel === undefined || !isLabel ? <SpanLabel data-value={value}>{label}</SpanLabel> : null}
       {radios &&
         radios.map((item: { name: string; value: TLitVal }) => {
           const id = `${formid}-${inputKey}-${item.value}`;
