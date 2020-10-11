@@ -1,6 +1,6 @@
 import React from 'react';
 import RowTextarea from 'src/Components/Common/RowInputHoc/RowTextarea';
-import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
+import { IConfigFieldset } from 'src/types';
 
 export const configFieldset: IConfigFieldset = {
   fruit: {

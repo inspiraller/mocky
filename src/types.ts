@@ -1,5 +1,5 @@
 import { TValidate } from 'src/Components/Common/Validate/Validate';
-import { TLitVal } from './_initialState';
+import { TLitVal } from 'src/store/eventCreate/_initialState';
 
 export interface IConfigFieldsetItemProps {
   label?: string;

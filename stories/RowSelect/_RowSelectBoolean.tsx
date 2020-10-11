@@ -1,6 +1,6 @@
 import React from 'react';
 import RowSelect from 'src/Components/Common/RowSelect/RowSelect';
-import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
+import { IConfigFieldset } from 'src/types';
 
 export const configFieldset: IConfigFieldset = {
   fruit: {

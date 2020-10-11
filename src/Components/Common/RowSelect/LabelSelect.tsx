@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import text from 'src/Main/text';
 
 import { TLitVal } from 'src/store/eventCreate/_initialState';
-import { IConfigFieldsetItemProps } from 'src/store/eventCreate/configFieldset';
+import { IConfigFieldsetItemProps } from 'src/types';
 
 import LabelStyle from 'src/Components/Common/Label/LabelStyle';
 import SelectStyle from 'src/Components/Common/Select/SelectStyle';

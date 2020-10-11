@@ -1,6 +1,6 @@
 import React from 'react';
 import RowRadio from 'src/Components/Common/RowRadio/RowRadio';
-import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
+import { IConfigFieldset } from 'src/types';
 
 export const configFieldset: IConfigFieldset = {
   fruit: {

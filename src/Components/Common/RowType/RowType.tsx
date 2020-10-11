@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IConfigFieldsetItemProps } from 'src/store/eventCreate/configFieldset';
+import { IConfigFieldsetItemProps } from 'src/types';
 import { TacEdit } from 'src/store/eventCreate/actions';
 import { IInitial, TLitVal } from 'src/store/eventCreate/_initialState';
 

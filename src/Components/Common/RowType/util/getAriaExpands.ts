@@ -1,5 +1,5 @@
 import { IInitial } from 'src/store/eventCreate/_initialState';
-import { IConfigFieldsetItemProps } from 'src/store/eventCreate/configFieldset';
+import { IConfigFieldsetItemProps } from 'src/types';
 
 type TgetDepends = (props: {
   inputKey: string;

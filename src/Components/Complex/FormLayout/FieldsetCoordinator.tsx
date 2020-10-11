@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import text from 'src/Main/text';
 
-import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
+import { IConfigFieldset } from 'src/types';
 import { IInitial } from 'src/store/eventCreate/_initialState';
 import { TacEdit } from 'src/store/eventCreate/actions';
 
@@ -13,20 +13,25 @@ import RowTypes from 'src/Components/Common/RowTypes/RowTypes';
 const Fieldset = FieldsetStyle();
 const Legend = LegendStyle();
 
+const configFieldset: IConfigFieldset = {
+  title: {
+    required: true
+  }
+};
+
 export interface IField {
   formid: string;
-  configFieldset: IConfigFieldset;
   acEdit: TacEdit;
   eventCreate: IInitial;
 }
 
-const FieldAbout: FC<IField> = ({ formid, configFieldset, acEdit, eventCreate }) => {
+const FieldsetCoordinator: FC<IField> = ({ formid, acEdit, eventCreate }) => {
   return (
     <Fieldset>
-      <Legend>{text('About')}</Legend>
+      <Legend>{text('Coordinator')}</Legend>
       <RowTypes {...{ formid, configFieldset, acEdit, eventCreate }} />
     </Fieldset>
   );
 };
 
-export default FieldAbout;
+export default FieldsetCoordinator;
