@@ -23,3 +23,7 @@ export interface IConfigFieldsetItemProps {
 export interface IConfigFieldset {
   [key: string]: IConfigFieldsetItemProps;
 }
+
+export type TAnyTestFunc = (payload: any) => void;
+
+export type TAnyHook = React.Dispatch<React.SetStateAction<TLitVal | undefined>> | TAnyTestFunc;

@@ -1,5 +1,5 @@
 import { TLitVal } from 'src/store/eventCreate/_initialState';
-import hacEdit from 'src/Components/Common/RowType/util/hacEdit';
+import hacEdit from 'src/util/hacEdit';
 
 const inputKey: string = 'someNumber';
 const value: TLitVal = '100';

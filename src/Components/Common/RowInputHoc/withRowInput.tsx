@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import getAriaExpands from 'src/Components/Common/RowType/util/getAriaExpands';
+import getAriaExpands from 'src//util/getAriaExpands';
 
 import RowBlockStyle from 'src/Components/Common/Row/RowBlockStyle';
 import RowInlineStyle from 'src/Components/Common/Row/RowInlineStyle';

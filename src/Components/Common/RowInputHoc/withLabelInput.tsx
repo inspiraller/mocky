@@ -13,8 +13,7 @@ import RowTypes from 'src/Components/Common/RowTypes/RowTypes';
 
 import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
 
-import hacEdit from '../RowType/util/hacEdit';
-import getLabel from '../RowType/util/getLabel';
+import hacEdit from 'src/util/hacEdit';
 
 type TElementType = HTMLInputElement | HTMLTextAreaElement;
 type TInputChange = React.ChangeEvent<TElementType>;

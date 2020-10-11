@@ -7,8 +7,7 @@ import { validateAll } from 'src/Components/Common/Validate/Validate';
 
 import { IRowType } from 'src/Components/Common/RowType/RowType';
 
-import hacEdit from '../RowType/util/hacEdit';
-import getLabel from '../RowType/util/getLabel';
+import hacEdit from 'src/util/hacEdit';
 
 import LabelSelect from './LabelSelect';
 

@@ -1,5 +1,3 @@
-import { convert } from '@storybook/theming';
-
 import { TLitVal } from 'src/store/eventCreate/_initialState';
 
 const convertValue = (value: string, valueType: string | undefined): TLitVal => {

@@ -1,4 +1,4 @@
-import convertValue from 'src/Components/Common/RowType/util/convertValue';
+import convertValue from 'src/util/convertValue';
 
 describe('convertValue', () => {
   it('should covert string to string', () => {

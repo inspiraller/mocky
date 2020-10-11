@@ -1,4 +1,4 @@
-import getDefaultValueAnyType from 'src/Components/Common/RowType/util/getDefaultValueAnyType';
+import getDefaultValueAnyType from 'src/util/getDefaultValueAnyType';
 
 describe('getDefaultValueAnyType', () => {
   it('should get empty string', () => {

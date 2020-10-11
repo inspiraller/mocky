@@ -6,7 +6,7 @@ import { IInitial, TLitVal } from 'src/store/eventCreate/_initialState';
 import { TacEdit } from 'src/store/eventCreate/actions';
 
 import RowType, { IRowType } from 'src/Components/Common/RowType/RowType';
-import getDefaultValueAnyType from 'src/Components/Common/RowType/util/getDefaultValueAnyType';
+import getDefaultValueAnyType from 'src/util/getDefaultValueAnyType';
 
 export interface IField {
   formid: string;

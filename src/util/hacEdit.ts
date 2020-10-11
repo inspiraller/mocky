@@ -1,14 +1,13 @@
 import { TacEdit } from 'src/store/eventCreate/actions';
-import { TLitVal } from 'src/store/eventCreate/_initialState';
+import { TAnyTestFunc, TAnyHook } from 'src/types';
 
 import convertValue from './convertValue';
 
 // jest.fn<void, any>(setInputMock);
 // jest.fn<void, any>(setInputMock);
-export type TAnyTestFunc = (payload: any) => void;
 
 interface IHackEdit {
-  setInput: React.Dispatch<React.SetStateAction<TLitVal | undefined>> | TAnyTestFunc;
+  setInput: TAnyHook;
   inputKey: string;
   value: string;
   acEdit?: TacEdit | TAnyTestFunc;

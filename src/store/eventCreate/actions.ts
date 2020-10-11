@@ -8,6 +8,10 @@ export type TacEdit = (props: { [key: string]: TLitVal }) => Action;
 
 const acEdit: TacEdit = createAction(at.EDIT);
 
+const actions = {
+  acEdit
+};
+
 /* example
 store.dispatch(acEdit({
   title: 'steve'
@@ -18,10 +22,6 @@ store.dispatch(acEdit({
   }
 }
 */
-
-const actions = {
-  acEdit
-};
 
 export { actions };
 

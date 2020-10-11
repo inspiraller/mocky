@@ -12,8 +12,7 @@ import RadioStyle from 'src/Components/Common/Radio/RadioStyle';
 import RadioLabelStyle from 'src/Components/Common/Radio/RadioLabelStyle';
 import { SpanLabelStyle } from 'src/Components/Common/Label/LabelStyle';
 
-import hacEdit from '../RowType/util/hacEdit';
-import getLabel from '../RowType/util/getLabel';
+import hacEdit from 'src/util/hacEdit';
 
 type TInputChange = React.ChangeEvent<HTMLInputElement>;
 

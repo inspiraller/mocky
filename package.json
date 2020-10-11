@@ -31,6 +31,7 @@
   "dependencies": {
     "@types/redux-actions": "^2.6.1",
     "@types/uuid": "^8.3.0",
+    "axios": "^0.20.0",
     "connected-react-router": "^6.8.0",
     "history": "^4.10.1",
     "immutable": "^4.0.0-rc.12",
