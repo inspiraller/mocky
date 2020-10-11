@@ -1,7 +1,7 @@
 import { TValidate } from 'src/Components/Common/Validate/Validate';
 import text from 'src/Main/text';
 
-export interface IConfigFieldsetProps {
+export interface IConfigFieldsetItemProps {
   label?: string | boolean;
   type?: string;
   validate?: TValidate;
@@ -16,7 +16,7 @@ export interface IConfigFieldsetProps {
 }
 
 export interface IConfigFieldset {
-  [key: string]: IConfigFieldsetProps;
+  [key: string]: IConfigFieldsetItemProps;
 }
 
 const configFieldset: IConfigFieldset = {

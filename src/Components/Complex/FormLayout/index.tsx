@@ -24,11 +24,12 @@ export interface IFormSetup {
   title: string;
 }
 
+const formid = uuidv4();
+
 const FormSetup: FC<IFormSetup> = ({ title, configFieldset, acEdit, eventCreate }) => {
   const onSubmit: TSubmit = evt => {
     console.log('onSubmit - evt = ', evt);
   };
-  const formid = uuidv4();
   return (
     <FormWrapper title={text(title)} onSubmit={onSubmit}>
       <FieldAbout {...{ formid, configFieldset, acEdit, eventCreate }} />
