@@ -17,9 +17,15 @@ const withRowInput = (Comp: FC<IRowType>): FC<IRowType> => props => {
   const Row = inline ? RowInline : RowBlock;
 
   const ariaExpands = getAriaExpands({ inputKey, ariaExpandedBy, eventCreate });
+
+  const required =
+    ariaExpands !== null
+      ? ariaExpands['aria-expanded'] && inputProps.required
+      : inputProps.required;
+
   const inputPropsAugmentRequired = {
     ...inputProps,
-    required: inputProps.required && !!ariaExpands
+    required
   };
 
   const HocRowInput = (
