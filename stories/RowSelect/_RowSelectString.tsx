@@ -7,16 +7,17 @@ export const configFieldset: IConfigFieldset = {
     required: true,
     type: 'select',
     options: [
-      { name: 'apple', value: 1 },
-      { name: 'banana', value: 2 }
+      { name: 'string1', value: 'apple' },
+      { name: 'string2', value: 'banana' },
+      { name: 'string3', value: 'pear' }
     ],
-    valueType: 'number'
+    valueType: 'string'
   }
 };
 const formid = 'x';
 
-export const RowSelectBasic = () => (
+export const RowSelectString = () => (
   <RowSelect {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit }} />
 );
 
-export default RowSelectBasic;
+export default RowSelectString;

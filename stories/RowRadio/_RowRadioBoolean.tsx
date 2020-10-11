@@ -7,16 +7,14 @@ export const configFieldset: IConfigFieldset = {
     required: true,
     type: 'radio',
     radios: [
-      { name: 'number0', value: 0 },
-      { name: 'number1', value: 1 },
-      { name: 'number3', value: 3 },
-      { name: 'number70', value: 70 }
+      { name: 'FALSE', value: false },
+      { name: 'true', value: true }
     ],
-    valueType: 'number'
+    valueType: 'boolean'
   }
 };
 const formid = 'x';
 
-export const RowRadioNumber = () => (
+export const RowRadioBoolean = () => (
   <RowRadio {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit }} />
 );

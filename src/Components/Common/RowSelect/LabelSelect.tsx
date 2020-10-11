@@ -69,7 +69,7 @@ const LabelSelect: FC<ILabelSelect> = ({
     </Select>
 
     <SpanError {...{ error }} />
-    <Success is={!!value && !error && touched} />
+    <Success is={value !== '-1' && !!value && !error && touched} />
   </>
 );
 

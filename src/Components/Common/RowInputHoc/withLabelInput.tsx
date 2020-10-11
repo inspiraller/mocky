@@ -92,7 +92,7 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
         <RowTypes {...{ formid, configFieldset: adjacent, acEdit, eventCreate }} />
       ) : null}
       <SpanError {...{ error }} />
-      <Success is={!error && touched} />
+      <Success is={!!value && !error && touched} />
     </>
   );
   return LabelInput;
