@@ -39,16 +39,18 @@ const LabelRadios: FC<ILabelRadios> = ({
     {radios &&
       radios.map((item: { name: string; value: TLitVal }) => (
         <WrapInline key={`radio-${label}-${item.name}`}>
-          <Radio
-            id={id}
-            type="radio"
-            onChange={onChange}
-            name={inputKey}
-            aria-label={text(inputKey)}
-            checked={item.value === value}
-            value={String(item.value)}
-          />
-          <Label htmlFor={id}>{item.name}</Label>
+          <Label>
+            <Radio
+              id={id}
+              type="radio"
+              onChange={onChange}
+              name={inputKey}
+              aria-label={text(inputKey)}
+              checked={String(item.value) === String(value)}
+              value={String(item.value)}
+            />
+            {item.name}
+          </Label>
         </WrapInline>
       ))}
   </>

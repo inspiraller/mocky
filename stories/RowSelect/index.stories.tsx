@@ -1,5 +1,3 @@
-import RowSelect from './_RowSelect';
-
-export { RowSelect };
+export { RowSelectBasic } from './_RowSelectBasic';
 
 export default { title: 'RowSelect' };

@@ -8,11 +8,11 @@ const Option = OptionsStyle();
 const label = 'label';
 const name = 'name';
 
-const SelectBasic = () => (
-  <Select name={label} aria-label={label}>
+export const SelectStyled = () => (
+  <Select name={name} aria-label={label}>
     <Option value="Some value">Some value</Option>
     <Option value="Some value">Some 2</Option>
   </Select>
 );
 
-export default SelectBasic;
+export default SelectStyled;

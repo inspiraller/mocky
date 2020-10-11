@@ -1,4 +1,2 @@
-import Select from './_Select';
-
-export { Select };
+export { SelectStyled } from './_SelectStyled';
 export default { title: 'Select' };

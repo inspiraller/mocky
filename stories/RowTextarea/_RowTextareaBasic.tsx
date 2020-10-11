@@ -2,7 +2,7 @@ import React from 'react';
 import RowTextarea from 'src/Components/Common/RowInputHoc/RowTextarea';
 import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
 
-const configFieldset: IConfigFieldset = {
+export const configFieldset: IConfigFieldset = {
   fruit: {
     type: 'textarea',
     required: true
@@ -10,7 +10,7 @@ const configFieldset: IConfigFieldset = {
 };
 
 const formid = 'x';
-const RowTextareaBasic = () => (
+export const RowTextareaBasic = () => (
   <RowTextarea {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit }} />
 );
 

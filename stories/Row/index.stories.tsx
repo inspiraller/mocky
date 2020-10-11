@@ -1,4 +1,4 @@
-import Row from './_Row';
+export { RowBlockStyled } from './_RowBlockStyled';
+export { RowInlineStyled } from './_RowInlineStyled';
 
-export { Row };
 export default { title: 'Row' };

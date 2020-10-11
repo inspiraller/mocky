@@ -1,4 +1,3 @@
-import Legend from './_Legend';
+export { LegendStyled } from './_LegendStyled';
 
-export { Legend };
 export default { title: 'Legend' };

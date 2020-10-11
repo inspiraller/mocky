@@ -10,8 +10,8 @@ const onChange = () => {
 const label = 'label';
 const name = 'name';
 
-const RadioBasic = () => (
+export const RadioStyled = () => (
   <Radio type="radio" onChange={onChange} name={label} aria-label={label} value={name} />
 );
 
-export default RadioBasic;
+export default RadioStyled;

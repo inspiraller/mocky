@@ -1,4 +1,3 @@
-import InputText from './_InputText';
+export { InputStyled } from './_InputStyled';
 
-export { InputText };
 export default { title: 'Input' };

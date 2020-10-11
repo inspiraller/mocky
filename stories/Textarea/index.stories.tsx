@@ -1,4 +1,2 @@
-import Textarea from './_Textarea';
-
-export { Textarea };
+export { TextareaStyled } from './_TextareaStyled';
 export default { title: 'Textarea' };

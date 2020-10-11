@@ -1,4 +1,3 @@
-import CheckIcon from './_CheckIcon';
+export { CheckIconStyled } from './_CheckIconStyled';
 
-export { CheckIcon };
 export default { title: 'CheckIcon' };

@@ -1,5 +1,3 @@
-import RowRadio from './_RowRadio';
-
-export { RowRadio };
+export { RowRadioNumber } from './_RowRadioNumber';
 
 export default { title: 'RowRadio' };

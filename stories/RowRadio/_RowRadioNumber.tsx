@@ -2,7 +2,7 @@ import React from 'react';
 import RowRadio from 'src/Components/Common/RowRadio/RowRadio';
 import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
 
-const configFieldset: IConfigFieldset = {
+export const configFieldset: IConfigFieldset = {
   fruit: {
     required: true,
     type: 'radio',
@@ -14,8 +14,7 @@ const configFieldset: IConfigFieldset = {
   }
 };
 const formid = 'x';
-const RowRadioBasic = () => (
+
+export const RowRadioNumber = () => (
   <RowRadio {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit }} />
 );
-
-export default RowRadioBasic;

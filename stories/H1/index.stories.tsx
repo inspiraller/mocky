@@ -1,4 +1,3 @@
-import H1 from './_H1';
+export { H1Styled } from './_H1Styled';
 
-export { H1 };
 export default { title: 'H1' };

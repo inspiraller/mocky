@@ -1,4 +1,2 @@
-import Fieldset from './_Fieldset';
-
-export { Fieldset };
+export { FieldsetStyled } from './_FieldsetStyled';
 export default { title: 'Fieldset' };

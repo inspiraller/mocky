@@ -1,4 +1,3 @@
-import Label from './_Label';
+export { LabelStyled } from './_LabelStyled';
 
-export { Label };
 export default { title: 'Label' };

@@ -3,6 +3,6 @@ import LabelStyle from 'src/Components/Common/Label/LabelStyle';
 
 const Label = LabelStyle();
 
-const LabelBasic = () => <Label>Hello World</Label>;
+export const LabelStyled = () => <Label>Hello World</Label>;
 
-export default LabelBasic;
+export default LabelStyled;

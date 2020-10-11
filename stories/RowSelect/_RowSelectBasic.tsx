@@ -2,7 +2,7 @@ import React from 'react';
 import RowSelect from 'src/Components/Common/RowSelect/RowSelect';
 import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
 
-const configFieldset: IConfigFieldset = {
+export const configFieldset: IConfigFieldset = {
   fruit: {
     required: true,
     type: 'select',
@@ -14,7 +14,8 @@ const configFieldset: IConfigFieldset = {
   }
 };
 const formid = 'x';
-const RowSelectBasic = () => (
+
+export const RowSelectBasic = () => (
   <RowSelect {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit }} />
 );
 

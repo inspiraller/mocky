@@ -3,6 +3,6 @@ import CheckIconStyle from 'src/Components/Common/CheckIcon/CheckIconStyle';
 
 const CheckIcon = CheckIconStyle();
 
-const CheckIconBasic = () => <CheckIcon />;
+export const CheckIconStyled = () => <CheckIcon />;
 
-export default CheckIconBasic;
+export default CheckIconStyled;
