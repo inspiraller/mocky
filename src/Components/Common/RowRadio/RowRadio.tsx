@@ -10,19 +10,14 @@ import LabelRadios from './LabelRadios';
 const RowBlock = RowBlockStyle();
 const RowInline = RowInlineStyle();
 
-const RowRadio: FC<IRowType> = ({ inputProps, ...theRest }) => {
+const RowRadio: FC<IRowType> = props => {
+  const { inputKey, inputProps } = props;
   const { inline } = inputProps;
-
   const Row = inline ? RowInline : RowBlock;
 
   return (
-    <Row>
-      <LabelRadios
-        {...{
-          ...theRest,
-          inputProps
-        }}
-      />
+    <Row role="radiogroup" id={`row-${inputKey}`}>
+      <LabelRadios {...props} />
     </Row>
   );
 };

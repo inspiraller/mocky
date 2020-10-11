@@ -4,12 +4,13 @@ import { IConfigFieldset } from 'src/store/eventCreate/configFieldset';
 
 export const configFieldset: IConfigFieldset = {
   fruit: {
-    label: 'some placholder for fruit',
-    isLabel: false
+    label: 'cash',
+    type: 'money',
+    valueType: 'number'
   }
 };
 
 const formid = 'x';
-export const RowInputLabelFalse = () => (
+export const RowInputMoney = () => (
   <RowInput {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit }} />
 );

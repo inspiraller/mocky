@@ -17,34 +17,41 @@ export interface IRowType {
   eventCreate?: IInitial;
 }
 
-const RowType: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
+const RowType: FC<IRowType> = ({
+  formid,
+  inputKey,
+  inputProps,
+  acEdit,
+  defaultValue,
+  eventCreate
+}) => {
   const { type } = inputProps;
   switch (type) {
     case 'select':
       return (
         <RowSelect
-          {...{ formid, inputKey, inputProps, acEdit, defaultValue }}
+          {...{ formid, inputKey, inputProps, acEdit, defaultValue, eventCreate }}
           key={`RowSelect-${inputKey}`}
         />
       );
     case 'textarea':
       return (
         <RowTextArea
-          {...{ formid, inputKey, inputProps, acEdit, defaultValue }}
+          {...{ formid, inputKey, inputProps, acEdit, defaultValue, eventCreate }}
           key={`RowTextarea-${inputKey}`}
         />
       );
     case 'radio':
       return (
         <RowRadio
-          {...{ formid, inputKey, inputProps, acEdit, defaultValue }}
+          {...{ formid, inputKey, inputProps, acEdit, defaultValue, eventCreate }}
           key={`RowRadio-${inputKey}`}
         />
       );
     default:
       return (
         <RowInput
-          {...{ formid, inputKey, inputProps, acEdit, defaultValue }}
+          {...{ formid, inputKey, inputProps, acEdit, defaultValue, eventCreate }}
           key={`RowInput-${inputKey}`}
         />
       );

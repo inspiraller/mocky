@@ -1,10 +1,8 @@
-import React, { FC, InputHTMLAttributes } from 'react';
+import React, { FC, useState, InputHTMLAttributes } from 'react';
 
 import text from 'src/Main/text';
 
-import { IConfigFieldsetItemProps } from 'src/store/eventCreate/configFieldset';
-import { TacEdit } from 'src/store/eventCreate/actions';
-import { IInitial, TLitVal } from 'src/store/eventCreate/_initialState';
+import { IRowType } from 'src/Components/Common/RowType/RowType';
 
 import LabelStyle from 'src/Components/Common/Label/LabelStyle';
 import SpanAdjacentStyle from 'src/Components/Common/SpanAdjacent/SpanAdjacentStyle';
@@ -13,7 +11,10 @@ import WrapInlineStyle from 'src/Components/Common/Wrap/WrapInlineStyle';
 import CharCount from 'src/Components/Common/CharCount/CharCount';
 import RowTypes from 'src/Components/Common/RowTypes/RowTypes';
 
-import { SpanError, Success } from 'src/Components/Common/Validate/Validate';
+import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
+
+import hacEdit from '../RowType/util/hacEdit';
+import getLabel from '../RowType/util/getLabel';
 
 type TElementType = HTMLInputElement | HTMLTextAreaElement;
 type TInputChange = React.ChangeEvent<TElementType>;
@@ -22,45 +23,48 @@ const Label = LabelStyle();
 const SpanAdjacent = SpanAdjacentStyle();
 const WrapInline = WrapInlineStyle();
 
-export interface ILabelInput {
-  formid: string;
-  isLabel: boolean;
-  required: boolean | undefined;
-  id: string;
-  onChange: (evt: TInputChange) => void;
-  onBlur: (evt: TInputChange) => void;
-  inputKey: string;
-  label: string;
-  error: string;
-  touched: boolean;
-  value: TLitVal | undefined;
-  maxLength?: number;
-  type?: string;
-  adjacent?: IConfigFieldsetItemProps['adjacent'];
-  acEdit?: TacEdit;
-  defaultValue?: TLitVal;
-  eventCreate?: IInitial;
+export interface ILabelInput extends IRowType {
+  ariaExpanded?: string;
 }
 
 const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelInput> => props => {
+  const { formid, inputKey, inputProps, acEdit, defaultValue, eventCreate } = props;
   const {
-    formid,
-    isLabel,
-    required,
-    id,
-    onChange,
-    onBlur,
-    inputKey,
-    label,
-    error,
-    touched,
-    value,
-    maxLength,
     type,
+    validate,
+    required,
     adjacent,
-    acEdit,
-    eventCreate
-  } = props;
+    maxLength,
+    valueType,
+    ariaExpands,
+    isLabel
+  } = inputProps;
+
+  const [input, setInput] = useState(defaultValue);
+  const [touched, setTouched] = useState(false);
+  const [error, setError] = useState('');
+
+  const label = inputProps.label || inputKey;
+
+  const value = acEdit ? defaultValue : input;
+
+  const onChange = (evt: TInputChange) => {
+    hacEdit({ setInput, acEdit, inputKey, value: evt.target.value, valueType });
+  };
+
+  const updateErrors = (val: string) => {
+    setTouched(true);
+    setError(validateAll({ validate, required, label, value: val }));
+  };
+
+  const onBlur = (evt: TInputChange) => {
+    updateErrors(evt.target.value);
+  };
+
+  const id = `${formid}-${inputKey}`;
+
+  const inputType = type === 'money' ? 'text' : type;
+
   const LabelInput = (
     <>
       {isLabel ? (
@@ -77,12 +81,15 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
           placeholder={text(label)}
           aria-required={required ? 'true' : 'false'}
           aria-invalid={error ? 'true' : 'false'}
+          aria-controls={ariaExpands || undefined}
           data-touched={touched ? 'true' : 'false'}
           aria-label={text(inputKey)}
           maxLength={maxLength}
-          type={type}
+          data-type={type}
+          type={inputType}
           value={typeof value !== 'undefined' ? String(value) : ''}
         />
+        {type === 'money' ? '$' : null}
         {maxLength && type === 'textarea' ? (
           <CharCount {...{ maxLength, chars: String(value).length }} />
         ) : null}

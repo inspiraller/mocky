@@ -18,8 +18,10 @@ const RowBlock = RowBlockStyle();
 const RowInline = RowInlineStyle();
 
 const RowSelect: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
-  const { validate, required, options, valueType, inline } = inputProps;
-  const { isLabel, label } = getLabel(inputKey, inputProps.label);
+  const { validate, required, options, valueType, inline, isLabel } = inputProps;
+
+  const label = inputProps.label || inputKey;
+
   const [input, setInput] = useState(defaultValue);
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState('');

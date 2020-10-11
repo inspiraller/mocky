@@ -1,4 +1,4 @@
-export type TLitVal = string | number | boolean;
+export type TLitVal = string | number | boolean | undefined;
 
 export interface IInitial {
   [key: string]: TLitVal;
@@ -8,7 +8,8 @@ const initialState: IInitial = {
   title: '',
   description: '',
   category_id: -1,
-  payment: 'paid event',
+  paid_event: 'paid event',
+  event_fee: undefined,
   reward: 0
 };
 

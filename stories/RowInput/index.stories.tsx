@@ -6,5 +6,6 @@ export { RowInputLabelFalse } from './_RowInputLabelFalse';
 export { RowInputMaxLength } from './_RowInputMaxLength';
 export { RowInputNumber } from './_RowInputNumber';
 export { RowInputRequired } from './_RowInputRequired';
+export { RowInputMoney } from './_RowInputMoney';
 
 export default { title: 'RowInput' };

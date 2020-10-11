@@ -1,7 +1,6 @@
 // import 'cross-fetch/polyfill'; // patch for tests: Error: fetch is not found globally and no fetcher passed, to fix pass a fetch for your environment
 import text from 'src/Main/text';
 import React, { FC } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import FormWrapper, { TSubmit } from 'src/Components/Common/Form/FormWrapper';
 
@@ -17,14 +16,14 @@ import FieldAbout from './FieldAbout';
 // const Row = RowStyle();
 // const Button = ButtonStyle();
 
+const formid = 'eventCreate';
+
 export interface IFormSetup {
   acEdit: TacEdit;
   eventCreate: IInitial;
   configFieldset: IConfigFieldset;
   title: string;
 }
-
-const formid = uuidv4();
 
 const FormSetup: FC<IFormSetup> = ({ title, configFieldset, acEdit, eventCreate }) => {
   const onSubmit: TSubmit = evt => {

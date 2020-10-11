@@ -17,7 +17,7 @@ const Option = OptionStyle();
 const Label = LabelStyle();
 
 interface ILabelSelect {
-  isLabel: boolean;
+  isLabel: IConfigFieldsetItemProps['isLabel'];
   required: boolean | undefined;
   id: string;
   onChange: (evt: TInputChange) => void;

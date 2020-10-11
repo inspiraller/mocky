@@ -19,6 +19,7 @@ const RowTypes: FC<IField> = ({ formid, configFieldset, acEdit, eventCreate }) =
   <>
     {Object.keys(configFieldset).map((inputKey: string) => {
       const inputProps: IConfigFieldsetItemProps = configFieldset[inputKey];
+
       const defaultValue: TLitVal = eventCreate
         ? eventCreate[inputKey]
         : getDefaultValueAnyType(inputProps.valueType || 'string');
@@ -28,12 +29,13 @@ const RowTypes: FC<IField> = ({ formid, configFieldset, acEdit, eventCreate }) =
         inputKey,
         inputProps,
         acEdit,
-        defaultValue
+        defaultValue,
+        eventCreate
       };
       // no need to share eventCreate with every component
-      if (eventCreate && typeof inputProps.adjacent === 'object') {
-        rowTypeProps.eventCreate = eventCreate;
-      }
+      // if (eventCreate && typeof inputProps.adjacent === 'object') {
+      //   rowTypeProps.eventCreate = eventCreate;
+      // }
       return <RowType key={`${formid}-RowType-${inputKey}`} {...rowTypeProps} />;
     })}
   </>

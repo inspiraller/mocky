@@ -1,8 +1,10 @@
 import { TValidate } from 'src/Components/Common/Validate/Validate';
 import text from 'src/Main/text';
+import { TLitVal } from './_initialState';
 
 export interface IConfigFieldsetItemProps {
-  label?: string | boolean;
+  label?: string;
+  isLabel?: boolean;
   type?: string;
   validate?: TValidate;
   required?: boolean;
@@ -11,8 +13,12 @@ export interface IConfigFieldsetItemProps {
   adjacent?: IConfigFieldset | string;
   maxLength?: number;
   valueType?: string;
-  expands?: string; // aria-expands
+  ariaExpands?: string;
   inline?: boolean;
+  ariaExpandedBy?: {
+    id: string;
+    condition: TLitVal;
+  };
 }
 
 export interface IConfigFieldset {
@@ -46,10 +52,16 @@ const configFieldset: IConfigFieldset = {
       { name: text('Paid event'), value: true }
     ],
     valueType: 'boolean',
-    expands: 'event_fee',
+    ariaExpands: 'event_fee',
     adjacent: {
       event_fee: {
-        label: false,
+        label: 'fee',
+        type: 'money',
+        ariaExpandedBy: {
+          id: 'paid_event',
+          condition: true
+        },
+        isLabel: false,
         required: true,
         valueType: 'number',
         inline: true

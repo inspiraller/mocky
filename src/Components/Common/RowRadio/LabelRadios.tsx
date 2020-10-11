@@ -3,6 +3,7 @@ import text from 'src/Main/text';
 
 import { TLitVal } from 'src/store/eventCreate/_initialState';
 
+import RowTypes from 'src/Components/Common/RowTypes/RowTypes';
 import { IRowType } from 'src/Components/Common/RowType/RowType';
 
 import WrapInlineStyle from 'src/Components/Common/Wrap/WrapInlineStyle';
@@ -21,9 +22,17 @@ const Radio = RadioStyle();
 const RadioLabel = RadioLabelStyle();
 const WrapInline = WrapInlineStyle();
 
-const LabelRadios: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
-  const { valueType, radios } = inputProps;
-  const { isLabel, label } = getLabel(inputKey, inputProps.label);
+const LabelRadios: FC<IRowType> = ({
+  formid,
+  inputKey,
+  inputProps,
+  acEdit,
+  defaultValue,
+  eventCreate
+}) => {
+  const { valueType, radios, adjacent, isLabel } = inputProps;
+
+  const label = inputProps.label || inputKey;
   const [input, setInput] = useState(defaultValue);
 
   const value = acEdit ? defaultValue : input;
@@ -55,6 +64,9 @@ const LabelRadios: FC<IRowType> = ({ formid, inputKey, inputProps, acEdit, defau
             </WrapInline>
           );
         })}
+      {typeof adjacent === 'object' ? (
+        <RowTypes {...{ formid, configFieldset: adjacent, acEdit, eventCreate }} />
+      ) : null}
     </>
   );
 };
