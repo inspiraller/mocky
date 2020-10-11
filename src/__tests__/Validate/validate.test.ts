@@ -1,5 +1,8 @@
-import React from 'react';
-import { validateNotEmpty, validateLength, validateAll } from 'src/Components/Common/Validate/Validate';
+import {
+  validateNotEmpty,
+  validateLength,
+  validateAll
+} from 'src/Components/Common/Validate/Validate';
 
 describe('Validate', () => {
   describe('validateNotEmpty', () => {
