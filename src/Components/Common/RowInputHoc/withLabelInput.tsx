@@ -87,6 +87,7 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
           maxLength={maxLength}
           data-type={type}
           type={inputType}
+          data-hasadjacent={!!adjacent}
           value={typeof value !== 'undefined' ? String(value) : ''}
         />
         {type === 'money' ? '$' : null}

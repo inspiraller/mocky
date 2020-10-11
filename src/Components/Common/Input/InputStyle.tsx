@@ -19,7 +19,8 @@ const styles: TStyles = ({ theme: { pad2, pad10, warn, success } }) => `
     min-width: 100px;
   }
 
-  &[data-type="money"] {
+  &[data-type="money"],
+  &[data-hasadjacent="true"] {
     min-width: auto;
     width: 100px;
     margin: 0 ${pad2} 0 0;
