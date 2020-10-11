@@ -12,7 +12,7 @@ export type TResponsibleProps = Array<{
 
 export interface IInitial {
   coordinator?: TCoordinatorProps;
-  responsible?: TResponsibleProps;
+  responsible?: TResponsibleProps; //  Array<{ name: string; value: string }>;
 }
 
 const initialState: IInitial = {
