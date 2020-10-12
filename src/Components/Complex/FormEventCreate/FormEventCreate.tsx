@@ -7,15 +7,20 @@ import { RootState, TThunkDispatch } from 'src/store/storeTypes';
 
 import FormWrapper, { TSubmit } from 'src/Components/Common/Form/FormWrapper';
 
-import { IInitial as IInitalCreateEvent } from 'src/store/eventCreate/_initialState';
+import { IInitial as IInitalCreateEvent, TLitVal } from 'src/store/eventCreate/_initialState';
 import { TacEdit, actions as actionsCreateEvent } from 'src/store/eventCreate/actions';
+
+import getFlatAdjacent from 'src/util/getFlatAdjacent';
+import { IConfigFieldset, IConfigFieldsetInputProps } from 'src/types';
 
 import RowBlockStyle from 'src/Components/Common/Row/RowBlockStyle';
 import ButtonStyle from 'src/Components/Common/Button/ButtonStyle';
 
-import FieldsetAbout from './FieldsetAbout';
-import FieldsetCoordinator from './FieldsetCoordinator';
-import FieldsetWhen from './FieldsetWhen';
+import FieldsetAbout, { configFieldset as configFieldsetAbout } from './FieldsetAbout';
+import FieldsetCoordinator, {
+  configFieldset as configFieldsetCoordinator
+} from './FieldsetCoordinator';
+import FieldsetWhen, { configFieldset as configFieldsetWhen } from './FieldsetWhen';
 
 const Row = RowBlockStyle();
 const Button = ButtonStyle();
@@ -26,9 +31,31 @@ export interface IFormSetup {
   title: string;
 }
 
+type TisValid = (inputKey: string, obj: IConfigFieldsetInputProps, value: TLitVal) => boolean;
+
+const isEachValid: TisValid = (inputKey, obj, value) => {
+  console.log('isEachValid() - inputKey = ', inputKey);
+  return true;
+};
+
 export const getFormValid = (eventCreate: IInitalCreateEvent) => {
   // import configFieldsets
-  return false;
+  const allFieldsets: IConfigFieldset = {
+    ...configFieldsetAbout,
+    ...configFieldsetCoordinator,
+    ...configFieldsetWhen
+  };
+
+  const flatAdjacent = getFlatAdjacent(allFieldsets);
+  const combined = { ...allFieldsets, ...flatAdjacent };
+
+  console.log('isAllValid().............................');
+  const isAllValid: boolean = Object.keys(combined).every(inputKey =>
+    // maxLength, required, validate....
+    isEachValid(inputKey, combined[inputKey], eventCreate[inputKey])
+  );
+
+  return isAllValid;
 };
 
 const FormEventCreate: FC<IFormSetup> = props => {

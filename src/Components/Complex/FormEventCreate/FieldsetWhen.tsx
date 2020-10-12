@@ -14,7 +14,7 @@ import RowInputTypes from 'src/Components/Common/RowInputTypes/RowInputTypes';
 const Fieldset = FieldsetStyle();
 const Legend = LegendStyle();
 
-const configFieldset: IConfigFieldset = {
+export const configFieldset: IConfigFieldset = {
   date: {
     type: 'date',
     label: 'starts on',
