@@ -8,7 +8,7 @@ import { TacEdit } from 'src/store/eventCreate/actions';
 import FieldsetStyle from 'src/Components/Common/Fieldset/FieldsetStyle';
 import LegendStyle from 'src/Components/Common/Legend/LegendStyle';
 
-import RowTypes from 'src/Components/Common/RowTypes/RowTypes';
+import RowInputTypes from 'src/Components/Common/RowInputTypes/RowInputTypes';
 
 const Fieldset = FieldsetStyle();
 const Legend = LegendStyle();
@@ -73,7 +73,7 @@ const FieldsetAbout: FC<IField> = ({ formid, acEdit, eventCreate }) => {
   return (
     <Fieldset>
       <Legend>{text('About')}</Legend>
-      <RowTypes {...{ formid, configFieldset, acEdit, eventCreate }} />
+      <RowInputTypes {...{ formid, configFieldset, acEdit, eventCreate }} />
     </Fieldset>
   );
 };
