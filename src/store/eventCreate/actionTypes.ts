@@ -3,7 +3,8 @@ export type TAt = {
 };
 
 const at: TAt = {
-  EDIT: '@createEvent/Edit'
+  EDIT: '@createEvent/Edit',
+  POPULATE_EMAIL: '@createEvent/POPULATE_EMAIL'
 };
 
 export default at;

@@ -7,6 +7,10 @@ const reducer = handleActions(
     [at.EDIT]: (state, { payload }) => ({
       ...state,
       ...payload
+    }),
+    [at.POPULATE_EMAIL]: (state, { payload }) => ({
+      ...state,
+      ...payload
     })
   },
   initialState

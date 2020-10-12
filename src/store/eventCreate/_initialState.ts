@@ -10,7 +10,9 @@ const initialState: IInitial = {
   category_id: -1,
   paid_event: 'paid event',
   event_fee: undefined,
-  reward: 0
+  reward: 0,
+  responsible: undefined,
+  email: undefined
 };
 
 export default initialState;

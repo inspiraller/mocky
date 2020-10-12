@@ -19,11 +19,12 @@ const Legend = LegendStyle();
 
 const configFieldsetTemplate: IConfigFieldset = {
   responsible: {
-    label: 'category',
+    label: 'responsible',
     type: 'select',
     options: undefined,
     valueType: 'string'
-  }
+  },
+  email: {}
 };
 
 export interface IField {
