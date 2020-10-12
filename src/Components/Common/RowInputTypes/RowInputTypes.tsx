@@ -14,9 +14,16 @@ export interface IField {
   configFieldset?: IConfigFieldset;
   acEdit?: TacEdit;
   eventCreate?: IInitial;
+  isAdjacentItem?: IRowInputType['isAdjacentItem'];
 }
 
-const RowInputTypes: FC<IField> = ({ formid, configFieldset, acEdit, eventCreate }) =>
+const RowInputTypes: FC<IField> = ({
+  formid,
+  configFieldset,
+  acEdit,
+  eventCreate,
+  isAdjacentItem
+}) =>
   configFieldset ? (
     <>
       {Object.keys(configFieldset).map((inputKey: string) => {
@@ -32,7 +39,8 @@ const RowInputTypes: FC<IField> = ({ formid, configFieldset, acEdit, eventCreate
           inputProps,
           acEdit,
           defaultValue,
-          eventCreate
+          eventCreate,
+          isAdjacentItem
         };
         // no need to share eventCreate with every component
         // if (eventCreate && typeof inputProps.adjacent === 'object') {

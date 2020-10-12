@@ -3,8 +3,14 @@ import { TStyles } from 'src/Main/Styles/Theme';
 
 const styles: TStyles = ({ theme: { pad2, pad10, warn, success } }) => `
   padding: ${pad10};
-  min-width: 400px;
   display: inline-block; 
+
+  &[type="text"] {
+    width: 400px;
+  }
+  &[type="time"] {
+
+  }
   &::placeholder {
     font-style: italic;
   }
@@ -16,7 +22,6 @@ const styles: TStyles = ({ theme: { pad2, pad10, warn, success } }) => `
   }
   &[data-adjacent] {
     width: 100px;
-    min-width: 100px;
   }
 
   &[data-type="money"],

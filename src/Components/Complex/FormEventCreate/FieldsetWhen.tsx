@@ -16,7 +16,25 @@ const Legend = LegendStyle();
 
 const configFieldset: IConfigFieldset = {
   date: {
-    label: 'starts on'
+    type: 'date',
+    label: 'starts on',
+    adjacent: {
+      time: {
+        type: 'time',
+        label: 'at',
+        inline: true
+      },
+      ampm: {
+        type: 'radio',
+        isLabel: false,
+        inline: true,
+        radios: [
+          { name: text('am'), value: 'am' },
+          { name: text('pm'), value: 'pm' }
+        ],
+        valueType: 'string'
+      }
+    }
   },
   duration: {
     type: 'number',

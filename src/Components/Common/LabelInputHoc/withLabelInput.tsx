@@ -2,6 +2,7 @@ import React, { FC, useState, InputHTMLAttributes } from 'react';
 
 import text from 'src/Main/text';
 
+import RowTypes from 'src/Components/Common/RowInputTypes/RowInputTypes';
 import { IRowInputType } from 'src/Components/Common/RowInputType/RowInputType';
 import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
 import CharCount from 'src/Components/Common/CharCount/CharCount';
@@ -24,7 +25,7 @@ export interface ILabelInput extends IRowInputType {
 }
 
 const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelInput> => props => {
-  const { formid, inputKey, inputProps, acEdit, defaultValue } = props;
+  const { formid, inputKey, inputProps, acEdit, defaultValue, eventCreate, isAdjacentItem } = props;
   const {
     type,
     validate,
@@ -59,12 +60,12 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
 
   const id = `${formid}-${inputKey}`;
 
-  const inputType = type === 'money' ? 'text' : type;
+  const inputType = type === 'money' || !type ? 'text' : type;
 
   const LabelInput = (
     <>
       {isLabel === undefined || !isLabel ? (
-        <Label data-aria-required={required} htmlFor={id}>
+        <Label data-aria-required={required} htmlFor={id} data-is-adjacentitem={isAdjacentItem}>
           {text(label)}
         </Label>
       ) : null}
@@ -94,6 +95,11 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
       {typeof adjacent === 'string' ? <SpanAdjacent>{adjacent}</SpanAdjacent> : null}
       <SpanError {...{ error }} />
       <Success is={!!value && !error && touched} />
+      {typeof adjacent === 'object' ? (
+        <RowTypes
+          {...{ formid, configFieldset: adjacent, acEdit, eventCreate, isAdjacentItem: true }}
+        />
+      ) : null}
     </>
   );
   return LabelInput;

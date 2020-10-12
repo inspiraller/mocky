@@ -13,6 +13,9 @@ const styles: TStyles = ({ theme: { pad4, pad10 } }) => `
       content: " *";
     }
   }
+  &[data-is-adjacentitem] {
+    width: auto;
+  }
 `;
 
 export const SpanLabelStyle = () => withElem('span', styles);

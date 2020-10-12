@@ -27,7 +27,8 @@ const LabelRadios: FC<IRowInputType> = ({
   inputProps,
   acEdit,
   defaultValue,
-  eventCreate
+  eventCreate,
+  isAdjacentItem
 }) => {
   const { valueType, radios, adjacent, isLabel } = inputProps;
 
@@ -42,7 +43,11 @@ const LabelRadios: FC<IRowInputType> = ({
 
   return (
     <>
-      {isLabel === undefined || !isLabel ? <SpanLabel data-value={value}>{label}</SpanLabel> : null}
+      {isLabel === undefined || isLabel ? (
+        <SpanLabel data-value={value} data-is-adjacentitem={isAdjacentItem}>
+          {label}
+        </SpanLabel>
+      ) : null}
       {radios &&
         radios.map((item: { name: string; value: TLitVal }) => {
           const id = `${formid}-${inputKey}-${item.value}`;
@@ -64,7 +69,9 @@ const LabelRadios: FC<IRowInputType> = ({
           );
         })}
       {typeof adjacent === 'object' ? (
-        <RowTypes {...{ formid, configFieldset: adjacent, acEdit, eventCreate }} />
+        <RowTypes
+          {...{ formid, configFieldset: adjacent, acEdit, eventCreate, isAdjacentItem: true }}
+        />
       ) : null}
     </>
   );

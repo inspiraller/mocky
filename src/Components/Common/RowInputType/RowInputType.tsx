@@ -19,6 +19,7 @@ export interface IRowInputType {
   acEdit?: TacEdit;
   defaultValue?: TLitVal;
   eventCreate?: IInitial;
+  isAdjacentItem?: boolean;
 }
 
 const RowInputType: FC<IRowInputType> = ({
@@ -27,7 +28,8 @@ const RowInputType: FC<IRowInputType> = ({
   inputProps,
   acEdit,
   defaultValue,
-  eventCreate
+  eventCreate,
+  isAdjacentItem
 }) => {
   const { type, ariaExpandedBy, inline } = inputProps;
 
@@ -46,7 +48,8 @@ const RowInputType: FC<IRowInputType> = ({
               inputProps: inputPropsAugmentRequired,
               acEdit,
               defaultValue,
-              eventCreate
+              eventCreate,
+              isAdjacentItem
             }}
           />
         </Row>
@@ -61,7 +64,8 @@ const RowInputType: FC<IRowInputType> = ({
               inputProps: inputPropsAugmentRequired,
               acEdit,
               defaultValue,
-              eventCreate
+              eventCreate,
+              isAdjacentItem
             }}
           />
         </Row>
@@ -76,7 +80,8 @@ const RowInputType: FC<IRowInputType> = ({
               inputProps: inputPropsAugmentRequired,
               acEdit,
               defaultValue,
-              eventCreate
+              eventCreate,
+              isAdjacentItem
             }}
           />
         </Row>
@@ -91,7 +96,8 @@ const RowInputType: FC<IRowInputType> = ({
               inputProps: inputPropsAugmentRequired,
               acEdit,
               defaultValue,
-              eventCreate
+              eventCreate,
+              isAdjacentItem
             }}
           />
         </Row>

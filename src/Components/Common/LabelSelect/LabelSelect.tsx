@@ -53,7 +53,14 @@ const OptGroups: FC<{ formid: string; optgroups: Toptgroups; label: string }> = 
   </>
 );
 
-const LabelSelect: FC<IRowInputType> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
+const LabelSelect: FC<IRowInputType> = ({
+  formid,
+  inputKey,
+  inputProps,
+  acEdit,
+  defaultValue,
+  isAdjacentItem
+}) => {
   const { validate, required, options, optgroups, valueType, isLabel } = inputProps;
 
   const label = inputProps.label || inputKey;
@@ -77,7 +84,7 @@ const LabelSelect: FC<IRowInputType> = ({ formid, inputKey, inputProps, acEdit, 
   return (
     <>
       {isLabel === undefined || !isLabel ? (
-        <Label data-aria-required={required} htmlFor={id}>
+        <Label data-aria-required={required} htmlFor={id} data-is-adjacentitem={isAdjacentItem}>
           {text(label)}
         </Label>
       ) : null}
