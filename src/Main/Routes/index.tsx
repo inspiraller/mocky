@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import RouteForm from './RouteForm';
+import RouteEventCreate from './RouteEventCreate';
 
 export type TRoutes = {
   [key: string]: {
@@ -27,6 +27,6 @@ export const configRoutes: TRoutes = {
   routeForm: {
     title: 'New Event',
     path: `/`,
-    component: RouteForm
+    component: RouteEventCreate
   }
 };

@@ -1,42 +1,42 @@
 // import 'cross-fetch/polyfill'; // patch for tests: Error: fetch is not found globally and no fetcher passed, to fix pass a fetch for your environment
 import text from 'src/Main/text';
 import React, { FC } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { RootState, TThunkDispatch } from 'src/store/storeTypes';
 
 import FormWrapper, { TSubmit } from 'src/Components/Common/Form/FormWrapper';
 
 import { IInitial as IInitalCreateEvent } from 'src/store/eventCreate/_initialState';
-import { TacEdit } from 'src/store/eventCreate/actions';
-
-import { IInitial as IInitalPreload } from 'src/store/preload/_initialState';
+import { TacEdit, actions as actionsCreateEvent } from 'src/store/eventCreate/actions';
 
 // import RowStyle from 'src/Components/Common/Row/RowStyle';
 // import ButtonStyle from 'src/Components/Common/Button/ButtonStyle';
 
-import getAjax from 'src/util/getAjax';
-
 import FieldsetAbout from './FieldsetAbout';
-import FieldsetCooridinator from './FieldsetCoordinator';
+import FieldsetCoordinator from './FieldsetCoordinator';
+import FieldsetWhen from './FieldsetWhen';
 
 // const Row = RowStyle();
 // const Button = ButtonStyle();
 
-const formid = 'eventCreate';
-
 export interface IFormSetup {
   acEdit: TacEdit;
   eventCreate: IInitalCreateEvent;
-  preload: IInitalPreload;
   title: string;
 }
 
-const FormSetup: FC<IFormSetup> = ({ title, acEdit, eventCreate, preload }) => {
+const FormEventCreate: FC<IFormSetup> = props => {
   const onSubmit: TSubmit = evt => {
     console.log('onSubmit - evt = ', evt);
   };
+  const formid = 'eventCreate';
+  const { title } = props;
   return (
     <FormWrapper title={text(title)} onSubmit={onSubmit}>
-      <FieldsetAbout {...{ formid, acEdit, eventCreate }} />
-      <FieldsetCooridinator {...{ formid, acEdit, eventCreate, preload }} />
+      <FieldsetAbout {...{ ...props, formid }} />
+      <FieldsetCoordinator {...{ ...props, formid }} />
+      <FieldsetWhen {...{ ...props, formid }} />
       {/* <Row>
         <Button type="submit" disabled={configFieldset.isSubmitting}>
           {text('Publish')}
@@ -46,4 +46,12 @@ const FormSetup: FC<IFormSetup> = ({ title, acEdit, eventCreate, preload }) => {
   );
 };
 
-export default FormSetup;
+const mapDispatchToProps = (dispatch: TThunkDispatch) =>
+  bindActionCreators({ ...actionsCreateEvent }, dispatch);
+
+export default connect(
+  (state: RootState) => ({
+    eventCreate: state.eventCreate
+  }),
+  mapDispatchToProps
+)(FormEventCreate);

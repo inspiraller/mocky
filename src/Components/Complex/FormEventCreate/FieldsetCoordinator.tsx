@@ -1,4 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { RootState } from 'src/store/storeTypes';
 import text from 'src/Main/text';
 
 import { IConfigFieldset, IConfigFieldsetInputProps, Toptgroups, Toptions } from 'src/types';
@@ -12,7 +14,6 @@ import FieldsetStyle from 'src/Components/Common/Fieldset/FieldsetStyle';
 import LegendStyle from 'src/Components/Common/Legend/LegendStyle';
 
 import RowInputTypes from 'src/Components/Common/RowInputTypes/RowInputTypes';
-import { TransformOptions } from 'stream';
 
 const Fieldset = FieldsetStyle();
 const Legend = LegendStyle();
@@ -75,4 +76,6 @@ const FieldsetCoordinator: FC<IField> = ({ formid, acEdit, eventCreate, preload 
   );
 };
 
-export default FieldsetCoordinator;
+export default connect((state: RootState) => ({
+  preload: state.preload
+}))(FieldsetCoordinator);
