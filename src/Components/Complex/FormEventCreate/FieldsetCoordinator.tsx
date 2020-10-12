@@ -30,7 +30,8 @@ export const configFieldset: IConfigFieldset = {
     label: 'responsible',
     type: 'select',
     options: undefined,
-    valueType: 'string'
+    valueType: 'string',
+    required: true
   },
   email: {}
 };

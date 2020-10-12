@@ -18,10 +18,12 @@ const acEdit: TacEdit = payload => (dispatch, getState) => {
 
   if (typeof responsible !== 'undefined' && preload.responsible) {
     const intResponsible: number = convertValue(String(responsible), 'number') as number;
+    const item = intResponsible !== -1 ? preload.responsible[intResponsible] : null;
+    const email = item ? item.email : '';
     dispatch({
       type: at.POPULATE_EMAIL,
       payload: {
-        email: preload.responsible[intResponsible].email
+        email
       }
     });
   }
