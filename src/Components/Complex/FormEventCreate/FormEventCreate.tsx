@@ -16,6 +16,8 @@ import { IConfigFieldset, IConfigFieldsetInputProps } from 'src/types';
 import RowBlockStyle from 'src/Components/Common/Row/RowBlockStyle';
 import ButtonStyle from 'src/Components/Common/Button/ButtonStyle';
 
+import { validateAll } from 'src/Components/Common/Validate/Validate';
+
 import FieldsetAbout, { configFieldset as configFieldsetAbout } from './FieldsetAbout';
 import FieldsetCoordinator, {
   configFieldset as configFieldsetCoordinator
@@ -34,8 +36,14 @@ export interface IFormSetup {
 type TisValid = (inputKey: string, obj: IConfigFieldsetInputProps, value: TLitVal) => boolean;
 
 const isEachValid: TisValid = (inputKey, obj, value) => {
-  console.log('isEachValid() - inputKey = ', inputKey);
-  return true;
+  const error = validateAll({
+    label: '',
+    value: String(value),
+    validate: obj.validate,
+    required: obj.required,
+    maxLength: obj.maxLength
+  });
+  return error === '';
 };
 
 export const getFormValid = (eventCreate: IInitalCreateEvent) => {
