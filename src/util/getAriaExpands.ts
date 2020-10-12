@@ -1,5 +1,5 @@
 import { IInitial } from 'src/store/eventCreate/_initialState';
-import { IConfigFieldsetItemProps } from 'src/types';
+import { IConfigFieldsetInputProps } from 'src/types';
 
 interface IAriaExpands {
   'aria-expanded': boolean;
@@ -10,7 +10,7 @@ export type TAriaExpands = IAriaExpands | null | undefined;
 
 type TgetAriaExpandsAttr = (props: {
   inputKey: string;
-  ariaExpandedBy?: IConfigFieldsetItemProps['ariaExpandedBy'];
+  ariaExpandedBy?: IConfigFieldsetInputProps['ariaExpandedBy'];
   eventCreate?: IInitial;
 }) => TAriaExpands;
 
@@ -31,7 +31,7 @@ export const getAriaExpandsAttr: TgetAriaExpandsAttr = ({
 
 export const getAriaExpandsRequired = (
   ariaExpands: TAriaExpands,
-  required: IConfigFieldsetItemProps['required']
+  required: IConfigFieldsetInputProps['required']
 ) =>
   ariaExpands !== null && ariaExpands !== undefined
     ? ariaExpands['aria-expanded'] && required

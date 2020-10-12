@@ -13,14 +13,48 @@ import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/
 
 import { IRowInputType } from 'src/Components/Common/RowInputType/RowInputType';
 
+import { Toptions, Toptgroups } from 'src/types';
+
 type TInputChange = React.ChangeEvent<HTMLSelectElement>;
 
 const Select = SelectStyle();
 const Option = OptionStyle();
 const Label = LabelStyle();
 
+const Options: FC<{ formid: string; options: Toptions; label: string }> = ({
+  formid,
+  options,
+  label
+}) => (
+  <>
+    {options.map((item: { name: string; value: TLitVal }) => (
+      <Option key={`${formid}-${label}-option-${item.name}`} value={String(item.value)}>
+        {text(item.name)}
+      </Option>
+    ))}
+  </>
+);
+
+const OptGroups: FC<{ formid: string; optgroups: Toptgroups; label: string }> = ({
+  formid,
+  optgroups,
+  label
+}) => (
+  <>
+    {Object.keys(optgroups).map(key => {
+      const options = optgroups[key];
+
+      return (
+        <optgroup key={`${formid}-${label}-optgroup-${key}`} label={text(key)}>
+          <Options {...{ formid, options, label }} />
+        </optgroup>
+      );
+    })}
+  </>
+);
+
 const LabelSelect: FC<IRowInputType> = ({ formid, inputKey, inputProps, acEdit, defaultValue }) => {
-  const { validate, required, options, valueType, inline, isLabel } = inputProps;
+  const { validate, required, options, optgroups, valueType, isLabel } = inputProps;
 
   const label = inputProps.label || inputKey;
 
@@ -60,12 +94,8 @@ const LabelSelect: FC<IRowInputType> = ({ formid, inputKey, inputProps, acEdit, 
       >
         <Option value="-1">{text('Please select...')}</Option>
 
-        {options &&
-          options.map((item: { name: string; value: TLitVal }) => (
-            <Option key={`Option-${label}-${item.name}`} value={String(item.value)}>
-              {text(item.name)}
-            </Option>
-          ))}
+        {options && !optgroups ? <Options {...{ formid, options, label }} /> : null}
+        {optgroups && !options ? <OptGroups {...{ formid, optgroups, label }} /> : null}
       </Select>
 
       <SpanError {...{ error }} />

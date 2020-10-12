@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IConfigFieldsetItemProps } from 'src/types';
+import { IConfigFieldsetInputProps } from 'src/types';
 import { TacEdit } from 'src/store/eventCreate/actions';
 import { IInitial, TLitVal } from 'src/store/eventCreate/_initialState';
 
@@ -15,7 +15,7 @@ import Row from './RowBlockOrInline';
 export interface IRowInputType {
   formid: string;
   inputKey: string;
-  inputProps: IConfigFieldsetItemProps;
+  inputProps: IConfigFieldsetInputProps;
   acEdit?: TacEdit;
   defaultValue?: TLitVal;
   eventCreate?: IInitial;
@@ -33,7 +33,7 @@ const RowInputType: FC<IRowInputType> = ({
 
   const ariaExpandsAttr = getAriaExpandsAttr({ inputKey, ariaExpandedBy, eventCreate });
   const required = getAriaExpandsRequired(ariaExpandsAttr, inputProps.required);
-  const inputPropsAugmentRequired: IConfigFieldsetItemProps = { ...inputProps, required };
+  const inputPropsAugmentRequired: IConfigFieldsetInputProps = { ...inputProps, required };
 
   switch (type) {
     case 'select':
