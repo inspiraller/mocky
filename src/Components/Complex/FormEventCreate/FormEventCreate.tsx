@@ -10,15 +10,15 @@ import FormWrapper, { TSubmit } from 'src/Components/Common/Form/FormWrapper';
 import { IInitial as IInitalCreateEvent } from 'src/store/eventCreate/_initialState';
 import { TacEdit, actions as actionsCreateEvent } from 'src/store/eventCreate/actions';
 
-// import RowStyle from 'src/Components/Common/Row/RowStyle';
-// import ButtonStyle from 'src/Components/Common/Button/ButtonStyle';
+import RowBlockStyle from 'src/Components/Common/Row/RowBlockStyle';
+import ButtonStyle from 'src/Components/Common/Button/ButtonStyle';
 
 import FieldsetAbout from './FieldsetAbout';
 import FieldsetCoordinator from './FieldsetCoordinator';
 import FieldsetWhen from './FieldsetWhen';
 
-// const Row = RowStyle();
-// const Button = ButtonStyle();
+const Row = RowBlockStyle();
+const Button = ButtonStyle();
 
 export interface IFormSetup {
   acEdit: TacEdit;
@@ -26,22 +26,27 @@ export interface IFormSetup {
   title: string;
 }
 
+export const getFormValid = (eventCreate: IInitalCreateEvent) => {
+  // import configFieldsets
+  return false;
+};
+
 const FormEventCreate: FC<IFormSetup> = props => {
   const onSubmit: TSubmit = evt => {
     console.log('onSubmit - evt = ', evt);
   };
   const formid = 'eventCreate';
-  const { title } = props;
+  const { title, eventCreate } = props;
   return (
     <FormWrapper title={text(title)} onSubmit={onSubmit}>
       <FieldsetAbout {...{ ...props, formid }} />
       <FieldsetCoordinator {...{ ...props, formid }} />
       <FieldsetWhen {...{ ...props, formid }} />
-      {/* <Row>
-        <Button type="submit" disabled={configFieldset.isSubmitting}>
+      <Row>
+        <Button type="submit" disabled={!getFormValid(eventCreate)}>
           {text('Publish')}
         </Button>
-      </Row> */}
+      </Row>
     </FormWrapper>
   );
 };

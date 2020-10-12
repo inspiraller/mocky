@@ -30,4 +30,6 @@ export interface IConfigFieldset {
 
 export type TAnyTestFunc = (payload: any) => void;
 
-export type TAnyHook = React.Dispatch<React.SetStateAction<TLitVal | undefined>> | TAnyTestFunc;
+export type TAnyHook =
+  | React.Dispatch<React.SetStateAction<TLitVal | undefined | IConfigFieldset>>
+  | TAnyTestFunc;

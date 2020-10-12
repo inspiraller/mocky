@@ -30,6 +30,9 @@ const styles: TStyles = ({ theme: { pad2, pad10, warn, success } }) => `
     width: 100px;
     margin: 0 ${pad2} 0 0;
   }
+  &[type="date"] {
+    width: 140px;
+  }
 `;
 
 export default () => withInput(styles);

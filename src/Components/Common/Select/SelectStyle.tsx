@@ -3,7 +3,7 @@ import { TStyles } from 'src/Main/Styles/Theme';
 
 const styles: TStyles = ({ theme: { pad10, warn, success } }) => `
   padding: ${pad10};
-  min-width: 400px;
+  width: 400px;
   display: inline-block; 
   &::placeholder {
     font-style: italic;

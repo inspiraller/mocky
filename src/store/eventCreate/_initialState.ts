@@ -12,7 +12,11 @@ const initialState: IInitial = {
   event_fee: undefined,
   reward: 0,
   responsible: undefined,
-  email: undefined
+  email: undefined,
+  date: undefined,
+  at: undefined,
+  ampm: 'am',
+  duration: undefined
 };
 
 export default initialState;
