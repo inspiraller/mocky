@@ -20,6 +20,7 @@ export interface IRowInputType {
   defaultValue?: TLitVal;
   eventCreate?: IInitial;
   isAdjacentItem?: boolean;
+  submitTouched: boolean;
 }
 
 const RowInputType: FC<IRowInputType> = ({
@@ -29,7 +30,8 @@ const RowInputType: FC<IRowInputType> = ({
   acEdit,
   defaultValue,
   eventCreate,
-  isAdjacentItem
+  isAdjacentItem,
+  submitTouched
 }) => {
   const { type, ariaExpandedBy, inline } = inputProps;
 
@@ -49,7 +51,8 @@ const RowInputType: FC<IRowInputType> = ({
               acEdit,
               defaultValue,
               eventCreate,
-              isAdjacentItem
+              isAdjacentItem,
+              submitTouched
             }}
           />
         </Row>
@@ -65,7 +68,8 @@ const RowInputType: FC<IRowInputType> = ({
               acEdit,
               defaultValue,
               eventCreate,
-              isAdjacentItem
+              isAdjacentItem,
+              submitTouched
             }}
           />
         </Row>
@@ -81,7 +85,8 @@ const RowInputType: FC<IRowInputType> = ({
               acEdit,
               defaultValue,
               eventCreate,
-              isAdjacentItem
+              isAdjacentItem,
+              submitTouched
             }}
           />
         </Row>
@@ -97,7 +102,8 @@ const RowInputType: FC<IRowInputType> = ({
               acEdit,
               defaultValue,
               eventCreate,
-              isAdjacentItem
+              isAdjacentItem,
+              submitTouched
             }}
           />
         </Row>

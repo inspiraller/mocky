@@ -59,7 +59,8 @@ const LabelSelect: FC<IRowInputType> = ({
   inputProps,
   acEdit,
   defaultValue,
-  isAdjacentItem
+  isAdjacentItem,
+  submitTouched
 }) => {
   const { validate, required, options, optgroups, valueType, isLabel } = inputProps;
 
@@ -70,6 +71,7 @@ const LabelSelect: FC<IRowInputType> = ({
   const [error, setError] = useState('');
 
   const value = acEdit ? defaultValue : input;
+  const isTouched = submitTouched || touched;
 
   const updateErrors = (val: string) => {
     setTouched(true);
@@ -95,7 +97,7 @@ const LabelSelect: FC<IRowInputType> = ({
         placeholder={text(label)}
         aria-required={required ? 'true' : 'false'}
         aria-invalid={error ? 'true' : 'false'}
-        data-touched={touched && value !== '' ? 'true' : 'false'}
+        data-touched={isTouched && value !== '' ? 'true' : 'false'}
         aria-label={text(inputKey)}
         value={String(value)}
       >
@@ -106,7 +108,7 @@ const LabelSelect: FC<IRowInputType> = ({
       </Select>
 
       <SpanError {...{ error }} />
-      <Success is={value !== '-1' && !!value && !error && touched} />
+      <Success is={value !== '-1' && !!value && !error && isTouched} />
     </>
   );
 };

@@ -25,7 +25,16 @@ export interface ILabelInput extends IRowInputType {
 }
 
 const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelInput> => props => {
-  const { formid, inputKey, inputProps, acEdit, defaultValue, eventCreate, isAdjacentItem } = props;
+  const {
+    formid,
+    inputKey,
+    inputProps,
+    acEdit,
+    defaultValue,
+    eventCreate,
+    isAdjacentItem,
+    submitTouched
+  } = props;
   const {
     type,
     validate,
@@ -41,6 +50,7 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState('');
 
+  const isTouched = submitTouched || touched;
   const label = inputProps.label || inputKey;
 
   const value = acEdit ? defaultValue : input;
@@ -53,7 +63,9 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
     setTouched(true);
     setError(validateAll({ validate, required, label, value: val }));
   };
-
+  if (submitTouched) {
+    // updateErrors(); TODO: convert this comp to class and use ref.
+  }
   const onBlur = (evt: TInputChange) => {
     updateErrors(evt.target.value);
   };
@@ -79,7 +91,7 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
           aria-required={required ? 'true' : 'false'}
           aria-invalid={error ? 'true' : 'false'}
           aria-controls={ariaExpands || undefined}
-          data-touched={touched ? 'true' : 'false'}
+          data-touched={isTouched ? 'true' : 'false'}
           aria-label={text(inputKey)}
           maxLength={maxLength}
           data-type={type}
@@ -94,10 +106,17 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
       </WrapInline>
       {typeof adjacent === 'string' ? <SpanAdjacent>{adjacent}</SpanAdjacent> : null}
       <SpanError {...{ error }} />
-      <Success is={!!value && !error && touched} />
+      <Success is={!!value && !error && isTouched} />
       {typeof adjacent === 'object' ? (
         <RowTypes
-          {...{ formid, configFieldset: adjacent, acEdit, eventCreate, isAdjacentItem: true }}
+          {...{
+            formid,
+            configFieldset: adjacent,
+            acEdit,
+            eventCreate,
+            isAdjacentItem: true,
+            submitTouched
+          }}
         />
       ) : null}
     </>

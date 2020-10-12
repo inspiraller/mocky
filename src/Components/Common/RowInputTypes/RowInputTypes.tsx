@@ -15,6 +15,7 @@ export interface IField {
   acEdit?: TacEdit;
   eventCreate?: IInitial;
   isAdjacentItem?: IRowInputType['isAdjacentItem'];
+  submitTouched: boolean;
 }
 
 const RowInputTypes: FC<IField> = ({
@@ -22,7 +23,8 @@ const RowInputTypes: FC<IField> = ({
   configFieldset,
   acEdit,
   eventCreate,
-  isAdjacentItem
+  isAdjacentItem,
+  submitTouched
 }) =>
   configFieldset ? (
     <>
@@ -40,7 +42,8 @@ const RowInputTypes: FC<IField> = ({
           acEdit,
           defaultValue,
           eventCreate,
-          isAdjacentItem
+          isAdjacentItem,
+          submitTouched
         };
         // no need to share eventCreate with every component
         // if (eventCreate && typeof inputProps.adjacent === 'object') {

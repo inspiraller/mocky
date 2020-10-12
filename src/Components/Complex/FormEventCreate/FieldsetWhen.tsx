@@ -47,6 +47,7 @@ export interface IField {
   formid: string;
   acEdit: TacEdit;
   eventCreate: IInitialEventCreate;
+  submitTouched: boolean;
 }
 
 const FieldsetWhen: FC<IField> = props => (

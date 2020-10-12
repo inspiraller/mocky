@@ -11,7 +11,9 @@ export const configFieldset: IConfigFieldset = {
 
 const formid = 'x';
 export const LabelTextareaBasic = () => (
-  <LabelTextarea {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit }} />
+  <LabelTextarea
+    {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit, submitTouched: false }}
+  />
 );
 
 export default LabelTextareaBasic;

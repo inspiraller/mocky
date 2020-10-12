@@ -67,13 +67,14 @@ export interface IField {
   formid: string;
   acEdit: TacEdit;
   eventCreate: IInitial;
+  submitTouched: boolean;
 }
 
-const FieldsetAbout: FC<IField> = ({ formid, acEdit, eventCreate }) => {
+const FieldsetAbout: FC<IField> = props => {
   return (
     <Fieldset>
       <Legend>{text('About')}</Legend>
-      <RowInputTypes {...{ formid, configFieldset, acEdit, eventCreate }} />
+      <RowInputTypes {...{ ...props, configFieldset }} />
     </Fieldset>
   );
 };

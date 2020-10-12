@@ -28,7 +28,8 @@ const LabelRadios: FC<IRowInputType> = ({
   acEdit,
   defaultValue,
   eventCreate,
-  isAdjacentItem
+  isAdjacentItem,
+  submitTouched
 }) => {
   const { valueType, radios, adjacent, isLabel } = inputProps;
 
@@ -70,7 +71,14 @@ const LabelRadios: FC<IRowInputType> = ({
         })}
       {typeof adjacent === 'object' ? (
         <RowTypes
-          {...{ formid, configFieldset: adjacent, acEdit, eventCreate, isAdjacentItem: true }}
+          {...{
+            formid,
+            configFieldset: adjacent,
+            acEdit,
+            eventCreate,
+            isAdjacentItem: true,
+            submitTouched
+          }}
         />
       ) : null}
     </>

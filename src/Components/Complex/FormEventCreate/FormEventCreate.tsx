@@ -1,6 +1,6 @@
 // import 'cross-fetch/polyfill'; // patch for tests: Error: fetch is not found globally and no fetcher passed, to fix pass a fetch for your environment
 import text from 'src/Main/text';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { RootState, TThunkDispatch } from 'src/store/storeTypes';
@@ -57,7 +57,6 @@ export const getFormValid = (eventCreate: IInitalCreateEvent) => {
   const flatAdjacent = getFlatAdjacent(allFieldsets);
   const combined = { ...allFieldsets, ...flatAdjacent };
 
-  console.log('isAllValid().............................');
   const isAllValid: boolean = Object.keys(combined).every(inputKey =>
     // maxLength, required, validate....
     isEachValid(inputKey, combined[inputKey], eventCreate[inputKey])
@@ -65,20 +64,27 @@ export const getFormValid = (eventCreate: IInitalCreateEvent) => {
 
   return isAllValid;
 };
-
 const FormEventCreate: FC<IFormSetup> = props => {
-  const onSubmit: TSubmit = evt => {
-    console.log('onSubmit - evt = ', evt);
-  };
+  const [submitTouched, setSubmitTouched] = useState(false);
+
   const formid = 'eventCreate';
   const { title, eventCreate } = props;
+
+  const onSubmit: TSubmit = evt => {
+    evt.preventDefault();
+    setSubmitTouched(true);
+  };
+
+  const isAllValid = getFormValid(eventCreate);
+  console.log('isAllValid =', isAllValid);
+  // const isShowErrors = !isAllValid;
   return (
     <FormWrapper title={text(title)} onSubmit={onSubmit}>
-      <FieldsetAbout {...{ ...props, formid }} />
-      <FieldsetCoordinator {...{ ...props, formid }} />
-      <FieldsetWhen {...{ ...props, formid }} />
+      <FieldsetAbout {...{ ...props, formid, submitTouched }} />
+      <FieldsetCoordinator {...{ ...props, formid, submitTouched }} />
+      <FieldsetWhen {...{ ...props, formid, submitTouched }} />
       <Row>
-        <Button type="submit" disabled={!getFormValid(eventCreate)}>
+        <Button type="submit" data-valid={!submitTouched || isAllValid}>
           {text('Publish')}
         </Button>
       </Row>

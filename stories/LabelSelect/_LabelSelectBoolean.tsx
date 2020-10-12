@@ -16,7 +16,9 @@ export const configFieldset: IConfigFieldset = {
 const formid = 'x';
 
 export const LabelSelectBoolean = () => (
-  <LabelSelect {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit }} />
+  <LabelSelect
+    {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit, submitTouched: false }}
+  />
 );
 
 export default LabelSelectBoolean;

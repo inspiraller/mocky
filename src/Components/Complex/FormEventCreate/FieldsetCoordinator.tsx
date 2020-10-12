@@ -40,6 +40,7 @@ export interface IField {
   acEdit: TacEdit;
   eventCreate: IInitialEventCreate;
   preload: IInitialPreload;
+  submitTouched: boolean;
 }
 
 type TgetResponsibleAsOptions = (responsible?: TResponsibleProps) => Toptions | undefined;
@@ -93,8 +94,9 @@ const updateConfigWithResponsible: TupdateConfigWithResponsible = ({
   }
 };
 
-const FieldsetCoordinator: FC<IField> = ({ formid, acEdit, eventCreate, preload }) => {
+const FieldsetCoordinator: FC<IField> = props => {
   const [augmentConfig, setAugmentConfig] = useState(configFieldset);
+  const { preload } = props;
   useEffect(() => {
     updateConfigWithResponsible({ preload, augmentConfig, setAugmentConfig });
   });
@@ -102,7 +104,7 @@ const FieldsetCoordinator: FC<IField> = ({ formid, acEdit, eventCreate, preload 
   return (
     <Fieldset>
       <Legend>{text('Coordinator')}</Legend>
-      <RowInputTypes {...{ formid, configFieldset: augmentConfig, acEdit, eventCreate }} />
+      <RowInputTypes {...{ ...props, configFieldset: augmentConfig }} />
     </Fieldset>
   );
 };

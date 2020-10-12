@@ -10,5 +10,7 @@ export const configFieldset: IConfigFieldset = {
 
 const formid = 'x';
 export const LabelInputRequired = () => (
-  <LabelInput {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit }} />
+  <LabelInput
+    {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit, submitTouched: false }}
+  />
 );

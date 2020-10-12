@@ -16,5 +16,7 @@ export const configFieldset: IConfigFieldset = {
 const formid = 'x';
 
 export const LabelRadioBoolean = () => (
-  <LabelRadio {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit }} />
+  <LabelRadio
+    {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit, submitTouched: false }}
+  />
 );
