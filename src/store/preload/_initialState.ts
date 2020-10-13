@@ -18,8 +18,8 @@ export interface IInitial {
 }
 
 const initialState: IInitial = {
-  coordinator: mock.coordinator, // undefined, //TODO - REVERT AFTER TESTIG WITH NO INTERNET
-  responsible: mock.responsible // undefined //TODO - REVERT AFTER TESTIG WITH NO INTERNET
+  coordinator: undefined, // mock.coordinator, MOCK WITH NO INTERNET
+  responsible: undefined // mock.responsible MOCK WITH NO INTERNET
 };
 
 export default initialState;

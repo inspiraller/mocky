@@ -17,11 +17,19 @@ export interface IFormatted {
 
 export const getDate = (date: string, time: string): string => `${date}T${time}`;
 
+export const constructCoordinator = (
+  coordinator_id: string,
+  coordinator_email: string
+): IFormatted['coordinator'] => ({
+  email: coordinator_email,
+  id: coordinator_id
+});
+
 const formatOutput = (eventCreate: IInitial): IFormatted => {
-  const coordinator: IFormatted['coordinator'] = {
-    email: eventCreate.coordinator_email as string,
-    id: eventCreate.coordinator_id as string
-  };
+  const coordinator: IFormatted['coordinator'] = constructCoordinator(
+    eventCreate.coordinator_id as string,
+    eventCreate.coordinator_email as string
+  );
 
   const date = getDate(eventCreate.date as string, eventCreate.time as string);
 
