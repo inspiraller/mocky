@@ -1,18 +1,16 @@
 import React, { FC, useState } from 'react';
-import text from 'src/Main/text';
 
 import { TLitVal } from 'src/store/eventCreate/_initialState';
-
-import RowTypes from 'src/Components/Common/RowInputTypes/RowInputTypes';
 import { IRowInputType } from 'src/Components/Common/RowInputType/RowInputType';
 
+import text from 'src/Main/text';
+import hacEdit from 'src/util/hacEdit';
+
+import RowTypes from 'src/Components/Common/RowInputTypes/RowInputTypes';
 import WrapInlineStyle from 'src/Components/Common/Wrap/WrapInlineStyle';
 import RadioStyle from 'src/Components/Common/Radio/RadioStyle';
-
 import RadioLabelStyle from 'src/Components/Common/Radio/RadioLabelStyle';
 import { SpanLabelStyle } from 'src/Components/Common/Label/LabelStyle';
-
-import hacEdit from 'src/util/hacEdit';
 
 type TInputChange = React.ChangeEvent<HTMLInputElement>;
 

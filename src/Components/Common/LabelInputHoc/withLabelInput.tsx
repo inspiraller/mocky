@@ -1,9 +1,20 @@
-import React, { FC, useState, InputHTMLAttributes } from 'react';
+import React, {
+  FC,
+  useState,
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+  useEffect,
+  useRef
+} from 'react';
+
+import { IRowInputType } from 'src/Components/Common/RowInputType/RowInputType';
 
 import text from 'src/Main/text';
+import hacEdit from 'src/util/hacEdit';
+import getLabel from 'src/util/getLabel';
+import getTouched from 'src/util/getTouched';
 
 import RowTypes from 'src/Components/Common/RowInputTypes/RowInputTypes';
-import { IRowInputType } from 'src/Components/Common/RowInputType/RowInputType';
 import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
 import CharCount from 'src/Components/Common/CharCount/CharCount';
 
@@ -11,9 +22,13 @@ import LabelStyle from 'src/Components/Common/Label/LabelStyle';
 import SpanAdjacentStyle from 'src/Components/Common/SpanAdjacent/SpanAdjacentStyle';
 import WrapInlineStyle from 'src/Components/Common/Wrap/WrapInlineStyle';
 
-import hacEdit from 'src/util/hacEdit';
-
 type TElementType = HTMLInputElement | HTMLTextAreaElement;
+type THTMLAttr =
+  | InputHTMLAttributes<HTMLInputElement>
+  | TextareaHTMLAttributes<HTMLTextAreaElement>;
+
+type TElementWithAttributes = React.DetailedHTMLProps<THTMLAttr, TElementType>;
+
 type TInputChange = React.ChangeEvent<TElementType>;
 
 const Label = LabelStyle();
@@ -24,7 +39,7 @@ export interface ILabelInput extends IRowInputType {
   ariaExpanded?: string;
 }
 
-const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelInput> => props => {
+const withLabelInput = (Comp: FC<TElementWithAttributes>): FC<ILabelInput> => props => {
   const {
     formid,
     inputKey,
@@ -50,8 +65,20 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState('');
 
-  const isTouched = submitTouched || touched;
-  const label = inputProps.label || inputKey;
+  const label = getLabel(inputKey, inputProps.label);
+  const isTouched = getTouched(submitTouched, touched);
+  const refValue: React.RefObject<TElementType> = useRef(null);
+
+  const updateErrors = (val: string) => {
+    setTouched(true);
+    setError(validateAll({ validate, required, label, value: val }));
+  };
+
+  useEffect(() => {
+    if (submitTouched && refValue.current) {
+      updateErrors(refValue.current.value);
+    }
+  }, [submitTouched]);
 
   const value = acEdit ? defaultValue : input;
 
@@ -59,13 +86,6 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
     hacEdit({ setInput, acEdit, inputKey, value: evt.target.value, valueType });
   };
 
-  const updateErrors = (val: string) => {
-    setTouched(true);
-    setError(validateAll({ validate, required, label, value: val }));
-  };
-  if (submitTouched) {
-    // updateErrors(); TODO: convert this comp to class and use ref.
-  }
   const onBlur = (evt: TInputChange) => {
     updateErrors(evt.target.value);
   };
@@ -76,7 +96,7 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
 
   const LabelInput = (
     <>
-      {isLabel === undefined || isLabel ? (
+      {isLabel === undefined || !isLabel ? (
         <Label data-aria-required={required} htmlFor={id} data-is-adjacentitem={isAdjacentItem}>
           {text(label)}
         </Label>
@@ -98,6 +118,7 @@ const withLabelInput = (Comp: FC<InputHTMLAttributes<TElementType>>): FC<ILabelI
           type={inputType}
           data-hasadjacent={!!adjacent}
           value={typeof value !== 'undefined' ? String(value) : ''}
+          ref={refValue}
         />
         {type === 'money' ? '$' : null}
         {maxLength && type === 'textarea' ? (
