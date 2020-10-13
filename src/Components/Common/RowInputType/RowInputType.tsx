@@ -10,7 +10,7 @@ import LabelRadio from 'src/Components/Common/LabelRadio/LabelRadio';
 
 import { getAriaExpandsAttr, getAriaExpandsRequired } from 'src//util/getAriaExpands';
 
-import Row from './RowBlockOrInline';
+import Row from './Row';
 
 export interface IRowInputType {
   formid: string;

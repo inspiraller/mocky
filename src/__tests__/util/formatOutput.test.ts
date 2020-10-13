@@ -5,7 +5,7 @@ let eventCreate: IInitial;
 
 describe('formatOutput all ', () => {
   describe('constructCoordinator', () => {
-    it('should output correct date format', () => {
+    it('should construct data', () => {
       expect(constructCoordinator('0', 'email@somwhere')).toEqual({
         id: '0',
         email: 'email@somwhere'

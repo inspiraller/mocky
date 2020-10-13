@@ -19,7 +19,7 @@ const Radio = RadioStyle();
 const RadioLabel = RadioLabelStyle();
 const WrapInline = WrapInlineStyle();
 
-const LabelRadios: FC<IRowInputType> = ({
+const LabelRadio: FC<IRowInputType> = ({
   formid,
   inputKey,
   inputProps,
@@ -83,4 +83,4 @@ const LabelRadios: FC<IRowInputType> = ({
   );
 };
 
-export default LabelRadios;
+export default LabelRadio;

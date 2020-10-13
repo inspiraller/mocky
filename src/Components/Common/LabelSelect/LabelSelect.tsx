@@ -13,7 +13,6 @@ import LabelStyle from 'src/Components/Common/Label/LabelStyle';
 import SelectStyle from 'src/Components/Common/Select/SelectStyle';
 import OptionStyle from 'src/Components/Common/Select/OptionStyle';
 import { validateAll, SpanError, Success } from 'src/Components/Common/Validate/Validate';
-import { isRecord } from 'immutable';
 
 type TInputChange = React.ChangeEvent<HTMLSelectElement>;
 

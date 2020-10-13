@@ -3,11 +3,13 @@ import { Toptgroups } from 'src/types';
 import text from 'src/Main/text';
 import Options from './Options';
 
-const OptGroups: FC<{ formid: string; optgroups: Toptgroups; label: string }> = ({
-  formid,
-  optgroups,
-  label
-}) => (
+interface IOptGroups {
+  formid: string;
+  optgroups: Toptgroups;
+  label: string;
+}
+
+const OptGroups: FC<IOptGroups> = ({ formid, optgroups, label }) => (
   <>
     {Object.keys(optgroups).map(key => {
       const options = optgroups[key];
