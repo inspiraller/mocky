@@ -18,11 +18,13 @@ export const configFieldset: IConfigFieldset = {
   date: {
     type: 'date',
     label: 'starts on',
+    required: true,
     adjacent: {
       time: {
         type: 'time',
         label: 'at',
-        inline: true
+        inline: true,
+        required: true
       },
       ampm: {
         type: 'radio',
@@ -32,7 +34,8 @@ export const configFieldset: IConfigFieldset = {
           { name: text('am'), value: 'am' },
           { name: text('pm'), value: 'pm' }
         ],
-        valueType: 'string'
+        valueType: 'string',
+        required: true
       }
     }
   },

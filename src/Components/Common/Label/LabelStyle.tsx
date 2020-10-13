@@ -4,7 +4,7 @@ import { withLabel, withElem } from 'src/Main/Styles/withStyle';
 const styles: TStyles = ({ theme: { pad4, pad10 } }) => `
   display: inline-block;
   margin: ${pad4} ${pad10} 0 0;
-  width: 106px;
+  width: 110px;
   vertical-align: top;
   text-transform: uppercase;
   &[data-aria-required="true"] {

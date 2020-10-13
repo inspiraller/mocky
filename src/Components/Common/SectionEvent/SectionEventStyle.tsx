@@ -8,4 +8,4 @@ const styles: TStyles = ({ theme: { pad20 } }) => `
   padding: ${pad20};
 `;
 
-export default () => withElem('form', styles);
+export default () => withElem('section', styles);

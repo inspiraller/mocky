@@ -4,9 +4,13 @@ import { TStyles } from 'src/Main/Styles/Theme';
 const styles: TStyles = ({ theme: { pad20 } }) => `
   clear: both; /* fix legend */
   display: block;
-  margin: ${pad20} 0 0;
+  width: 860px;
+  margin: ${pad20} auto 0 auto;
   &[aria-expanded="false"] {
     display: none;
+  }
+  &[data-right="true"] {
+    text-align: right;
   }
 `;
 

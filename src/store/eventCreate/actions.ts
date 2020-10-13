@@ -14,16 +14,16 @@ export type TacEdit = (payload: {
 const acEdit: TacEdit = payload => (dispatch, getState) => {
   const store = getState();
   const { preload } = store;
-  const { responsible } = payload;
+  const { coordinator_id } = payload;
 
-  if (typeof responsible !== 'undefined' && preload.responsible) {
-    const intResponsible: number = convertValue(String(responsible), 'number') as number;
+  if (typeof coordinator_id !== 'undefined' && preload.responsible) {
+    const intResponsible: number = convertValue(String(coordinator_id), 'number') as number;
     const item = intResponsible !== -1 ? preload.responsible[intResponsible] : null;
     const email = item ? item.email : '';
     dispatch({
       type: at.POPULATE_EMAIL,
       payload: {
-        email
+        coordinator_email: email
       }
     });
   }

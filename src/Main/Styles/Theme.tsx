@@ -21,7 +21,7 @@ export const themeLight = {
 
   // colours
   // palette: {
-  primary: '#037Ef3',
+  // primary: '#037Ef3',
   textLight: '#F3F4F7',
   grey1: '#868686',
   grey2: '#dedede',
@@ -29,7 +29,8 @@ export const themeLight = {
   blue1: '#0763bf',
   blue2: '#448cd4',
   warn: '#eb7895',
-  success: '#1b1'
+  success: '#1b1',
+  primary: '#f60'
   // }
 };
 

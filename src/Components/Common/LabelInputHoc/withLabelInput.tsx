@@ -127,7 +127,7 @@ const withLabelInput = (Comp: FC<TElementWithAttributes>): FC<ILabelInput> => pr
       </WrapInline>
       {typeof adjacent === 'string' ? <SpanAdjacent>{adjacent}</SpanAdjacent> : null}
       <SpanError {...{ error }} />
-      <Success is={!!value && !error && isTouched} />
+      <Success is={!!value && !error && isTouched} required={required} />
       {typeof adjacent === 'object' ? (
         <RowTypes
           {...{

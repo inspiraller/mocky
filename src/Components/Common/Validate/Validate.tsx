@@ -1,4 +1,8 @@
 import React, { FC } from 'react';
+
+import { TLitVal } from 'src/store/eventCreate/_initialState';
+import { IConfigFieldsetInputProps } from 'src/types';
+
 import text from 'src/Main/text';
 import InputErrorStyle from 'src/Components/Common/Input/InputErrorStyle';
 import CheckIconStyle from 'src/Components/Common/CheckIcon/CheckIconStyle';
@@ -9,7 +13,8 @@ const InputError = InputErrorStyle();
 export const SpanError: FC<{ error: string }> = ({ error }) =>
   error ? <InputError role="alert">{error}</InputError> : null;
 
-export const Success: FC<{ is: boolean }> = ({ is }) => (is ? <CheckIcon /> : null);
+export const Success: FC<{ is: boolean; required?: boolean }> = ({ is, required }) =>
+  is && required ? <CheckIcon /> : null;
 
 export type TValidate = (label: string, value: string) => string;
 
@@ -47,4 +52,17 @@ export const validateAll: IValidateAll = ({ label, value, validate, required, ma
     errorEach = validate(label, value);
   }
   return errorEach;
+};
+
+type TisValid = (inputKey: string, obj: IConfigFieldsetInputProps, value: TLitVal) => boolean;
+
+export const getEachValid: TisValid = (inputKey, obj, value) => {
+  const error = validateAll({
+    label: '',
+    value: String(value),
+    validate: obj.validate,
+    required: obj.required,
+    maxLength: obj.maxLength
+  });
+  return error === '';
 };

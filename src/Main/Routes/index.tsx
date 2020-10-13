@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import RouteEventCreate from './RouteEventCreate';
+import RouteEventCreated from './RouteEventCreated';
 
 export type TRoutes = {
   [key: string]: {
@@ -28,5 +29,10 @@ export const configRoutes: TRoutes = {
     title: 'New Event',
     path: `/`,
     component: RouteEventCreate
+  },
+  routeNotfication: {
+    title: 'New Event',
+    path: `/EventCreated`,
+    component: RouteEventCreated
   }
 };

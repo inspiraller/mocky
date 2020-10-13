@@ -26,14 +26,16 @@ const Fieldset = FieldsetStyle();
 const Legend = LegendStyle();
 
 export const configFieldset: IConfigFieldset = {
-  responsible: {
+  coordinator_id: {
     label: 'responsible',
     type: 'select',
     options: undefined,
     valueType: 'string',
     required: true
   },
-  email: {}
+  coordinator_email: {
+    label: 'email'
+  }
 };
 
 export interface IField {
@@ -79,18 +81,18 @@ const updateConfigWithResponsible: TupdateConfigWithResponsible = ({
   augmentConfig,
   setAugmentConfig
 }) => {
-  if (preload.responsible && !augmentConfig.responsible.optgroups) {
+  if (preload.responsible && !augmentConfig.coordinator_id.optgroups) {
     const { responsible } = preload;
     const options = getResponsibleAsOptions(responsible);
     const optgroups = getResponsibleOptGroups(options);
     if (optgroups) {
-      const configFieldsetResponsible = editConfigFieldset({
+      const configFieldsetCoordinatorID = editConfigFieldset({
         configFieldset,
-        key: 'responsible',
+        key: 'coordinator_id',
         childkey: 'optgroups',
         val: optgroups
       });
-      setAugmentConfig(configFieldsetResponsible);
+      setAugmentConfig(configFieldsetCoordinatorID);
     }
   }
 };
