@@ -12,7 +12,7 @@ import RowInputTypes from 'src/Components/Common/RowInputTypes/RowInputTypes';
 
 import text from 'src/Main/text';
 import { TacEdit } from 'src/store/eventCreate/actions';
-import { updateConfigWithResponsible } from './util/convertResponsible';
+import { updateCoordIdWithResponsible } from './util/convertResponsible';
 
 const Fieldset = FieldsetStyle();
 const Legend = LegendStyle();
@@ -39,16 +39,22 @@ export interface IField {
 }
 
 const FieldsetCoordinator: FC<IField> = props => {
-  const [augmentConfig, setAugmentConfig] = useState(configFieldset);
+  const [config, setConfig] = useState(configFieldset);
   const { preload } = props;
   useEffect(() => {
-    updateConfigWithResponsible({ preload, augmentConfig, setAugmentConfig });
+    const configUpdated: IConfigFieldset | null = updateCoordIdWithResponsible({
+      preload,
+      config
+    });
+    if (configUpdated) {
+      setConfig(configUpdated);
+    }
   });
 
   return (
     <Fieldset>
       <Legend>{text('Coordinator')}</Legend>
-      <RowInputTypes {...{ ...props, configFieldset: augmentConfig }} />
+      <RowInputTypes {...{ ...props, configFieldset: config }} />
     </Fieldset>
   );
 };
