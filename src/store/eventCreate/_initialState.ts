@@ -1,4 +1,6 @@
-export type TLitVal = string | number | boolean | undefined;
+import { TLitVal } from 'src/types';
+
+export { TLitVal };
 
 export interface IInitial {
   [key: string]: TLitVal;

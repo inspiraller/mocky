@@ -1,5 +1,4 @@
-import { IConfigFieldset, Toptgroups, Toptions } from 'src/types';
-import { TLitVal } from 'src/store/eventCreate/_initialState';
+import { IConfigFieldset, Toptgroups, Toptions, TLitVal } from 'src/types';
 
 type TeditConfigFieldset = (props: {
   configFieldset: IConfigFieldset;

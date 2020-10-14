@@ -4,7 +4,7 @@ import { ThunkAction } from 'redux-thunk';
 import { RootState } from 'src/store/storeTypes';
 import convertValue from 'src/util/convertValue';
 
-import { TLitVal } from './_initialState';
+import { TLitVal } from 'src/types';
 import at from './actionTypes';
 
 export type TacEdit = (payload: {

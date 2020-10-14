@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
-import { TLitVal } from 'src/store/eventCreate/_initialState';
-import { Toptions } from 'src/types';
+import { TLitVal, Toptions } from 'src/types';
 import text from 'src/Main/text';
 import OptionStyle from 'src/Components/Common/Select/OptionStyle';
 

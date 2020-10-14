@@ -4,10 +4,6 @@ import initialState from './_initialState';
 
 const reducer = handleActions(
   {
-    [at.POPULATE_COORDINATOR]: (state, { payload }) => ({
-      ...state,
-      ...payload
-    }),
     [at.POPULATE_RESPONSIBLE]: (state, { payload }) => ({
       ...state,
       ...payload

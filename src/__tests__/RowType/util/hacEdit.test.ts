@@ -1,4 +1,4 @@
-import { TLitVal } from 'src/store/eventCreate/_initialState';
+import { TLitVal } from 'src/types';
 import hacEdit from 'src/util/hacEdit';
 
 const inputKey: string = 'someNumber';

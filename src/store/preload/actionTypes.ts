@@ -3,7 +3,6 @@ export type TAt = {
 };
 
 const at: TAt = {
-  POPULATE_COORDINATOR: '@preload/PopulateCoordinator',
   POPULATE_RESPONSIBLE: '@preload/PopulateResponsible'
 };
 

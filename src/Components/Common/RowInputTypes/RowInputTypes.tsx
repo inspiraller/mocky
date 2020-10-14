@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import text from 'src/Main/text';
 
-import { IConfigFieldset, IConfigFieldsetInputProps } from 'src/types';
-import { IInitial, TLitVal } from 'src/store/eventCreate/_initialState';
+import { IConfigFieldset, IConfigFieldsetInputProps, TLitVal } from 'src/types';
+import { IInitial } from 'src/store/eventCreate/_initialState';
 
 import { TacEdit } from 'src/store/eventCreate/actions';
 

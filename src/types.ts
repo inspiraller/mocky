@@ -1,5 +1,6 @@
 import { TValidate } from 'src/Components/Common/Validate/Validate';
-import { TLitVal } from 'src/store/eventCreate/_initialState';
+
+export type TLitVal = string | number | boolean | undefined;
 
 export type Toptions = Array<{ name: string; value: string | number | boolean }>;
 export type Toptgroups = { [key: string]: Toptions };

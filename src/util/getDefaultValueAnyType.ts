@@ -1,4 +1,4 @@
-import { TLitVal } from 'src/store/eventCreate/_initialState';
+import { TLitVal } from 'src/types';
 
 const getDefaultValueAnyType = (valueType: string | undefined): TLitVal => {
   if (valueType === 'number') {

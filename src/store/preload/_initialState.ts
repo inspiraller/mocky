@@ -1,9 +1,4 @@
-import * as mock from './mock';
-
-export type TCoordinatorProps = Array<{
-  id: number;
-  name: string;
-}>;
+// import * as mock from './mock';
 
 export type TResponsibleProps = Array<{
   id: number;
@@ -13,12 +8,10 @@ export type TResponsibleProps = Array<{
 }>;
 
 export interface IInitial {
-  coordinator?: TCoordinatorProps;
   responsible?: TResponsibleProps; //  Array<{ name: string; value: string }>;
 }
 
 const initialState: IInitial = {
-  coordinator: undefined, // mock.coordinator, MOCK WITH NO INTERNET
   responsible: undefined // mock.responsible MOCK WITH NO INTERNET
 };
 

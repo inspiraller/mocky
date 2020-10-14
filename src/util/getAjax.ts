@@ -3,38 +3,44 @@ import { TAnyHook } from 'src/types';
 
 interface IGetAjax {
   url: string;
-  tries: number;
-  loading: boolean;
-  isGot: () => boolean;
-  setLoading: TAnyHook;
-  setTries: TAnyHook;
-  handleGet: (data: any) => void;
   maxTries?: number;
+  tries: number;
+  setTries: TAnyHook;
+  loading: boolean;
+  setLoading: TAnyHook;
+  isGot: () => boolean;
 }
 
-const getAjax: (props: IGetAjax) => void = ({
+export const getErrorMaxTries = (maxTries: number) => Error(`Max tries reached - ${maxTries}`);
+
+const getAjax: (props: IGetAjax) => Promise<any> = ({
   url,
   maxTries = 3,
   tries,
-  loading,
-  isGot,
-  setLoading,
   setTries,
-  handleGet
-}) => {
-  const isMaxReached = tries >= maxTries;
-  if (!isGot() && !loading && !isMaxReached) {
-    setLoading(true);
-    setTries(tries + 1);
-    axios.get(url).then((resp: AxiosResponse<any>) => {
-      if (resp.data) {
-        handleGet(resp.data);
-      }
-      setLoading(false);
-    });
-  } else if (isMaxReached) {
-    console.log(`Max tries reached - ${maxTries}`);
-  }
-};
+  loading,
+  setLoading,
+  isGot
+}) =>
+  new Promise((resolve, reject) => {
+    const isMaxReached = tries >= maxTries;
+    if (!isGot() && !loading && !isMaxReached) {
+      setLoading(true);
+      setTries(tries + 1);
+      axios
+        .get(url)
+        .then((resp: AxiosResponse<any>) => {
+          if (resp.data) {
+            resolve(resp.data);
+          }
+          setLoading(false);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    } else if (isMaxReached) {
+      reject(getErrorMaxTries(maxTries));
+    }
+  });
 
 export default getAjax;

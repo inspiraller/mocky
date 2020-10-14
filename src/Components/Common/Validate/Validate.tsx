@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
-import { TLitVal } from 'src/store/eventCreate/_initialState';
-import { IConfigFieldsetInputProps } from 'src/types';
+import { TLitVal, IConfigFieldsetInputProps } from 'src/types';
 
 import text from 'src/Main/text';
 import InputErrorStyle from 'src/Components/Common/Input/InputErrorStyle';

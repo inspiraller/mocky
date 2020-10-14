@@ -1,8 +1,7 @@
 import React, { FC, useState, useRef, useEffect } from 'react';
 
-import { TLitVal } from 'src/store/eventCreate/_initialState';
 import { IRowInputType } from 'src/Components/Common/RowInputType/RowInputType';
-import { Toptions, Toptgroups } from 'src/types';
+import { TLitVal, Toptions, Toptgroups } from 'src/types';
 
 import text from 'src/Main/text';
 import hacEdit from 'src/util/hacEdit';

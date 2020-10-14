@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import { TLitVal } from 'src/store/eventCreate/_initialState';
+import { TLitVal } from 'src/types';
 import { IRowInputType } from 'src/Components/Common/RowInputType/RowInputType';
 
 import text from 'src/Main/text';

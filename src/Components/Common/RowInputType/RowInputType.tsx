@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { IConfigFieldsetInputProps } from 'src/types';
+import { TLitVal, IConfigFieldsetInputProps } from 'src/types';
 import { TacEdit } from 'src/store/eventCreate/actions';
-import { IInitial, TLitVal } from 'src/store/eventCreate/_initialState';
+import { IInitial } from 'src/store/eventCreate/_initialState';
 
 import LabelInput from 'src/Components/Common/LabelInputHoc/LabelInput';
 import LabelTextarea from 'src/Components/Common/LabelInputHoc/LabelTextarea';

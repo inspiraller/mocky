@@ -21,13 +21,12 @@ const PreloadResponsible: FC<IPreload> = ({ preload, acPopulateResponsible }) =>
     getAjax({
       url: 'http://www.mocky.io/v2/5bcdd7992f00006300c855d5',
       tries,
-      loading,
-      isGot: () => !!preload.responsible,
-      setLoading,
       setTries,
-      handleGet: (responsible: TResponsibleProps) => {
-        acPopulateResponsible({ responsible });
-      }
+      loading,
+      setLoading,
+      isGot: () => !!preload.responsible
+    }).then((responsible: TResponsibleProps) => {
+      acPopulateResponsible({ responsible });
     });
   });
   return null;

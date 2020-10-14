@@ -1,4 +1,4 @@
-import { TLitVal } from 'src/store/eventCreate/_initialState';
+import { TLitVal } from 'src/types';
 
 const convertValue = (value: string, valueType: string | undefined): TLitVal => {
   if (valueType === 'number') {
