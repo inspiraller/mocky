@@ -21,5 +21,3 @@ export const LabelSelectString = () => (
     {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit, submitTouched: false }}
   />
 );
-
-export default LabelSelectString;

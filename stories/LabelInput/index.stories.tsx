@@ -7,5 +7,6 @@ export { LabelInputMaxLength } from './_LabelInputMaxLength';
 export { LabelInputNumber } from './_LabelInputNumber';
 export { LabelInputRequired } from './_LabelInputRequired';
 export { LabelInputMoney } from './_LabelInputMoney';
+export { LabelInputReqSubmitTouched } from './_LabelInputReqSubmitTouched';
 
 export default { title: 'LabelInput' };

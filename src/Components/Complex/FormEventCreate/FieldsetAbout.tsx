@@ -7,7 +7,6 @@ import { TacEdit } from 'src/store/eventCreate/actions';
 
 import FieldsetStyle from 'src/Components/Common/Fieldset/FieldsetStyle';
 import LegendStyle from 'src/Components/Common/Legend/LegendStyle';
-
 import RowInputTypes from 'src/Components/Common/RowInputTypes/RowInputTypes';
 
 const Fieldset = FieldsetStyle();

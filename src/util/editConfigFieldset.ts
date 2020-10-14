@@ -7,6 +7,7 @@ type TeditConfigFieldset = (props: {
   val: TLitVal | Toptgroups | Toptions;
 }) => IConfigFieldset;
 
+// TODO: Consider side affect of deep objects mutating.
 const editConfigFieldset: TeditConfigFieldset = ({ configFieldset, key, childkey, val }) => ({
   ...configFieldset,
   ...{ [key]: { ...configFieldset[key], ...{ [childkey]: val } } }

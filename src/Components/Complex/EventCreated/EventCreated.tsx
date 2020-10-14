@@ -5,7 +5,7 @@ import { RootState } from 'src/store/storeTypes';
 
 import { IInitial as IInitalCreateEvent } from 'src/store/eventCreate/_initialState';
 
-import { getFormValid } from 'src/Components/Complex/FormEventCreate/FormEventCreate';
+import getFormValid from 'src/Components/Complex/FormEventCreate/util/getFormValid';
 import formatOutput from 'src/util/formatOutput';
 
 import NotificationStyle from 'src/Components/Common/Notification/NotificationStyle';

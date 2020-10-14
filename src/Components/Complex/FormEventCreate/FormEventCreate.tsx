@@ -7,22 +7,18 @@ import { History } from 'history';
 import { push } from 'connected-react-router';
 
 import { IInitial as IInitalCreateEvent } from 'src/store/eventCreate/_initialState';
-import { IConfigFieldset } from 'src/types';
 
 import { TacEdit, actions as actionsCreateEvent } from 'src/store/eventCreate/actions';
-import getFlatAdjacent from 'src/util/getFlatAdjacent';
-
-import { getEachValid } from 'src/Components/Common/Validate/Validate';
 import RowBlockStyle from 'src/Components/Common/Row/RowBlockStyle';
 import ButtonStyle from 'src/Components/Common/Button/ButtonStyle';
 import NotificationStyle from 'src/Components/Common/Notification/NotificationStyle';
 
 import SectionEvent from 'src/Components/Common/SectionEvent/SectionEvent';
-import FieldsetAbout, { configFieldset as configFieldsetAbout } from './FieldsetAbout';
-import FieldsetCoordinator, {
-  configFieldset as configFieldsetCoordinator
-} from './FieldsetCoordinator';
-import FieldsetWhen, { configFieldset as configFieldsetWhen } from './FieldsetWhen';
+import FieldsetAbout from './FieldsetAbout';
+import FieldsetCoordinator from './FieldsetCoordinator';
+import FieldsetWhen from './FieldsetWhen';
+
+import getFormValid from './util/getFormValid';
 
 const Row = RowBlockStyle();
 const Button = ButtonStyle();
@@ -37,23 +33,6 @@ export interface IFormSetup {
 
 type TSubmitEvent = React.FormEvent<HTMLFormElement>;
 type TSubmit = (evt: TSubmitEvent) => void;
-
-export const getFormValid = (eventCreate: IInitalCreateEvent) => {
-  const allFieldsets: IConfigFieldset = {
-    ...configFieldsetAbout,
-    ...configFieldsetCoordinator,
-    ...configFieldsetWhen
-  };
-
-  const flatAdjacent = getFlatAdjacent(allFieldsets);
-  const combined = { ...allFieldsets, ...flatAdjacent };
-
-  const isAllValid: boolean = Object.keys(combined).every(inputKey =>
-    getEachValid(inputKey, combined[inputKey], eventCreate[inputKey])
-  );
-
-  return isAllValid;
-};
 
 const FormEventCreate: FC<IFormSetup> = props => {
   const [submitTouched, setSubmitTouched] = useState(false);

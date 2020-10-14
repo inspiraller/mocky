@@ -20,5 +20,3 @@ export const LabelSelectBoolean = () => (
     {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit, submitTouched: false }}
   />
 );
-
-export default LabelSelectBoolean;

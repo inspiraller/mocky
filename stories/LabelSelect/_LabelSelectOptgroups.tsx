@@ -6,18 +6,19 @@ export const configFieldset: IConfigFieldset = {
   fruit: {
     required: true,
     type: 'select',
-    options: [
-      { name: 'Number1', value: 1 },
-      { name: 'Number2', value: 2 },
-      { name: 'Number3', value: 3 },
-      { name: 'Number4', value: 4 }
-    ],
-    valueType: 'number'
+    optgroups: {
+      mygroup: [
+        { name: 'string1', value: 'apple' },
+        { name: 'string2', value: 'banana' },
+        { name: 'string3', value: 'pear' }
+      ]
+    },
+    valueType: 'string'
   }
 };
 const formid = 'x';
 
-export const LabelSelectNumber = () => (
+export const LabelSelectOptgroups = () => (
   <LabelSelect
     {...{ formid, inputKey: 'fruit', inputProps: configFieldset.fruit, submitTouched: false }}
   />

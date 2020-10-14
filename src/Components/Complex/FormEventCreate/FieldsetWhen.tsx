@@ -2,13 +2,12 @@ import React, { FC } from 'react';
 import text from 'src/Main/text';
 
 import { IConfigFieldset } from 'src/types';
-
 import { IInitial as IInitialEventCreate } from 'src/store/eventCreate/_initialState';
+
 import { TacEdit } from 'src/store/eventCreate/actions';
 
 import FieldsetStyle from 'src/Components/Common/Fieldset/FieldsetStyle';
 import LegendStyle from 'src/Components/Common/Legend/LegendStyle';
-
 import RowInputTypes from 'src/Components/Common/RowInputTypes/RowInputTypes';
 
 const Fieldset = FieldsetStyle();
@@ -25,18 +24,18 @@ export const configFieldset: IConfigFieldset = {
         label: 'at',
         inline: true,
         required: true
-      },
-      ampm: {
-        type: 'radio',
-        isLabel: false,
-        inline: true,
-        radios: [
-          { name: text('am'), value: 'am' },
-          { name: text('pm'), value: 'pm' }
-        ],
-        valueType: 'string',
-        required: true
       }
+      // ampm: {
+      //   type: 'radio',
+      //   isLabel: false,
+      //   inline: true,
+      //   radios: [
+      //     { name: text('am'), value: 'am' },
+      //     { name: text('pm'), value: 'pm' }
+      //   ],
+      //   valueType: 'string',
+      //   required: true
+      // }
     }
   },
   duration: {
