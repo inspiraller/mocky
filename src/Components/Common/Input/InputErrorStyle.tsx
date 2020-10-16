@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { withElem } from 'src/Main/Styles/withStyle';
 import { TStyles } from 'src/Main/Styles/Theme';
 
-const StyleMe: TStyles = ({ theme: { pad2, pad4, pad10, warn, textLight } }) => `
+const styles: TStyles = ({ theme: { pad2, pad4, pad10, warn, textLight } }) => `
   display: inline-block;
   margin: ${pad4} 0 0 ${pad10};
   padding: ${pad2} ${pad10};
@@ -22,10 +22,6 @@ const StyleMe: TStyles = ({ theme: { pad2, pad4, pad10, warn, textLight } }) => 
     border-width: 4px;
     margin-top: -4px;
   }
-
-
 `;
 
-export default () => styled.span`
-  ${StyleMe}
-`;
+export default () => withElem('span', styles);

@@ -1,6 +1,6 @@
 import React from 'react';
 import SelectStyle from 'src/Components/Common/Select/SelectStyle';
-import OptionsStyle from 'src/Components/Common/Select/OptionStyle';
+import OptionsStyle from 'src/Components/Common/Options/OptionStyle';
 
 const Select = SelectStyle();
 const Option = OptionsStyle();

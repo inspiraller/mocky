@@ -1,5 +1,5 @@
 import React from 'react';
-import Options from 'src/Components/Common/LabelSelect/Options';
+import Options from 'src/Components/Common/Options/Options';
 
 export const options = [
   { name: 'string1', value: 'apple' },

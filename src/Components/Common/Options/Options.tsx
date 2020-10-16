@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { TLitVal, Toptions } from 'src/types';
 import text from 'src/Main/text';
-import OptionStyle from 'src/Components/Common/Select/OptionStyle';
+import OptionStyle from './OptionStyle';
 
 const Option = OptionStyle();
 

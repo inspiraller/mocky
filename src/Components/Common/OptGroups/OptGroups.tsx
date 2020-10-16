@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Toptgroups } from 'src/types';
 import text from 'src/Main/text';
-import Options from './Options';
+import Options from '../Options/Options';
 
 interface IOptGroups {
   formid: string;

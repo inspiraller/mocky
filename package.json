@@ -12,7 +12,7 @@
     "build": "webpack --config ./webpack.config.prod.js",
     "localProd": "node nodeServer",
     "start": "npm run dev",
-    "snapshot-update": "./node_modules/.bin/jest --updateSnapshot",
+    "snapshot": "./node_modules/.bin/jest --updateSnapshot",
     "testExamples": "npm run jest -- --inspect-brk --env=node --coverage --ci --runInBand",
     "test": "jest",
     "sonar": "rimraf .scannerwork && node node_modules/sonarqube-scanner/dist/bin/sonar-scanner",
