@@ -4,6 +4,7 @@ import text from 'src/Main/text';
 import { IConfigFieldset } from 'src/types';
 import { IInitial } from 'src/store/eventCreate/_initialState';
 import { TacEdit } from 'src/store/eventCreate/actions';
+import { validateGt0 } from 'src/Components/Common/Validate/Validate';
 
 import FieldsetStyle from 'src/Components/Common/Fieldset/FieldsetStyle';
 import LegendStyle from 'src/Components/Common/Legend/LegendStyle';
@@ -51,7 +52,8 @@ export const configFieldset: IConfigFieldset = {
         isLabel: false,
         required: true,
         valueType: 'number',
-        inline: true
+        inline: true,
+        validate: validateGt0
       }
     }
   },

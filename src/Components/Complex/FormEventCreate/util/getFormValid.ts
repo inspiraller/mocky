@@ -20,7 +20,7 @@ const getFormValid = (eventCreate: IInitalCreateEvent) => {
   const combined = { ...allFieldsets, ...flatAdjacent };
 
   const isAllValid: boolean = Object.keys(combined).every(inputKey =>
-    getEachValid(inputKey, combined[inputKey], eventCreate[inputKey])
+    getEachValid({ inputKey, obj: combined[inputKey], eventCreate })
   );
 
   return isAllValid;

@@ -45,6 +45,7 @@ const FormEventCreate: FC<IFormSetup> = props => {
     evt.preventDefault();
     setSubmitTouched(true);
     const isValid: boolean = getFormValid(eventCreate);
+    console.log('isValid = ', isValid);
     setValid(isValid);
     if (isValid) {
       props.push('/EventCreated');
