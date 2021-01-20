@@ -24,3 +24,24 @@ localhost:3000
 - Add Validation
 - Add Styling
 
+
+# How to run webpack as typescript file 
+// https://webpack.js.org/configuration/configuration-languages/
+**prerequisites**
+```
+yarn add @types/webpack-dev-server tsconfig-paths typescript ts-node @types/node @types/webpack --save-dev
+```
+
+**package.json**
+```javascript
+{
+   "dev": "cross-env TS_NODE_PROJECT=\"webpack-tsconfig.json\" webpack-dev-server --config ./webpack.config.dev.ts --target web",
+    "build": "cross-env TS_NODE_PROJECT=\"webpack-tsconfig.json\" webpack --config ./webpack.config.prod.ts"
+}
+```
+**webpack.config.ts**
+```typescript
+import webpack from 'webpack';
+import 'webpack-dev-server'; // needed for typescript devServer config
+const config: webpack.Configuration = {}
+```

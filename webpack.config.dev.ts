@@ -1,39 +1,42 @@
-const webpack = require('webpack');
-const path = require('path');
-const autoprefixer = require('autoprefixer');
-const { argv } = require('yargs');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-// const StyleLintPlugin = require('stylelint-webpack-plugin');
+import webpack from 'webpack';
+import 'webpack-dev-server'; // needed for typescript devServer config
+// https://webpack.js.org/configuration/configuration-languages/
+// prerequisites
+// yarn add @types/webpack-dev-server @types/webpack --save-dev
+// yarn add tsconfig-paths --save-dev
+// yarn add typescript ts-node @types/node @types/webpack --save-dev
 
-// const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const contextPath = '';
+import path from 'path';
+import autoprefixer from 'autoprefixer';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ProgressBarPlugin from 'progress-bar-webpack-plugin';
+
 const src = path.join(__dirname, '/src');
 const index = path.join(src, '/index.tsx');
-// const assets = path.join(src, '/assets');
+const assets = path.join(src, '/assets');
 
 const dist = path.join(__dirname, './dist');
 const indexHtml = path.join(src, '/index.html');
-// const scss = path.join(assets, '/**/*.scss');
+
 const publicPath = '/';
-module.exports = {
+
+const config: webpack.Configuration = {
   entry: {
     app: index
   },
-  mode: 'production',
+  mode: 'development',
   resolve: {
     modules: [src, 'node_modules'],
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss'],
+
+    // fix module resolver for typescript !!!
     alias: {
       src
     }
   },
   output: {
     path: dist,
-    filename: '[name].[hash].js',
-    sourceMapFilename: '[file].map',
+    filename: '[name].js',
     pathinfo: true,
     publicPath
   },
@@ -59,7 +62,7 @@ module.exports = {
     }
   },
   cache: true,
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
   // devtool: 'inline-eval-cheap-source-map' = optimize dev mode
   // devtool: 'cheap-module-source-map',
   stats: {
@@ -108,7 +111,7 @@ module.exports = {
       //   exclude: '/node_modules/',
       //   use: [
       //     {
-      //       loader: MiniCssExtractPlugin.loader
+      //       loader: 'style-loader'
       //     },
       //     {
       //       loader: 'css-loader?sourceMap'
@@ -125,7 +128,7 @@ module.exports = {
       //   ]
       // },
       {
-        test: /\.(png|jpg|woff|woff2|ttf|svg|eot|gif)$/,
+        test: /\.(css|png|jpg|woff|woff2|ttf|svg|eot|gif)$/,
         use: 'url-loader?limit=8192'
       },
       {
@@ -140,8 +143,6 @@ module.exports = {
   },
   plugins: [
     new ProgressBarPlugin(),
-    // new CaseSensitivePathsPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: indexHtml,
@@ -165,29 +166,29 @@ module.exports = {
     //   filename: 'vendor.bundle.js',
     // }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify((argv.env && argv.env.NODE_ENV) || 'production')
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify((argv.env && argv.env.prodEnv) || 'dummyurl')
-    }),
-    new webpack.DefinePlugin({
-      contextPath: JSON.stringify(contextPath)
-    }),
+      'process.env.NODE_ENV': JSON.stringify('development') // NEW
+    })
     // new StyleLintPlugin({
     //   context: 'src',
     //   syntax: 'scss'
-    // }),
-    new MiniCssExtractPlugin({
-      filename: 'bundle.[hash].css'
-    }),
-    new CopyWebpackPlugin([
-      {
-        context: 'src/assets',
-        from: '**/*',
-        to: '../dist/assets'
-      }
-    ])
+    // })
     // new OpenPlugin()
     // new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
+  devServer: {
+    contentBase: dist,
+    hot: true,
+    port: 3000,
+    inline: true
+    // progress: true
+    // stats: 'errors-only',
+    // host: process.env.HOST,
+  }
 };
+
+type tfnConfig = (globalConfig: webpack.Configuration) => webpack.Configuration;
+const fnConfig: tfnConfig = globalConfig => ({
+  ...globalConfig,
+  ...config
+});
+export default fnConfig;

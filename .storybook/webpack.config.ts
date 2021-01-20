@@ -3,24 +3,22 @@
 // module.exports = webpackConfig;
 
 // copied from root.
-const path = require('path');
+import path from 'path';
+import webpack from 'webpack';
+import 'webpack-dev-server'; // needed for typescript devServer config
+
 const src = path.join(__dirname, '/src');
 
-module.exports = ({ config }) => {
-  config.resolve.modules = [src, 'node_modules'];
-  config.resolve.extensions = ['.ts', '.tsx', '.js', '.jsx'];
-  config.resolve.alias = { src };
-
-    // config.resolve = {
-  //   modules: [src, 'node_modules'],
-  //   extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss'],
-
-  //   // fix module resolver for typescript !!!
-  //   alias: {
-  //     src
-  //   }
-  // };
-
-
+type tfnConfig = (props: {config: webpack.Configuration}) => webpack.Configuration;
+const fnConfig: tfnConfig = ({config}) => {
+  console.log('config.resolve = ', config.resolve);
+  if (config.resolve) {
+    config.resolve.modules = [src, 'node_modules'];
+    config.resolve.extensions = ['.ts', '.tsx', '.js', '.jsx'];
+    config.resolve.alias = { src };
+  }
   return config;
 };
+
+export default fnConfig;
+

@@ -1,39 +1,39 @@
-const webpack = require('webpack');
-const path = require('path');
-const autoprefixer = require('autoprefixer');
-const Express = require('express');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-// const StyleLintPlugin = require('stylelint-webpack-plugin');
-// breaking installations of other files apollo-client etc..
+import webpack from 'webpack';
+import 'webpack-dev-server'; // needed for typescript devServer config
+// yarn add @types/webpack-dev-server @types/webpack --save-dev
 
-// const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+import path from 'path';
+import autoprefixer from 'autoprefixer';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 
+import { argv } from 'yargs';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
+const contextPath = '';
 const src = path.join(__dirname, '/src');
 const index = path.join(src, '/index.tsx');
-const assets = path.join(src, '/assets');
 
 const dist = path.join(__dirname, './dist');
 const indexHtml = path.join(src, '/index.html');
-// const scss = path.join(assets, '/**/*.scss');
 const publicPath = '/';
-module.exports = {
+const config: webpack.Configuration = {
   entry: {
     app: index
   },
-  mode: 'development',
+  mode: 'production',
   resolve: {
     modules: [src, 'node_modules'],
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss'],
-
-    // fix module resolver for typescript !!!
     alias: {
       src
     }
   },
   output: {
     path: dist,
-    filename: '[name].js',
+    filename: '[name].[hash].js',
+    sourceMapFilename: '[file].map',
     pathinfo: true,
     publicPath
   },
@@ -59,7 +59,7 @@ module.exports = {
     }
   },
   cache: true,
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   // devtool: 'inline-eval-cheap-source-map' = optimize dev mode
   // devtool: 'cheap-module-source-map',
   stats: {
@@ -108,7 +108,7 @@ module.exports = {
       //   exclude: '/node_modules/',
       //   use: [
       //     {
-      //       loader: 'style-loader'
+      //       loader: MiniCssExtractPlugin.loader
       //     },
       //     {
       //       loader: 'css-loader?sourceMap'
@@ -125,7 +125,7 @@ module.exports = {
       //   ]
       // },
       {
-        test: /\.(css|png|jpg|woff|woff2|ttf|svg|eot|gif)$/,
+        test: /\.(png|jpg|woff|woff2|ttf|svg|eot|gif)$/,
         use: 'url-loader?limit=8192'
       },
       {
@@ -140,8 +140,6 @@ module.exports = {
   },
   plugins: [
     new ProgressBarPlugin(),
-    // new CaseSensitivePathsPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: indexHtml,
@@ -165,32 +163,25 @@ module.exports = {
     //   filename: 'vendor.bundle.js',
     // }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development') // NEW
-    })
-    // new StyleLintPlugin({
-    //   context: 'src',
-    //   syntax: 'scss'
-    // })
-    // new OpenPlugin()
-    // new webpack.HotModuleReplacementPlugin()
-  ],
-  devServer: {
-    before: app => {
-      app.get('/dude', (req, res) => {
-        res.json({ custom: 'response' });
-      });
-      app.use('/assets', Express.static(assets));
-    },
-    contentBase: dist,
-    hot: true,
-    port: 3000,
-    historyApiFallback: {
-      index: publicPath
-    }
-    // hot: true,
-    // inline: true,
-    // progress: true,
-    // stats: 'errors-only',
-    // host: process.env.HOST,
-  }
+      'process.env.NODE_ENV': JSON.stringify((argv.env && argv.env.NODE_ENV) || 'production')
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify((argv.env && argv.env.prodEnv) || 'dummyurl')
+    }),
+    new webpack.DefinePlugin({
+      contextPath: JSON.stringify(contextPath)
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'bundle.[hash].css'
+    }),
+    new CopyWebpackPlugin([
+      {
+        context: 'src/assets',
+        from: '**/*',
+        to: '../dist/assets'
+      }
+    ])
+  ]
 };
+
+export default config;
