@@ -1,8 +1,8 @@
-import webpack from 'webpack';
+import * as webpack from 'webpack';
 import 'webpack-dev-server'; // needed for typescript devServer config
 // yarn add @types/webpack-dev-server @types/webpack --save-dev
 
-import path from 'path';
+import * as path from 'path';
 import autoprefixer from 'autoprefixer';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
@@ -18,6 +18,8 @@ const index = path.join(src, '/index.tsx');
 const dist = path.join(__dirname, './dist');
 const indexHtml = path.join(src, '/index.html');
 const publicPath = '/';
+
+
 const config: webpack.Configuration = {
   entry: {
     app: index
@@ -163,10 +165,10 @@ const config: webpack.Configuration = {
     //   filename: 'vendor.bundle.js',
     // }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify((argv.env && argv.env.NODE_ENV) || 'production')
+      'process.env.NODE_ENV': JSON.stringify((argv.env && (argv.env as any).NODE_ENV) || 'production')
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify((argv.env && argv.env.prodEnv) || 'dummyurl')
+      'process.env.NODE_ENV': JSON.stringify((argv.env && (argv.env as any).prodEnv) || 'dummyurl')
     }),
     new webpack.DefinePlugin({
       contextPath: JSON.stringify(contextPath)

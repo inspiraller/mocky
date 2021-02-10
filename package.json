@@ -9,7 +9,7 @@
   "scripts": {
     "preinstallAfter": "node ./node_modules/npm-force-resolutions/index.js",
     "dev": "cross-env TS_NODE_PROJECT=\"webpack-tsconfig.json\" webpack-dev-server --config ./webpack.config.dev.ts --target web",
-    "build": "cross-env TS_NODE_PROJECT=\"webpack-tsconfig.json\" webpack --config ./webpack.config.prod.ts ",
+    "build": "cross-env TS_NODE_PROJECT=\"webpack-tsconfig.json\" webpack --env.NODE_ENV=production --env.prodEnv=production --mode=production --config ./webpack.config.prod.ts ",
     "localProd": "node nodeServer",
     "start": "npm run dev",
     "snapshot": "./node_modules/.bin/jest --updateSnapshot",
